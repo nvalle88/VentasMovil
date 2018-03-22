@@ -162,6 +162,12 @@
     <Reference Include="Plugin.DeviceInfo.Abstractions, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.DeviceInfo.3.0.2\lib\Xamarin.iOS10\Plugin.DeviceInfo.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.ExternalMaps, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.ExternalMaps.4.0.1\lib\Xamarin.iOS10\Plugin.ExternalMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.ExternalMaps.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.ExternalMaps.4.0.1\lib\Xamarin.iOS10\Plugin.ExternalMaps.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Plugin.Geolocator, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Geolocator.4.0.1\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
     </Reference>

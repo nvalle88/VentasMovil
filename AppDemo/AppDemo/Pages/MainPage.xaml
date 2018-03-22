@@ -15,6 +15,9 @@
               VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 CustomPins="{Binding Locations}"    
+                PinSelectedCommand="{Binding PinSelected}"
+                MapClickedCommand="{Binding PinUnselected}"
+                SelectedPin="{Binding MyPin}"            
                 IsShowingUser="True">
             
         </tkmap:TKCustomMap>
@@ -29,6 +32,15 @@
                     ImageWidthRequest="50" 
                     Command="{Binding RefreshDataCommand}"
                    />
+
+        <Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenInMap} "></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Entry VerticalOptions="Start" HorizontalOptions="Center" Placeholder="Dirección" BackgroundColor="White" TextColor="Blue" x:Name="FinDirections"></Entry>
+        
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"
@@ -104,7 +116,7 @@
                                     <StackLayout 
                                         Orientation="Horizontal">
                                         <Image Source="client"></Image>
-                                        <StackLayout 
+                                        <StackLayout  WidthRequest="200"
                                         Orientation="Vertical">
                                             <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="Small"
                                          TextColor="Black" />
@@ -112,6 +124,9 @@
                                          TextColor="Black" />
                                        
                                         </StackLayout>
+                                        <Button Text="Ver">
+                                            
+                                        </Button>
                                     </StackLayout>
 
                                 </ViewCell>

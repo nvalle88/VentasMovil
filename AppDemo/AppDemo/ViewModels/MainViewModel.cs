@@ -23,6 +23,7 @@ using AppDemo.Helpers;
 using AppDemo.Constants;
 using Plugin.Geolocator.Abstractions;
 using TK.CustomMap.Overlays;
+using Plugin.ExternalMaps;
 /// <summary>
 /// Este es el View model principal desde aquí se inicializa la mayoria de las cosas
 /// 
@@ -101,6 +102,24 @@ namespace AppDemo.ViewModels
             }
         }
 
+        public bool hayRuta;
+
+        public bool HayRuta
+        {
+            set
+            {
+                if (hayRuta != value)
+                {
+                    hayRuta = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HayRuta"));
+                }
+            }
+            get
+            {
+                return hayRuta;
+            }
+        }
+
 
         #endregion
 
@@ -143,7 +162,8 @@ namespace AppDemo.ViewModels
             NewLogin = new LoginViewModel();
             AddnewClient = new AddViewModel();
             CheckinClient = new CheckinViewModel();
-            signalRService = new SignalRService();           
+            signalRService = new SignalRService();
+            MyPin = new TKCustomMapPin();
             LoadClientes();
             if (Settings.IsLoggedIn)
             {
@@ -209,8 +229,6 @@ namespace AppDemo.ViewModels
             }
             get { return listlocation; }
         }
-
-
         /// <summary>
         /// Desde aquí enviamos los datos de localización de forma periodica hacia la aplicacion web 
         /// </summary>
@@ -221,6 +239,10 @@ namespace AppDemo.ViewModels
             CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;        
         }
        
+        private async Task findPlace()
+        {
+
+        }
 
         async  void CrossGeolocator_Current_PositionChanged(object sender, PositionEventArgs e)
         {
@@ -258,23 +280,26 @@ namespace AppDemo.ViewModels
 
         public async void pinselected()
         {
+            HayRuta = true;                     
+        }
 
-            //Debug.WriteLine("debe pintarse la ruta" + MyPin.Position.Latitude);
+        public ICommand PinUnselected { get { return new RelayCommand(pinunselected); } }
 
-            //MyRoute = new TKRoute
-            //{
-            //    TravelMode = TKRouteTravelMode.Driving,
-            //    Source = myPosition.Position,
-            //    Destination = MyPin.Position,
-            //    Color = Color.Blue
-            //};
-
+        public async void pinunselected()
+        {
+            HayRuta = false;
         }
 
         public ICommand RefreshDataCommand { get { return new RelayCommand(RefreshData); } }
         public void RefreshData()
         {
             LoadClientes();
+        }
+
+        public ICommand OpenInMap { get { return new RelayCommand(openinMap); } }
+        public async void openinMap()
+        {
+            var success = await CrossExternalMaps.Current.NavigateTo(MyPin.Title, MyPin.Position.Latitude, MyPin.Position.Longitude);
         }
 
      //   public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshData); } }
@@ -345,7 +370,7 @@ namespace AppDemo.ViewModels
 
                 PageName = "VerificarAutoPage",
                 Icon = "addc.png",
-                Title = "Nuevo Cliente",
+                Title = "Clientes",
                 SubTitle = "",
 
             });
@@ -356,6 +381,24 @@ namespace AppDemo.ViewModels
                 PageName = "ConsultarMultas",
                 Icon = "checkin.png",
                 Title = "Checkin",
+                SubTitle = "",
+            });
+
+            Menu.Add(new MenuItemViewModel
+            {
+
+                PageName = "ConsultarMultas",
+                Icon = "checkin.png",
+                Title = "Agenda",
+                SubTitle = "",
+            });
+
+            Menu.Add(new MenuItemViewModel
+            {
+
+                PageName = "ConsultarMultas",
+                Icon = "checkin.png",
+                Title = "Noticias",
                 SubTitle = "",
             });
 

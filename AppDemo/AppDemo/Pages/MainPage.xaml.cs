@@ -51,7 +51,21 @@ namespace AppDemo.Pages
             catch
             {
             }
+            FinDirections.Completed += FinDirections_Completed; ;
         }
+
+        private async void FinDirections_Completed(object sender, EventArgs e)
+        {
+            var text = ((Entry)sender).Text; //cast sender to access the properties of the Entry
+            var position = (await(new Geocoder()).GetPositionsForAddressAsync(text)).FirstOrDefault();
+
+            await Task.Delay(3000);
+            Mapa.MoveToRegion(MapSpan.FromCenterAndRadius((position), Distance.FromMiles(.3)));
+            await Task.Delay(3000);
+            Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
+
+        }
+
         async void Locator()
         {
 
