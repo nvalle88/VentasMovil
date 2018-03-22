@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+                 Title="Nuevo Cliente"
+             x:Class="AppDemo.Pages.AddPage">
+
+
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BindingContext="{Binding AddnewClient}">
+        <Label Text="Agregar Nuevo Cliente"
+                VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+               HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}"
+                   />
+        
+        <StackLayout BackgroundColor="White" Padding="5"  >
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
+                <Entry FontSize="Small" Placeholder="Nombre" Text="{Binding cliente.Nombre ,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="ruc.png" WidthRequest="30" HeightRequest="30"></Image>
+                <Entry FontSize="Small" Placeholder="Ruc" Text="{Binding cliente.Ruc ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="telefono.png" WidthRequest="30" HeightRequest="30"></Image>
+                <Entry FontSize="Small" Placeholder="Telefono" Text="{Binding cliente.Telefono ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="dir.png" WidthRequest="30" HeightRequest="30"></Image>
+                <Entry FontSize="Small" Placeholder="Direccion" Text="{Binding cliente.Direccion ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Image Source="pcontact.png" WidthRequest="30" HeightRequest="30"></Image>
+                <Entry FontSize="Small" Placeholder="Persona de Contacto" Text="{Binding cliente.PersonaContacto ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Agregar" TextColor="White" Command="{Binding AddCommand}" BackgroundColor="{StaticResource AccentColor2}"></Button>
+                <Button Text="Cerrar" BackgroundColor="Red" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+            </StackLayout>
+        </StackLayout>
+        
+
+    </StackLayout>
+</pages:PopupPage>

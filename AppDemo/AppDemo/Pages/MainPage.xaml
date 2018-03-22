@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppDemo.Pages.MainPage" 
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
+             xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Gestion de Ventas"
+             BackgroundColor="{StaticResource MainColor}">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <tkmap:TKCustomMap 
+                x:Name="Mapa"
+              VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                CustomPins="{Binding Locations}"    
+                IsShowingUser="True">
+            
+        </tkmap:TKCustomMap>
+        <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
+                    BackgroundColor="#ffffff" 
+                    HeightRequest="50" 
+                    WidthRequest="50" 
+                    Source="ic_update" 
+                    ImageTintColor="#777777" 
+                    Orientation="ImageToRight"  
+                    ImageHeightRequest="50" 
+                    ImageWidthRequest="50" 
+                    Command="{Binding RefreshDataCommand}"
+                   />
+        <StackLayout  x:Name="QuickMenuPullLayout"
+                          HorizontalOptions="FillAndExpand"     
+                          VerticalOptions="End"
+                          Spacing="0">
+
+            <Grid x:Name="QuickMenuLayout" >
+                <StackLayout BackgroundColor="White" Opacity="0.8" ></StackLayout>
+
+                <Grid   x:Name="QuickMenuInnerLayout"
+                            Padding="20,20,20,10"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="StartAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout  x:Name="Add" 
+                                      VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="CenterAndExpand"
+                                      Grid.Column="0" 
+                                      Grid.Row="0">
+                        <controls:ImageButton 
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        BackgroundColor="Transparent" 
+                        HeightRequest="100" 
+                        WidthRequest="100" 
+                        Source="addc" 
+                        ImageTintColor="{StaticResource AccentColor2}" 
+                        Orientation="ImageOnTop"  
+                        ImageHeightRequest="60" 
+                        ImageWidthRequest="60" 
+                        Command="{Binding AddNewClientCommand}"
+                        Text="Agregar"
+                        FontSize="Micro"
+                   />
+
+                    </StackLayout>
+                    <StackLayout  x:Name="Checkin"
+                                      VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="CenterAndExpand"
+                                      Grid.Column="1" 
+                                      Grid.Row="0">
+                        <controls:ImageButton 
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        BackgroundColor="Transparent" 
+                        HeightRequest="100" 
+                        WidthRequest="100" 
+                        Source="checkin" 
+                        ImageTintColor="{StaticResource AccentColor2}" 
+                        Orientation="ImageOnTop"  
+                        ImageHeightRequest="60" 
+                        ImageWidthRequest="60" 
+                        Command="{Binding AddCheckinCommand}"
+                        Text="Checkin"
+                        FontSize="Micro"
+                   />
+                    </StackLayout>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="Notification"  HeightRequest="200">
+                <StackLayout BackgroundColor="White" Opacity="0.5"></StackLayout>
+                <ScrollView>
+                    <ListView x:Name="listView" ItemsSource="{Binding ListLocation}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout 
+                                        Orientation="Horizontal">
+                                        <Image Source="client"></Image>
+                                        <StackLayout 
+                                        Orientation="Vertical">
+                                            <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="Small"
+                                         TextColor="Black" />
+                                            <Label Text="{Binding Subtitulo}" FontSize="Small"
+                                         TextColor="Black" />
+                                       
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
