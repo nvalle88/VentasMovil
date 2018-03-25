@@ -20,12 +20,25 @@
 
             <Color x:Key="MainColor">#FFFFFF</Color>
             <Color x:Key="FontColor">#000000</Color>
-            <Color x:Key="AccentColor1">#9E9E9E</Color>
-            <Color x:Key="AccentColor2">#1976D2</Color>
-            <Color x:Key="BackgroundColor">#F7F7F7</Color>
+            <Color x:Key="AccentColor1">#FF5722</Color>
+            <Color x:Key="AccentColor2">#FF9800</Color>
+            <Color x:Key="BackgroundColor">#E64A19</Color>
             <!-- Menu colors -->
             <Color x:Key="MenuColor">#E0E0E0</Color>
-            <Color x:Key="MenuFontColor">#313131</Color>
+            <Color x:Key="MenuFontColor">#ffffff</Color>
+            
+            <!--Round Entry-->
+            <!--<Style  TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor2}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BorderRadius" Value="20" />
+            </Style>-->
+
+            <Style x:Key="RoundEntry" TargetType="Entry">
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

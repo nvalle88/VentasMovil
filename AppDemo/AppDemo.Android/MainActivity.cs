@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Plugin.Permissions;
 using Xamarin;
+using Xamarin.Forms;
 
 namespace AppDemo.Droid
 {
@@ -18,7 +19,7 @@ namespace AppDemo.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             FormsMaps.Init(this, bundle);
-            
+           
 
             LoadApplication(new App());
         }

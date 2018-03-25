@@ -4056,8 +4056,8 @@ namespace AppDemo.Droid
 			// aapt resource value: 0x7f0200e2
 			public const int mr_ic_play_light = 2130837730;
 			
-			// aapt resource value: 0x7f0200f4
-			public const int notification_template_icon_bg = 2130837748;
+			// aapt resource value: 0x7f0200f9
+			public const int notification_template_icon_bg = 2130837753;
 			
 			// aapt resource value: 0x7f0200e3
 			public const int obser = 2130837731;
@@ -4099,16 +4099,31 @@ namespace AppDemo.Droid
 			public const int powered_by_google_light = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int ruc = 2130837744;
+			public const int Propuesta1 = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int telefono = 2130837745;
+			public const int Propuesta12 = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int tipo = 2130837746;
+			public const int PropuestaIcon1 = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int valor = 2130837747;
+			public const int PropuestaIcon12 = 2130837747;
+			
+			// aapt resource value: 0x7f0200f4
+			public const int RoundedEntry = 2130837748;
+			
+			// aapt resource value: 0x7f0200f5
+			public const int ruc = 2130837749;
+			
+			// aapt resource value: 0x7f0200f6
+			public const int telefono = 2130837750;
+			
+			// aapt resource value: 0x7f0200f7
+			public const int tipo = 2130837751;
+			
+			// aapt resource value: 0x7f0200f8
+			public const int valor = 2130837752;
 			
 			static Drawable()
 			{

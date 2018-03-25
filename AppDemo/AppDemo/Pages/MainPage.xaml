@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppDemo.Pages.MainPage" 
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:custom="clr-namespace:AppDemo.Controls;assembly=AppDemo"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Gestion de Ventas"
+             Title="SaleOUT"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <tkmap:TKCustomMap 
@@ -39,8 +40,17 @@
             </Image.GestureRecognizers>
         </Image>
 
-        <Entry VerticalOptions="Start" HorizontalOptions="Center" Placeholder="Dirección" BackgroundColor="White" TextColor="Blue" x:Name="FinDirections"></Entry>
-        
+        <custom:RoundEntry  VerticalOptions="Start" 
+                             HorizontalOptions="Center" 
+                             Placeholder="Ingrese su Dirección" 
+                             TextColor="{StaticResource AccentColor2}"
+                            
+                             x:Name="FinDirections"     
+                             Style="{StaticResource RoundEntry}"
+                             Margin="0,7,0,0"></custom:RoundEntry>
+
+     
+
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"
@@ -109,7 +119,7 @@
             <Grid x:Name="Notification"  HeightRequest="200">
                 <StackLayout BackgroundColor="White" Opacity="0.5"></StackLayout>
                 <ScrollView>
-                    <ListView x:Name="listView" ItemsSource="{Binding ListLocation}" >
+                    <ListView x:Name="ListLocation" ItemsSource="{Binding ListLocation}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -124,9 +134,8 @@
                                          TextColor="Black" />
                                        
                                         </StackLayout>
-                                        <Button Text="Ver">
-                                            
-                                        </Button>
+                                        <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand}"/>
+
                                     </StackLayout>
 
                                 </ViewCell>

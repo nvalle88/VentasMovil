@@ -83,7 +83,15 @@ namespace AppDemo.ViewModels
 
         public ICommand PinCommand;
 
-       
+        private Command<object> tapCommand;
+
+
+        public Command<object> TapCommand
+        {
+            get { return tapCommand; }
+            set { tapCommand = value; }
+        }
+
 
         public bool IsRefreshing
         {
@@ -164,6 +172,9 @@ namespace AppDemo.ViewModels
             CheckinClient = new CheckinViewModel();
             signalRService = new SignalRService();
             MyPin = new TKCustomMapPin();
+
+            tapCommand = new Command<object>(ProfileClient);
+
             LoadClientes();
             if (Settings.IsLoggedIn)
             {
@@ -276,6 +287,16 @@ namespace AppDemo.ViewModels
             IsRefreshing = false;
         }
 
+       
+
+        private async void ProfileClient(object obj)
+        {
+           // ComplainRequest denuncia = (ComplainRequest)obj;
+        await App.Navigator.PushAsync(new ClientProfilePage());
+        Debug.WriteLine("hola");
+        }
+
+
         public ICommand PinSelected { get { return new RelayCommand(pinselected); } }
 
         public async void pinselected()
@@ -302,12 +323,13 @@ namespace AppDemo.ViewModels
             var success = await CrossExternalMaps.Current.NavigateTo(MyPin.Title, MyPin.Position.Latitude, MyPin.Position.Longitude);
         }
 
-     //   public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshData); } }
-      
-            
-        
+        //   public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshData); } }
+
 
        
+
+
+
 
 
         public ICommand AddNewClientCommand { get { return new RelayCommand(AddNewClient); } }

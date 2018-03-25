@@ -3,7 +3,7 @@
 
     <style name="Theme.Splash"  
          parent="android:Theme">  
-    <item name="android:windowBackground">@drawable/pantalla_Inicio_ds</item>  
+    <item name="android:windowBackground">@drawable/Propuesta12</item>  
     <item name="android:windowNoTitle">true</item>  
   </style> 
   <style name="MainTheme" parent="MainTheme.Base">
@@ -16,12 +16,12 @@
     <item name="windowActionBar">false</item>
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
     <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#5296F3</item>
+    <item name="colorPrimary">#FF5722</item>
     <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">#7976D2</item>
+    <item name="colorPrimaryDark">#E64A19</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-    <item name="colorAccent">#554081</item>
+    <item name="colorAccent">#FF9800</item>
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
