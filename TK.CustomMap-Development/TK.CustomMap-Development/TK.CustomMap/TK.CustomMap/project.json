@@ -6,7 +6,8 @@
     "Xam.Plugin.Connectivity": "3.0.3",
     "Xam.Plugins.Settings": "3.1.1",
     "Xamarin.Forms": "2.3.4.231",
-    "Xamarin.Forms.Maps": "2.3.4.231"
+    "Xamarin.Forms.Maps": "2.3.4.231",
+    "XamForms.Controls.Calendar": "1.1.1"
   },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile259": {}

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:charts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="AppDemo.Pages.ClientePage">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Perfil" >
+
+        <StackLayout>
+            <Image Source="icon" WidthRequest="100" HeightRequest="100"></Image>
+            <Label Text="Nombre"></Label>
+            <Label Text="CI"></Label>
+            <Label Text="Tel"></Label>
+            <Label Text="e-mail"></Label>
+            <charts:ChartView HeightRequest="150" x:Name="chart1"></charts:ChartView>
+
+
+        </StackLayout>
+
+    </ContentPage>
+    <ContentPage Title="Gustos" />
+  <ContentPage Title="Productos" />
+  <ContentPage Title="Compriso" />
+
+</TabbedPage>

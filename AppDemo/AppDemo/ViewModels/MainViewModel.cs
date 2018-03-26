@@ -390,7 +390,7 @@ namespace AppDemo.ViewModels
             Menu.Add(new MenuItemViewModel
             {
 
-                PageName = "VerificarAutoPage",
+                PageName = "ClientePage",
                 Icon = "addc.png",
                 Title = "Clientes",
                 SubTitle = "",
@@ -409,7 +409,7 @@ namespace AppDemo.ViewModels
             Menu.Add(new MenuItemViewModel
             {
 
-                PageName = "ConsultarMultas",
+                PageName = "AgendaPage",
                 Icon = "checkin.png",
                 Title = "Agenda",
                 SubTitle = "",

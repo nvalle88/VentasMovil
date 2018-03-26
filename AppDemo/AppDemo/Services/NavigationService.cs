@@ -50,15 +50,13 @@ namespace AppDemo.Services
                 //    await App.Navigator.PushAsync(new NuevoParqueoPage());
                 //    break;
 
-                //case "NuevoCarroPage":
-                //    await App.Navigator.PushAsync(new NuevoCarroPage());
-                //    break;
+                case "AgendaPage":
+                    await App.Navigator.PushAsync(new AgendaPage());
+                    break;
 
-                //case "ComprarSaldoPage":
-                //    await App.Navigator.PushAsync(new ComprarSaldoPage());
-                //    break;
-
-
+                case "ClientePage":
+                    await App.Navigator.PushAsync(new ClientePage());
+                    break;
 
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
