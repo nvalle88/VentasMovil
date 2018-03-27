@@ -22,7 +22,12 @@ namespace AppDemo.Constants
                 StrokeColor = Color.DarkBlue,
             };
             public static string WebServiceURL = "http://developmentds.eastus.cloudapp.azure.com:85/simed";
-            public static string SignalRWeb = "http://demodsweb.azurewebsites.net/";
+        
+            public static string VentasWS = "http://ventasdemows.azurewebsites.net/";
+            public static string VentasWEB = "http://ventasdemoweb.azurewebsites.net/";
+
+
+        public static string SignalRWeb = "http://demodsweb.azurewebsites.net/";
             public static int TimeForSignalR = 30;
             public static double Distance = 30;
         }    

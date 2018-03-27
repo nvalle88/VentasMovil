@@ -77,6 +77,7 @@
     <Compile Include="Models\Tipos.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioTarjetaPrepago.cs" />
+    <Compile Include="Models\VendedorRequest.cs" />
     <Compile Include="Models\Visita.cs" />
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
@@ -119,7 +120,7 @@
     <Compile Include="Services\NetworkService.cs" />
     <Compile Include="Services\SignalRService.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
-    <Compile Include="ViewModels\AgenteViewModel.cs" />
+    <Compile Include="ViewModels\VendedorViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\InformeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

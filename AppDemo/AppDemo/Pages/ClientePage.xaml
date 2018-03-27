@@ -12,6 +12,7 @@
             <Label Text="CI"></Label>
             <Label Text="Tel"></Label>
             <Label Text="e-mail"></Label>
+            
             <charts:ChartView HeightRequest="150" x:Name="chart1"></charts:ChartView>
 
 

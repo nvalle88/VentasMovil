@@ -29,19 +29,62 @@ namespace AppDemo.Services
             navigationService = new NavigationService();
         }
 
-        public async Task<Response> Login()
+        public async Task<Response> Login(LoginRequest data)
         {
-            var user = new Agente
+            try
+            {               
+
+                var request = JsonConvert.SerializeObject(data);
+                var body = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWEB);
+                var url = "/api/webapi";
+                var response = await client.PostAsync(url, body);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
+                }
+                var request2 = JsonConvert.SerializeObject(new VendedorRequest { Correo = data.userid });
+                var body2 = new StringContent(request2, Encoding.UTF8, "application/json");
+                var client2 = new HttpClient();
+                client2.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url2 = "api/Vendedores/VendedorbyEmail";
+                var response2 = await client2.PostAsync(url2, body2);
+                if (response2 != null)
+                {
+
+                    var result2 = await response2.Content.ReadAsStringAsync();
+                    return new Response
+                    {
+                        IsSuccess = true,
+                        Message = "Login OK",
+                        Result = JsonConvert.DeserializeObject<VendedorRequest>(result2)
+                    };
+                }
+
+               
+
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "error",
+                };
+
+            }
+            catch (Exception ex)
             {
-                Id = 1,
-                Nombre = "Fernando Medina"
-            };
-            return new Response
-            {
-                IsSuccess = true,
-                Message = "Login Ok",
-                Result = user,
-            };
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+
+
         }
         #region cliente
         public async Task<Response> SetPhotoAsync(int multaId, Stream stream)

@@ -5,9 +5,6 @@
              x:Class="AppDemo.Pages.AgendaPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
             <controls:Calendar  
       HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  x:Name="calendar"/>
         </StackLayout>

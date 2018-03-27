@@ -66,14 +66,14 @@ namespace AppDemo.Services
             }
         }
 
-        internal void SetMainPage(AgenteViewModel agenteActual)
+        internal void SetMainPage(VendedorViewModel vendedorActual)
         {
             var main = MainViewModel.GetInstance();
-            App.AgenteActual = agenteActual;
+            App.VendedorActual = vendedorActual;
             main.LoadClientes();
             App.Current.MainPage = new MasterPage();
         }
 
-        public AgenteViewModel GetAgenteActual() => App.AgenteActual;
+        public VendedorViewModel GetAgenteActual() => App.VendedorActual;
     }
 }

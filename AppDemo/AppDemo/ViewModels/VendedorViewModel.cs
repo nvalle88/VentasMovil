@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppDemo.ViewModels
 {
-   public class AgenteViewModel:Agente
+   public class VendedorViewModel:VendedorRequest
     {
     }
 }

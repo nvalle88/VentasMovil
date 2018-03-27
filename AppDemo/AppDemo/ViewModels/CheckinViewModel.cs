@@ -122,7 +122,7 @@ namespace AppDemo.ViewModels
 
             visita.IdCliente = clienteSelect.Id;
             visita.Tipo = tipoSelect.id;
-            visita.IdAgente = App.AgenteActual.Id;
+            visita.IdAgente = App.VendedorActual.IdVendedor;
             visita.Fecha = DateTime.Now;
             visita.Valor = Double.Parse(valor);
 

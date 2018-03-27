@@ -33,7 +33,7 @@ namespace AppDemo.Pages
         public ClientePage()
         {
             InitializeComponent();
-            chart1.Chart = new Microcharts.RadialGaugeChart { Entries=entries};
+            chart1.Chart = new Microcharts.PointChart { Entries=entries};
            
 
         }

@@ -11,7 +11,7 @@ namespace AppDemo
     {
         public static NavigationPage Navigator { get; internal set; }
         public static MasterPage Master { get; internal set; }
-        public static AgenteViewModel AgenteActual { get; internal set; }
+        public static VendedorViewModel VendedorActual { get; internal set; }
         public App()
         {
             InitializeComponent();
@@ -20,16 +20,16 @@ namespace AppDemo
             {
                 if (Settings.IsLoggedIn)
                 {
-                    AgenteViewModel agenteView = new AgenteViewModel
+                    VendedorViewModel vendedorView = new VendedorViewModel
                     {
-                        Nombre = Settings.UserName,
-                        Id = Settings.userId,
+                        Nombres = Settings.UserName,
+                        IdVendedor = Settings.userId,
                     };
                     //   MiDispositivo = new Dispositivo { DispositivoId = Settings.deviceId };
                     var main = MainViewModel.GetInstance();
-                    main.LoadMenu(agenteView.Nombre);
+                    main.LoadMenu(vendedorView.Nombres);
                     NavigationService navigationService = new NavigationService();
-                    navigationService.SetMainPage(agenteView);
+                    navigationService.SetMainPage(vendedorView);
                 }
                 else
                 {

@@ -82,7 +82,7 @@ namespace AppDemo.Pages
             Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
             // Mapa.Polygons;
 
-            var cordenadas = await apiService.GetMyPolygon(navigationService.GetAgenteActual().Id);
+            var cordenadas = await apiService.GetMyPolygon(navigationService.GetAgenteActual().IdVendedor);
             if (cordenadas.Count() > 0)
             {
                 // _____________________________

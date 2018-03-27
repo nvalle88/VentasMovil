@@ -268,8 +268,8 @@ namespace AppDemo.ViewModels
                 // e.Position.Longitude;
             });
 
-           await apiService.PostLogPosition(new LogPosition { idAgente = App.AgenteActual.Id, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
-           await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
+         //  await apiService.PostLogPosition(new LogPosition { idAgente = App.VendedorActual.IdUsuario, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
+        //   await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
 
         }
 

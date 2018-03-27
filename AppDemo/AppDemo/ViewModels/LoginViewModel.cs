@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
 using AppDemo.Helpers;
+using AppDemo.Classes;
 /// <summary>
 /// View Model para para la vista de login 
 /// Guarda los datos del usuario en las variables almacenadas en el local del telefono 
@@ -96,26 +97,33 @@ namespace AppDemo.ViewModels
                 return;
             }
 
-            var response = await apiService.Login();
+            var user = new LoginRequest()
+            {
+                userid = Usuario,
+                password = Contrasena,
+            };
+            var response = await apiService.Login(user);
             if (response.IsSuccess)
             {
-                var agente = (Agente)response.Result;
+                var vendedor = (VendedorRequest)response.Result;
 
-                var agenteView = new AgenteViewModel
+                var vendedorView = new VendedorViewModel
                 {
-                    Nombre = agente.Nombre,
-                    Id = agente.Id,                  
+                    Nombres = vendedor.Nombres,
+                    IdVendedor = vendedor.IdVendedor,
+                    TiempoSeguimiento=vendedor.TiempoSeguimiento,
+                    IdUsuario= vendedor.IdUsuario
                 };
 
                 var main = MainViewModel.GetInstance();
-                main.LoadMenu(agenteView.Nombre);
+                main.LoadMenu(vendedorView.Nombres);
                 main.LoadClientes();
 
-                Settings.userId = agente.Id;
-                Settings.UserName = agente.Nombre;                
+                Settings.userId = vendedor.IdVendedor;
+                Settings.UserName = vendedor.Nombres;                
                 Settings.companyId = 1;
                 Settings.IsLoggedIn = true;
-                navigationService.SetMainPage(agenteView);
+                navigationService.SetMainPage(vendedorView);
 
                 IsRunning = false;
                 return;
