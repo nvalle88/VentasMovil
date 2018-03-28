@@ -33,6 +33,9 @@ namespace AppDemo.Helpers
         const string LAST_NAME_KEY = "lastname_key";
         static readonly string lastnameDefault = string.Empty;
 
+        const string PHOTO_PROFILE_KEY = "photoprofile_key";
+        static readonly string photoprofileDefault = string.Empty;
+
         // private const string PasswordKey = "password_key";
         // private static readonly string PasswordDefault = string.Empty;
 
@@ -107,6 +110,19 @@ namespace AppDemo.Helpers
         //        AppSettings.AddOrUpdateValue(PasswordKey, value);
         //    }
         // }
+
+        public static string UserPhoto
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(PHOTO_PROFILE_KEY, photoprofileDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(PHOTO_PROFILE_KEY, value);
+            }
+        }
+
         public static string UserName
         {
             get

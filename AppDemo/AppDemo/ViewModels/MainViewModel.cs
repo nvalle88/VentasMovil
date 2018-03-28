@@ -187,7 +187,7 @@ namespace AppDemo.ViewModels
         {           
                 try
                 {
-                var clientes = await apiService.GetAllClients();
+                var clientes = await apiService.GetMyClient();
                 Locations.Clear();
                 ListLocation.Clear();
                 clientes.Count();
@@ -198,7 +198,7 @@ namespace AppDemo.ViewModels
                             var Pincliente = new TKCustomMapPin
                             {
                                 Image = "pin.png",
-                                Position = new Xamarin.Forms.Maps.Position(cliente.Lat, cliente.Lon),
+                                Position = new Xamarin.Forms.Maps.Position(cliente.Latitud, cliente.Longitud),
                                 Title = cliente.Nombre,
                                 Subtitle = "Dirección: "+cliente.Direccion,
                                 
@@ -207,7 +207,7 @@ namespace AppDemo.ViewModels
                             var itemcliente = new ListRequest
                             {
                                 Titulo=cliente.Nombre,
-                                Subtitulo= cliente.PersonaContacto+" "+ cliente.Telefono,                                                     
+                                Subtitulo= cliente.Direccion+" "+ cliente.Telefono,                                                     
                             };
                             Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
@@ -384,7 +384,7 @@ namespace AppDemo.ViewModels
         /// Se arma el menu y en el encabezado del menú se muestra el nombre del agente logeado en la aplicación
         /// </summary>
         /// <param name="Agente"></param>
-        public void LoadMenu(string Agente)
+        public void LoadMenu(string Agente, string AgenteFoto)
         {
             Menu.Clear();
             Menu.Add(new MenuItemViewModel
@@ -425,6 +425,7 @@ namespace AppDemo.ViewModels
             });
 
             EncabezadoMenu.Agente = Agente;
+            EncabezadoMenu.AgenteFoto = AgenteFoto;
         }
         #endregion
 

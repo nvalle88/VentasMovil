@@ -2,11 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             Title="Agenda"
              x:Class="AppDemo.Pages.AgendaPage">
     <ContentPage.Content>
         <StackLayout>
             <controls:Calendar  
-      HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  x:Name="calendar"/>
+      HorizontalOptions="FillAndExpand" VerticalOptions="Start"  x:Name="calendar" />
+            <StackLayout BackgroundColor="WhiteSmoke">
+                <Label x:Name="Titulo" FontAttributes="Bold" ></Label>
+                <Label x:Name="Descripcion" FontAttributes="Italic"></Label>
+
+            </StackLayout>
         </StackLayout>
+     
     </ContentPage.Content>
 </ContentPage>

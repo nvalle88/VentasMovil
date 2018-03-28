@@ -165,7 +165,33 @@ namespace AppDemo.Services
                 return null;
             }
         }
+        //api/Vendedores/VendedorbyEmail
+        public async Task<List<ClienteRequest>> GetMyClient()
+        {
+            try
+            {
+                var me = App.VendedorActual;
 
+                var request = JsonConvert.SerializeObject(me);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Clientes/ListarClientesPorVendedor";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var clientes = JsonConvert.DeserializeObject<List<ClienteRequest>>(result);
+                return clientes;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+            
         public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
         {
 

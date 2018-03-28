@@ -23,6 +23,8 @@ namespace AppDemo.ViewModels
         #region Properties
 
         public string Agente { get; set; }
+        public string AgenteFoto { get; set; }
+
 
         public string Icon { get; set; }
 

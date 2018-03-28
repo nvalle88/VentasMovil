@@ -3,7 +3,7 @@
 
     <style name="Theme.Splash"  
          parent="android:Theme">  
-    <item name="android:windowBackground">@drawable/Propuesta12</item>  
+    <item name="android:windowBackground">@drawable/SaleOutSS</item>  
     <item name="android:windowNoTitle">true</item>  
   </style> 
   <style name="MainTheme" parent="MainTheme.Base">

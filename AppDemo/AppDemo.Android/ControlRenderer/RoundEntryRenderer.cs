@@ -21,7 +21,7 @@ namespace AppDemo.Droid.ControlRenderer
                 {
                     GradientDrawable gd = new GradientDrawable();
                     // increase or decrease to changes the corner 
-                    gd.SetCornerRadius(30);
+                    gd.SetCornerRadius(10);
                 //Control.Background = gd;
 #pragma warning disable CS0618 // Type or member is obsolete
                 Control.Background = Resources.GetDrawable(Resource.Drawable.RoundedEntry);

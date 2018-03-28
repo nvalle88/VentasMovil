@@ -112,15 +112,17 @@ namespace AppDemo.ViewModels
                     Nombres = vendedor.Nombres,
                     IdVendedor = vendedor.IdVendedor,
                     TiempoSeguimiento=vendedor.TiempoSeguimiento,
-                    IdUsuario= vendedor.IdUsuario
+                    IdUsuario= vendedor.IdUsuario,
+                    Foto= vendedor.Foto                    
                 };
 
                 var main = MainViewModel.GetInstance();
-                main.LoadMenu(vendedorView.Nombres);
+                main.LoadMenu(vendedorView.Nombres, vendedor.Foto);
                 main.LoadClientes();
 
                 Settings.userId = vendedor.IdVendedor;
-                Settings.UserName = vendedor.Nombres;                
+                Settings.UserName = vendedor.Nombres;
+                Settings.UserPhoto = vendedor.Foto;
                 Settings.companyId = 1;
                 Settings.IsLoggedIn = true;
                 navigationService.SetMainPage(vendedorView);

@@ -24,10 +24,11 @@ namespace AppDemo
                     {
                         Nombres = Settings.UserName,
                         IdVendedor = Settings.userId,
+                        Foto= Settings.UserPhoto
                     };
                     //   MiDispositivo = new Dispositivo { DispositivoId = Settings.deviceId };
                     var main = MainViewModel.GetInstance();
-                    main.LoadMenu(vendedorView.Nombres);
+                    main.LoadMenu(vendedorView.Nombres,vendedorView.Foto);
                     NavigationService navigationService = new NavigationService();
                     navigationService.SetMainPage(vendedorView);
                 }
