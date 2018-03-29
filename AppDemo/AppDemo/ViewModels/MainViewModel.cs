@@ -335,8 +335,10 @@ namespace AppDemo.ViewModels
         public ICommand AddNewClientCommand { get { return new RelayCommand(AddNewClient); } }
         public async void AddNewClient()
         {
-            PopupPage page = new AddPage();
-            await PopupNavigation.PushAsync(page);
+            //    PopupPage page = new AddPage();
+            //    await PopupNavigation.PushAsync(page);
+
+            await navigationService.Navigate("AddClientePage");
         }
 
         public ICommand AddCheckinCommand { get { return new RelayCommand(AddCheckin); } }

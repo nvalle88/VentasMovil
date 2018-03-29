@@ -46,9 +46,9 @@ namespace AppDemo.Services
                 //    await App.Navigator.PushAsync(new NuevaTarjetaCreditoPage());
                 //    break;
 
-                //case "NuevoParqueoPage":
-                //    await App.Navigator.PushAsync(new NuevoParqueoPage());
-                //    break;
+                case "AddClientePage":
+                    await App.Navigator.PushAsync(new AddClientPage());
+                    break;
 
                 case "AgendaPage":
                     await App.Navigator.PushAsync(new AgendaPage());
@@ -68,10 +68,14 @@ namespace AppDemo.Services
 
         internal void SetMainPage(VendedorViewModel vendedorActual)
         {
+
             var main = MainViewModel.GetInstance();
             App.VendedorActual = vendedorActual;
             main.LoadClientes();
+            
             App.Current.MainPage = new MasterPage();
+
+
         }
 
         public VendedorViewModel GetAgenteActual() => App.VendedorActual;

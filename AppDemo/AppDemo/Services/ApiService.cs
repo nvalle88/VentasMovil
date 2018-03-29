@@ -243,7 +243,7 @@ namespace AppDemo.Services
                 throw;
             }
         }
-        public async Task<Response> postNewClient(Cliente cliente)
+        public async Task<Response> postNewClient(ClienteRequest cliente)
         {
 
             try
@@ -252,8 +252,8 @@ namespace AppDemo.Services
                 var request = JsonConvert.SerializeObject(cliente);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
-                client.BaseAddress = new Uri(URL_ws);
-                var url = "simed/api/Clientes";
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Clientes/InsertarCliente";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -279,6 +279,38 @@ namespace AppDemo.Services
                 return null;
                 throw;
             }
+
+
+        }
+
+        public async Task<List<TipoCliente>> GetClientTypes()
+        {
+            Empresa empresa = new Empresa
+            {
+                IdEmpresa = Settings.companyId
+            };
+
+            try
+            {
+                var request = JsonConvert.SerializeObject(empresa);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/TiposClientes/ListarTiposClientes";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var tipoclientes = JsonConvert.DeserializeObject<List<TipoCliente>>(result);
+                return tipoclientes;
+            }
+            catch
+            {
+                return null;
+            }
+
 
 
         }
@@ -389,23 +421,24 @@ namespace AppDemo.Services
             }
         }
 
-        public async Task<Response> SetFirmaAsync(int multaId, Stream stream)
+        public async Task<Response> SetFileAsync(string Id, int Tipo, Stream stream)
         {
             try
             {
                 var array = ReadFully(stream);
 
-                var photoRequest = new PhotoRequest
+                var archivoRequest = new ArchivoRequest
                 {
-                    Id = multaId,
+                    Id = Id,
+                    Tipo=Tipo,
                     Array = array,
                 };
 
-                var request = JsonConvert.SerializeObject(photoRequest);
+                var request = JsonConvert.SerializeObject(archivoRequest);
                 var body = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
-                client.BaseAddress = new Uri(URL_ws);
-                var url = "simed/api/Informes/Subir";
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "Api/Archivos/Insertar";
                 var response = await client.PostAsync(url, body);
 
                 if (!response.IsSuccessStatusCode)
@@ -419,13 +452,9 @@ namespace AppDemo.Services
 
                 var result = await response.Content.ReadAsStringAsync();
                 var imagen = JsonConvert.DeserializeObject<Response>(result);
+             //   var ruta = JsonConvert.DeserializeObject <string>(imagen.Result.ToString());
 
-
-                return new Response
-                {
-                    IsSuccess = true,
-                    Message = imagen.Message,
-                };
+                return imagen;
             }
             catch (Exception ex)
             {

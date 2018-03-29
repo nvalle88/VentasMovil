@@ -41,8 +41,9 @@ namespace AppDemo.Pages
         public MainPage()
         {
             InitializeComponent();
-           // Locations = new ObservableCollection<TKCustomMapPin>();
-          //  LocationsRequest = new ObservableCollection<PinRequest>();
+       //     NavigationPage.SetTitleIcon(this, "icon.png");
+            // Locations = new ObservableCollection<TKCustomMapPin>();
+            //  LocationsRequest = new ObservableCollection<PinRequest>();
             try
             {
                 Locator();
@@ -52,6 +53,7 @@ namespace AppDemo.Pages
             {
             }
             FinDirections.Completed += FinDirections_Completed; ;
+
         }
 
         private async void FinDirections_Completed(object sender, EventArgs e)

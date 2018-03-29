@@ -116,15 +116,19 @@ namespace AppDemo.ViewModels
                     Foto= vendedor.Foto                    
                 };
 
-                var main = MainViewModel.GetInstance();
-                main.LoadMenu(vendedorView.Nombres, vendedor.Foto);
-                main.LoadClientes();
-
                 Settings.userId = vendedor.IdVendedor;
                 Settings.UserName = vendedor.Nombres;
                 Settings.UserPhoto = vendedor.Foto;
-                Settings.companyId = 1;
+                Settings.companyId = (int)vendedor.idEmpresa;
                 Settings.IsLoggedIn = true;
+
+                var main = MainViewModel.GetInstance();
+                main.LoadMenu(vendedorView.Nombres, vendedor.Foto);
+                main.LoadClientes();
+                main.AddnewClient.tiposdecliente();
+
+
+
                 navigationService.SetMainPage(vendedorView);
 
                 IsRunning = false;

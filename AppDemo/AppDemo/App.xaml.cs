@@ -24,17 +24,23 @@ namespace AppDemo
                     {
                         Nombres = Settings.UserName,
                         IdVendedor = Settings.userId,
-                        Foto= Settings.UserPhoto
+                        Foto= Settings.UserPhoto,
+                        idEmpresa=Settings.companyId        
+                        
                     };
                     //   MiDispositivo = new Dispositivo { DispositivoId = Settings.deviceId };
                     var main = MainViewModel.GetInstance();
+                    
                     main.LoadMenu(vendedorView.Nombres,vendedorView.Foto);
+                    main.AddnewClient.tiposdecliente();
                     NavigationService navigationService = new NavigationService();
+                   
                     navigationService.SetMainPage(vendedorView);
                 }
                 else
                 {
                     MainPage = new NavigationPage(new LoginPage());
+                    
                 }
             }
             else

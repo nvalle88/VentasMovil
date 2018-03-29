@@ -75,7 +75,6 @@ namespace AppDemo.Helpers
                 AppSettings.AddOrUpdateValue(USER_KEY, value);
             }
         }
-
         public static int companyId
         {
             get
@@ -87,7 +86,6 @@ namespace AppDemo.Helpers
                 AppSettings.AddOrUpdateValue(COMPANY_KEY, value);
             }
         }
-
         public static int deviceId
         {
             get

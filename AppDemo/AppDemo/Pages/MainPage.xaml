@@ -8,7 +8,6 @@
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="SaleOUT"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <tkmap:TKCustomMap 
@@ -22,7 +21,11 @@
                 IsShowingUser="True">
             
         </tkmap:TKCustomMap>
-
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="Start"    
+            HorizontalOptions="Fill"
+            >
             <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
                     BackgroundColor="#ffffff" 
                     HeightRequest="50" 
@@ -36,13 +39,14 @@
                    />
 
         <Entry VerticalOptions="Start" 
-                             HorizontalOptions="CenterAndExpand" 
                              Placeholder="Ingrese su Dirección" 
                              TextColor="{StaticResource AccentColor2}"
-                            WidthRequest="200"
+                             HorizontalOptions="FillAndExpand"
                              x:Name="FinDirections"     
-                                BackgroundColor="White"
-                             Margin="0,7,0,0"></Entry>
+                             BackgroundColor="White"
+                             Margin="0,7,58,0"></Entry>
+        </StackLayout>
+
         <Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding OpenInMap} "></TapGestureRecognizer>
@@ -151,7 +155,7 @@
                                         <Image Source="client"></Image>
                                         <StackLayout  WidthRequest="200"
                                         Orientation="Vertical">
-                                            <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="Small"
+                                            <Label Text="{Binding Titulo}" Style="{StaticResource TitleStyle}"
                                          TextColor="Black" />
                                             <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
@@ -170,4 +174,6 @@
         </StackLayout>
 
     </Grid>
+
+
 </ContentPage>

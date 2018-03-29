@@ -17,6 +17,8 @@ namespace AppDemo.Pages
 		{
 			InitializeComponent ();
             calendar.StartDay = DayOfWeek.Monday;
+            calendar.TitleRightArrow.TextColor=Color.FromHex("FF5722");
+            calendar.TitleLeftArrow.TextColor = Color.FromHex("FF5722");
             calendar.TitleLabel.Text = "Agenda";
             SpecialDate item = new SpecialDate(DateTime.Now.AddDays(3))
             {

@@ -2,17 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             xmlns:FAB="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              Title="Agenda"
              x:Class="AppDemo.Pages.AgendaPage">
     <ContentPage.Content>
         <StackLayout>
             <controls:Calendar  
-      HorizontalOptions="FillAndExpand" VerticalOptions="Start"  x:Name="calendar" />
+      HorizontalOptions="FillAndExpand" VerticalOptions="Start"  x:Name="calendar"  />
             <StackLayout BackgroundColor="WhiteSmoke">
                 <Label x:Name="Titulo" FontAttributes="Bold" ></Label>
                 <Label x:Name="Descripcion" FontAttributes="Italic"></Label>
 
             </StackLayout>
+            <FAB:FloatingActionButton x:Name="FAB" 
+                                      HorizontalOptions="EndAndExpand" 
+                                      WidthRequest="50" 
+                                      HeightRequest="50"  
+                                      VerticalOptions="EndAndExpand"
+                                      Image="ic_add_white.png" 
+                                      ButtonColor="{StaticResource AccentColor2}"
+                                      Margin="5,5,5,5"
+                                      />
         </StackLayout>
      
     </ContentPage.Content>

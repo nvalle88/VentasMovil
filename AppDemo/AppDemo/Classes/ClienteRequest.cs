@@ -12,6 +12,8 @@ namespace AppDemo.Classes
 
         public int? IdEmpresa { get; set; }
 
+        public string RazonSocial { get; set; }
+
         public string Identificacion { get; set; }
 
         public string Foto { get; set; }
@@ -43,5 +45,7 @@ namespace AppDemo.Classes
         public string ApellidosVendedor { get; set; }
 
         public string Direccion { get; set; }
+
+
     }
 }

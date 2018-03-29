@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:firma="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             xmlns:controls="clr-namespace:AppDemo.Controls"
+             x:Class="AppDemo.Pages.AddClientPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+            <Label Text="Agregar Nuevo Cliente"
+                VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+               HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}" />
+
+            <StackLayout BackgroundColor="White" Padding="5"  >
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="tipo.png" WidthRequest="30" HeightRequest="30"></Image>
+                        <controls:BindablePicker  Title="Tipo de cliente" ItemsSource="{Binding TipoClientes}" DisplayMemberPath="Tipo" SelectedItem="{Binding TipoSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Razón Social" Text="{Binding cliente.RazonSocial ,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="ruc.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Ruc" Text="{Binding cliente.Identificacion ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="telefono.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Telefono" Text="{Binding cliente.Telefono ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="dir.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Direccion" Text="{Binding cliente.Direccion ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="dir.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Email" Text="{Binding cliente.Email ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="pcontact.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Nombre" Text="{Binding cliente.Nombre ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Image Source="pcontact.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Entry FontSize="Small" Placeholder="Apellido" Text="{Binding cliente.Apellido ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
+                </StackLayout>
+
+                <firma:SignaturePadView x:Name="PadView"                              
+                                BackgroundColor="White"
+                                 HeightRequest="150" WidthRequest="300"
+                                CaptionText="Firmar aquí" CaptionTextColor="Black"
+                                ClearText="Limpiar!"                                        
+                                StrokeColor="Black"
+                                StrokeWidth="2" 
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"/>
+                
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Agregar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}"></Button>
+                    <Button Text="Cerrar" BackgroundColor="Red" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

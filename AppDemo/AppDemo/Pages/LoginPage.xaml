@@ -9,9 +9,9 @@
         <StackLayout BindingContext="{Binding NewLogin}" Padding="5" Spacing="5">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Image
-                Source="ds.png"
-                WidthRequest="200"
-                HeightRequest="150"
+                Source="LogoSO1.png"
+                WidthRequest="300"
+                HeightRequest="192.25"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
                 </Image>

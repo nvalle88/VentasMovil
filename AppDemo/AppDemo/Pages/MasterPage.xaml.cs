@@ -15,7 +15,7 @@ namespace AppDemo.Pages
         {
             base.OnAppearing();
             App.Master = this;
-           
+
             App.Navigator = Navigator;
 
             
