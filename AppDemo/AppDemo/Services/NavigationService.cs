@@ -42,9 +42,9 @@ namespace AppDemo.Services
                 //    await App.Navigator.PushAsync(new MetodoPago());
                 //    break;
 
-                //case "NuevaTarjetaPage":
-                //    await App.Navigator.PushAsync(new NuevaTarjetaCreditoPage());
-                //    break;
+                case "CheckinClientePage":
+                    await App.Navigator.PushAsync(new CheckinClientPage());
+                    break;
 
                 case "AddClientePage":
                     await App.Navigator.PushAsync(new AddClientPage());

@@ -74,26 +74,21 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
+                    
                     <StackLayout  x:Name="Add" 
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="0" 
                                       Grid.Row="0">
-                        <controls:ImageButton 
-                        VerticalOptions="Start" 
-                        HorizontalOptions="Start" 
-                        BackgroundColor="Transparent" 
-                        HeightRequest="100" 
-                        WidthRequest="100" 
-                        Source="addc" 
-                        ImageTintColor="{StaticResource AccentColor1}" 
-                        Orientation="ImageOnTop"  
-                        ImageHeightRequest="60" 
-                        ImageWidthRequest="60" 
-                        Command="{Binding AddNewClientCommand}"
-                        Text="Agregar"
-                        FontSize="Micro"
-                   />
+                   
+
+                        <Image Source="ic_Add"  
+                        HeightRequest="80" 
+                        WidthRequest="80" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddNewClientCommand} "></TapGestureRecognizer>
+                            </Image.GestureRecognizers>                            
+                        </Image>
 
                     </StackLayout>
 
@@ -102,20 +97,15 @@
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="1" 
                                       Grid.Row="0">
-                        <controls:ImageButton 
-                        VerticalOptions="Start" 
-                        HorizontalOptions="Start" 
-                        BackgroundColor="Transparent" 
-                        HeightRequest="100" 
-                        WidthRequest="100" 
-                        Source="ic_calendar" 
-                        Orientation="ImageOnTop"  
-                        ImageHeightRequest="60" 
-                        ImageWidthRequest="60" 
-                        Command="{Binding AddNewClientCommand}"
-                        Text="Agregar"
-                        FontSize="Micro"
-                   />
+                       
+                        <Image Source="ic_date"
+                                HeightRequest="80" 
+                        WidthRequest="80">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddCheckinCommand} "></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
 
                     </StackLayout>
 
@@ -124,21 +114,15 @@
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="2" 
                                       Grid.Row="0">
-                        <controls:ImageButton 
-                        VerticalOptions="Start" 
-                        HorizontalOptions="Start" 
-                        BackgroundColor="Transparent" 
-                        HeightRequest="100" 
-                        WidthRequest="100" 
-                        Source="checkin" 
-                        ImageTintColor="{StaticResource AccentColor1}" 
-                        Orientation="ImageOnTop"  
-                        ImageHeightRequest="60" 
-                        ImageWidthRequest="60" 
-                        Command="{Binding AddCheckinCommand}"
-                        Text="Checkin"
-                        FontSize="Micro"
-                   />
+                      
+                        <Image Source="ic_check"  
+                               HeightRequest="80" 
+                        WidthRequest="80">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddCheckinCommand} "></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
                     </StackLayout>
                 </Grid>
             </Grid>

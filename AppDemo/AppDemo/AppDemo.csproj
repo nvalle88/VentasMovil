@@ -47,6 +47,7 @@
     <Compile Include="Classes\ArchivoRequest.cs" />
     <Compile Include="Classes\BindableLocation47.cs" />
     <Compile Include="Classes\CarroRequest.cs" />
+    <Compile Include="Classes\CheckinRequest.cs" />
     <Compile Include="Classes\clienteCarousel.cs" />
     <Compile Include="Classes\ClienteRequest.cs" />
     <Compile Include="Classes\FirmaRequest.cs" />
@@ -71,12 +72,14 @@
     <Compile Include="Interfaces\INetworkConnection.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Compromiso.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Informe.cs" />
     <Compile Include="Models\LogPosition.cs" />
     <Compile Include="Models\PuntoSector.cs" />
     <Compile Include="Models\Sector.cs" />
     <Compile Include="Models\TipoCliente.cs" />
+    <Compile Include="Models\TipoCompromiso.cs" />
     <Compile Include="Models\Tipos.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioTarjetaPrepago.cs" />
@@ -90,6 +93,9 @@
     </Compile>
     <Compile Include="Pages\AgendaPage.xaml.cs">
       <DependentUpon>AgendaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CheckinClientPage.xaml.cs">
+      <DependentUpon>CheckinClientPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CheckinPage.xaml.cs">
       <DependentUpon>CheckinPage.xaml</DependentUpon>
@@ -356,6 +362,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\AddClientPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CheckinClientPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

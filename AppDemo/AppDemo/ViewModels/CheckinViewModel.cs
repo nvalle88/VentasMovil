@@ -1,4 +1,5 @@
-﻿using AppDemo.Helpers;
+﻿using AppDemo.Classes;
+using AppDemo.Helpers;
 using AppDemo.Models;
 using AppDemo.Pages;
 using AppDemo.Services;
@@ -10,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +26,13 @@ namespace AppDemo.ViewModels
         private DialogService dialogService;
         private ApiService apiService;
         public event PropertyChangedEventHandler PropertyChanged;
+     
+        #endregion
+
+        #region Properties
+        public Helpers.GeoUtils.Position position { get; set; }
         public Visita visita { get; set; }
-        public List<Cliente> cliente;  
+        public List<Cliente> cliente;
         public List<Cliente> Cliente
         {
             set
@@ -46,15 +53,48 @@ namespace AppDemo.ViewModels
         public List<Tipos> Tipos { get; set; }
         public string valor { get; set; }
 
-        #endregion
+        public List<TipoCompromiso> tipoCompromisos;
+        public List<TipoCompromiso> TipoCompromiso
+        {
+            set
+            {
+                if (tipoCompromisos != value)
+                {
+                    tipoCompromisos = value;
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("TipoCompromiso"));
+                }
+            }
+            get
+            {
+                return tipoCompromisos;
+            }
 
-        #region Properties
-        public Helpers.GeoUtils.Position position { get; set; }
+        }
+
+        public Compromiso compromiso { get; set; }
+
+        public List<Compromiso> listaCompromisos;
+        public List<Compromiso> ListaCompromiso
+        {
+            set
+            {
+                if (listaCompromisos != value)
+                {
+                    listaCompromisos = value;
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ListaCompromiso"));
+                }
+            }
+            get
+            {
+                return listaCompromisos;
+            }
+
+        }
 
         #endregion
 
         #region constructor
-        public  CheckinViewModel()
+        public CheckinViewModel()
         {
             valor ="";
             position = new Helpers.GeoUtils.Position();
@@ -66,23 +106,19 @@ namespace AppDemo.ViewModels
             {
                 init();
             }
-            Tipos = new List<Models.Tipos>
-            {
-             new Tipos{id=1,tipo="Venta"},
-             new Tipos{id=2,tipo="Visita"}
-            };
+            compromiso = new Compromiso();
         }
         #endregion
         private async Task init()
-        {
-           
+        {           
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 25;
             var location = await locator.GetPositionAsync();
             position.latitude = location.Latitude;
             position.longitude = location.Longitude;
             Cliente = await apiService.GetNearClients(position);
-            
+            ListaCompromiso = new List<Compromiso>();
+            TipoCompromiso = await apiService.GetTipoCompromiso();            
         }
 
         Cliente clienteSelect;
@@ -100,8 +136,8 @@ namespace AppDemo.ViewModels
             }
         }
 
-        Tipos tipoSelect;
-        public Tipos TipoSelectItem
+        TipoCompromiso tipoSelect;
+        public TipoCompromiso TipoSelectItem
         {
             get
             {
@@ -115,32 +151,63 @@ namespace AppDemo.ViewModels
             }
         }
 
-        public ICommand CheckCommand { get { return new RelayCommand(Checkin); } }
-        private async void Checkin()
+        public ICommand AddCompromisoCommand { get { return new RelayCommand(addCompromiso); } }
+        private async void addCompromiso()
         {
-
-
-            visita.IdCliente = clienteSelect.Id;
-            visita.Tipo = tipoSelect.id;
-            visita.IdAgente = App.VendedorActual.IdVendedor;
-            visita.Fecha = DateTime.Now;
-            visita.Valor = Double.Parse(valor);
-
-            if(visita!=null)
+            compromiso.IdTipoCompromiso = tipoSelect.IdTipoCompromiso;
+            if (compromiso != null)
             {
-               var result= await apiService.Checkin(visita);
-                if (result.IsSuccess)
-                {
-                    await dialogService.ShowMessage("Checkin", "Se agrego su visita correctamente");
-                    var resultado = result.Result.ToString();
-                    var visitadata = JsonConvert.DeserializeObject<Visita>(resultado);
-
-                    await App.Navigator.PushAsync(new FormPage(visitadata));
-
-                    await PopupNavigation.PopAllAsync();
-
-                }
+                 ListaCompromiso.Add(compromiso);
             }
+        }
+
+
+
+      //  public ICommand CheckCommand { get { return new RelayCommand(Checkin); } }
+
+        public async void submit(Stream image, int calificacion)
+        {
+           string  idfoto = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace("/", "").Replace(":", "");
+            var responseImagen = await apiService.SetFileAsync(idfoto, 4, image);
+            if(responseImagen.IsSuccess)
+            {
+                visita.idCliente = clienteSelectItem.idCliente;
+                visita.IdVendedor = App.VendedorActual.IdVendedor;
+                visita.Fecha = DateTime.Now;
+                visita.idTipoVisita = 2;
+                visita.Calificacion = calificacion;
+                visita.Firma = responseImagen.Resultado.ToString();
+                CheckinRequest checkData = new CheckinRequest
+                {
+                    visita = visita,
+                    compromisos = ListaCompromiso
+                };
+                var response = await apiService.Checkin(checkData);
+                if (response.IsSuccess)
+                {
+                    await dialogService.ShowMessage("Ok", "Visita registrada correctamente");
+                    return;
+                }
+                await dialogService.ShowMessage("Error", "Cliente no registrado");
+            }
+
+           
+
+            //if(visita!=null)
+            //{
+            //   var result= await apiService.Checkin(visita);
+            //    if (result.IsSuccess)
+            //    {
+            //        await dialogService.ShowMessage("Checkin", "Se agrego su visita correctamente");
+            //        var resultado = result.Result.ToString();
+            //        var visitadata = JsonConvert.DeserializeObject<Visita>(resultado);
+
+            //        await App.Navigator.PushAsync(new FormPage(visitadata));
+
+            //        await PopupNavigation.PopAllAsync();
+
+            //    }
+            //}
             
         }
 
@@ -148,9 +215,11 @@ namespace AppDemo.ViewModels
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
         public async void Close()
         {
-        //    PopupPage page = new CheckinPage();
+            //    PopupPage page = new CheckinPage();
+
+            navigationService.NavigateBack();
             
-            await PopupNavigation.PopAllAsync();
+           // await PopupNavigation.PopAllAsync();
         }
 
 

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:AppDemo.Controls"
+             xmlns:firma="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             xmlns:Behavior="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
+             xmlns:local="clr-namespace:AppDemo;assembly=AppDemo"
+             x:Class="AppDemo.Pages.CheckinClientPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
+
+                <Label Text="Visita"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}"
+                   />
+
+                <StackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand">
+
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
+                        <controls:BindablePicker  Title="Elija el cliente" ItemsSource="{Binding Cliente}"   DisplayMemberPath="Nombre" SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
+                    </StackLayout>
+                    <StackLayout>
+                    <!--En este stacklayout tenemos los datos para el compromiso-->
+                        <Label Text="Compromiso"
+                        VerticalOptions="Start" 
+                        HorizontalOptions="FillAndExpand" 
+                        TextColor="White"
+                        HorizontalTextAlignment="Center"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        BackgroundColor="{StaticResource AccentColor1}"
+                        />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Image Source="tipo.png" WidthRequest="30" HeightRequest="30"></Image>
+                            <controls:BindablePicker  Title="Tipo de Compromiso" ItemsSource="{Binding TipoCompromiso}" SelectedItem="{Binding TipoSelectItem, Mode=TwoWay}" DisplayMemberPath="Descripcion" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Image Source="obser.png" WidthRequest="30" HeightRequest="30"></Image>
+                            <Label FontSize="Small"  Text="Descripción"></Label>
+                        </StackLayout>
+                        <Editor FontSize="Small" HeightRequest="80" Text="{Binding compromiso.Descripcion}" HorizontalOptions="FillAndExpand"></Editor>
+                        <Button HorizontalOptions="End" VerticalOptions="End" Text="Agregar" Command="{Binding AddCompromisoCommand}" TextColor="White" BackgroundColor="{StaticResource AccentColor1}"></Button>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label  Text="Mis Compromisos"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="FillAndExpand" 
+                                TextColor="White"
+                                HorizontalTextAlignment="Center"
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                BackgroundColor="{StaticResource AccentColor1}"
+                        />
+                        <ScrollView>
+                            <ListView x:Name="listView" ItemsSource="{Binding ListaCompromiso}" HeightRequest="100">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout 
+                                                Orientation="Vertical">
+                                                <Label Text="{Binding Descripcion}" FontSize="Medium"
+                                                TextColor="Black" />
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+                        </ScrollView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                       HeightRequest="60">
+                        <Grid>
+                            <Grid.Behaviors>
+                                <Behavior:StarBehavior x:Name="starOne" GroupName="myStar"/>
+                            </Grid.Behaviors>
+                            <Image x:Name="starBlankOne"
+                                Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
+                            <Image x:Name="starSelectedOne"
+                                Source="{local:ImageResource AppDemo.Images.star_selected.png}"
+                                IsVisible="{Binding Source={x:Reference starOne},
+                                Path=IsStarred}"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.Behaviors>
+                                <Behavior:StarBehavior x:Name="starTwo" GroupName="myStar"/>
+                            </Grid.Behaviors>
+                            <Image x:Name="starBlankTwo"
+                                Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
+
+                            <Image x:Name="starSelectedTwo"
+                                Source="{local:ImageResource AppDemo.Images.star_selected.png}"
+                                IsVisible="{Binding Source={x:Reference starTwo},
+                                Path=IsStarred}"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.Behaviors>
+                                <Behavior:StarBehavior x:Name="starThree" GroupName="myStar"/>
+                            </Grid.Behaviors>
+                            <Image x:Name="starBlankThree"
+                                Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
+
+                            <Image x:Name="starSelectedThree"
+                                Source="{local:ImageResource AppDemo.Images.star_selected.png}"
+                                IsVisible="{Binding Source={x:Reference starThree},
+                                Path=IsStarred}"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.Behaviors>
+                                <Behavior:StarBehavior x:Name="starFour" GroupName="myStar"/>
+                            </Grid.Behaviors>
+                            <Image x:Name="starBlankFour"
+                                Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
+
+                            <Image x:Name="starSelectedFour"
+                                Source="{local:ImageResource AppDemo.Images.star_selected.png}"
+                                IsVisible="{Binding Source={x:Reference starFour},
+                                Path=IsStarred}"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.Behaviors>
+                                <Behavior:StarBehavior x:Name="starFive" GroupName="myStar" />
+                            </Grid.Behaviors>
+                            <Image x:Name="starBlankFive"
+                                Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
+
+                            <Image x:Name="starSelectedFive"
+                                Source="{local:ImageResource AppDemo.Images.star_selected.png}"
+                                IsVisible="{Binding Source={x:Reference starFive},
+                                Path=IsStarred}"/>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout>
+                        <firma:SignaturePadView x:Name="PadView"                              
+                                BackgroundColor="White"
+                                 HeightRequest="150" WidthRequest="300"
+                                CaptionText="Firmar aquí" CaptionTextColor="Black"
+                                ClearText="Limpiar!"                                        
+                                StrokeColor="Black"
+                                StrokeWidth="2" 
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"                                
+                                        />
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Button Text="Guardar" TextColor="White"  BackgroundColor="{StaticResource AccentColor1}" Clicked="SaveButton_Clicked" ></Button>
+                        <Button Text="Cancelar" BackgroundColor="{StaticResource AccentColor2}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+                    </StackLayout>
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

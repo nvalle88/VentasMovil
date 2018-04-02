@@ -8,13 +8,26 @@ namespace AppDemo.Models
 {
     public  class Visita
     {
-        public int Id { get; set; }
-        public Nullable<int> IdCliente { get; set; }
-        public Nullable<int> IdAgente { get; set; }
-        public DateTime Fecha { get; set; }
-        public string Observacion { get; set; }
-        public Nullable<int> Tipo { get; set; }
-        public Nullable<double> Valor { get; set; }
+            public int idVisita { get; set; }
 
+            public int? Calificacion { get; set; }
+
+            public string Firma { get; set; }
+
+            public double? Venta { get; set; }
+
+            public DateTime Fecha { get; set; }
+
+            public double Latitud { get; set; }
+
+            public double Longitud { get; set; }
+
+            public string Foto { get; set; }
+
+            public int IdVendedor { get; set; }
+
+            public int idTipoVisita { get; set; }
+
+            public int idCliente { get; set; }
     }
 }

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:firma="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
              xmlns:controls="clr-namespace:AppDemo.Controls"
+             BackgroundColor="White"
              x:Class="AppDemo.Pages.AddClientPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <ScrollView>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
             <Label Text="Agregar Nuevo Cliente"
                 VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="FillAndExpand" 
@@ -15,7 +17,8 @@
                    FontSize="Medium"
                    BackgroundColor="{StaticResource AccentColor2}" />
 
-            <StackLayout BackgroundColor="White" Padding="5"  >
+            <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand"  >
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Image Source="tipo.png" WidthRequest="30" HeightRequest="30"></Image>
@@ -23,7 +26,7 @@
                 </StackLayout>
                 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
+                    <Image Source="addclient.png" WidthRequest="30" HeightRequest="30" ></Image>
                     <Entry FontSize="Small" Placeholder="Razón Social" Text="{Binding cliente.RazonSocial ,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
                 </StackLayout>
                 
@@ -65,13 +68,15 @@
                                 StrokeWidth="2" 
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="CenterAndExpand"/>
-                
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button Text="Agregar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}"></Button>
-                    <Button Text="Cerrar" BackgroundColor="Red" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand">
+                    <Button Text="Agregar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}" HorizontalOptions="CenterAndExpand"></Button>
+                    <Button Text="Cerrar" BackgroundColor="{StaticResource AccentColor1}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" HorizontalOptions="CenterAndExpand"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

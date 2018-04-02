@@ -190,8 +190,29 @@ namespace AppDemo.Services
             {
                 return null;
             }
+        }            
+        public async Task<List<TipoCompromiso>> GetTipoCompromiso()
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/TipoCompromisoes";
+                var response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var Lista = JsonConvert.DeserializeObject<List<TipoCompromiso>>(result);
+                return Lista;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
-            
         public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
         {
 
@@ -200,8 +221,8 @@ namespace AppDemo.Services
                 var request = JsonConvert.SerializeObject(position);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
-                client.BaseAddress = new Uri(URL_ws);
-                var url = "simed/api/Clientes/GetNearClients";
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Clientes/GetNearClients";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -282,7 +303,6 @@ namespace AppDemo.Services
 
 
         }
-
         public async Task<List<TipoCliente>> GetClientTypes()
         {
             Empresa empresa = new Empresa
@@ -388,15 +408,15 @@ namespace AppDemo.Services
                 return;
             }
         }
-        public async Task<Response> Checkin(Visita visita)
+        public async Task<Response> Checkin(CheckinRequest visita)
         {
             try
             {
                 var request = JsonConvert.SerializeObject(visita);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
-                client.BaseAddress = new Uri(URL_ws);
-                var url = "simed/api/Visitas/PostCheckin";
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Vista/Insertar";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {

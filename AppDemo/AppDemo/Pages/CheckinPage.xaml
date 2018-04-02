@@ -36,8 +36,8 @@
             </StackLayout>
             <Editor FontSize="Small" HeightRequest="50" Text="{Binding visita.Observacion}" HorizontalOptions="FillAndExpand"></Editor>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="CheckIn" TextColor="White" Command="{Binding CheckCommand}" BackgroundColor="{StaticResource AccentColor2}"></Button>
-                <Button Text="Cerrar" BackgroundColor="Red" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+                <Button Text="CheckIn" TextColor="White" Command="{Binding CheckCommand}" BackgroundColor="{StaticResource AccentColor1}"></Button>
+                <Button Text="Cerrar" BackgroundColor="{StaticResource AccentColor2}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
             </StackLayout>
         </StackLayout>
 

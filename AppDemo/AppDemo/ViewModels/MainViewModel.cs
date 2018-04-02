@@ -193,12 +193,14 @@ namespace AppDemo.ViewModels
                 clientes.Count();
                     if (clientes!=null && clientes.Count>0)
                     {
+                    Point p = new Point(0.48, 0.96);
                         foreach (var cliente in clientes)
                         {
-                            var Pincliente = new TKCustomMapPin
-                            {
-                                Image = "pin.png",
-                                Position = new Xamarin.Forms.Maps.Position(cliente.Latitud, cliente.Longitud),
+                        var Pincliente = new TKCustomMapPin
+                        {
+                            Image = "pin.png",
+                            Position = new Xamarin.Forms.Maps.Position(cliente.Latitud, cliente.Longitud),
+                            Anchor = p,
                                 Title = cliente.Nombre,
                                 Subtitle = "Dirección: "+cliente.Direccion,
                                 
@@ -344,14 +346,15 @@ namespace AppDemo.ViewModels
         public ICommand AddCheckinCommand { get { return new RelayCommand(AddCheckin); } }
         public async void AddCheckin()
         {
-            PopupPage page = new CheckinPage();
+            //PopupPage page = new CheckinPage();          
+            //await PopupNavigation.PushAsync(page);
 
-          
-            await PopupNavigation.PushAsync(page);
+            await navigationService.Navigate("CheckinClientePage");
+
 
         }
 
-       
+
 
         #endregion
 
