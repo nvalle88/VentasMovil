@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppDemo.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace AppDemo.Pages
         {
             public string value { get; set; }
         }
-        public ClientProfilePage()
+        public ClientProfilePage(ListRequest cliente)
         {
             //la primera lista 
             ObservableCollection<values> Productos = new ObservableCollection<values>

@@ -145,7 +145,7 @@
                                          TextColor="Black" />
                                        
                                         </StackLayout>
-                                        <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand}"/>
+                                        <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand} " CommandParameter="{Binding}"/>
 
                                     </StackLayout>
 

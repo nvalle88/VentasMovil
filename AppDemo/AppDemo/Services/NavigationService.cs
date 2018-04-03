@@ -55,7 +55,7 @@ namespace AppDemo.Services
                     break;
 
                 case "ClientePage":
-                    await App.Navigator.PushAsync(new ClientePage());
+                   // await App.Navigator.PushAsync(new ClientePage());
                     break;
 
                 case "MainPage":

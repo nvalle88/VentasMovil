@@ -18,6 +18,12 @@ namespace AppDemo.Models
 
         public string Solucion { get; set; }
 
+        public DateTime Fecha { get; set; }
+
+        public bool isSolucion { get; set; }
+
+        public bool isEnable { get; set; }
+
     }
 
 }

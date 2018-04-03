@@ -209,7 +209,8 @@ namespace AppDemo.ViewModels
                             var itemcliente = new ListRequest
                             {
                                 Titulo=cliente.Nombre,
-                                Subtitulo= cliente.Direccion+" "+ cliente.Telefono,                                                     
+                                Subtitulo= cliente.Direccion+" "+ cliente.Telefono,           
+                                idCliente=cliente.IdCliente,
                             };
                             Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
@@ -293,9 +294,9 @@ namespace AppDemo.ViewModels
 
         private async void ProfileClient(object obj)
         {
-           // ComplainRequest denuncia = (ComplainRequest)obj;
-        await App.Navigator.PushAsync(new ClientProfilePage());
-        Debug.WriteLine("hola");
+            ListRequest cliente = (ListRequest)obj;
+            await App.Navigator.PushAsync(new ClientePage(cliente));
+          //  Debug.WriteLine(cliente.idCliente);
         }
 
 

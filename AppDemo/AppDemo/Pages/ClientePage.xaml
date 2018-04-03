@@ -1,26 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:charts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:charts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms "           
              x:Class="AppDemo.Pages.ClientePage">
   <!--Pages can be added as references or inline-->
     <ContentPage Title="Perfil" >
 
         <StackLayout>
             <Image Source="icon" WidthRequest="100" HeightRequest="100"></Image>
-            <Label Text="Nombre"></Label>
-            <Label Text="CI"></Label>
-            <Label Text="Tel"></Label>
-            <Label Text="e-mail"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Nombre"></Label>
+                <Label Text="{Binding Datos.cliente.Nombre}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CI"></Label>
+                <Label Text="{Binding Datos.cliente.Identificacion}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tel"></Label>
+                <Label Text="{Binding Datos.cliente.Telefono}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="e-mail"></Label>
+                <Label Text="{Binding Datos.cliente.Email}"/>
+            </StackLayout>
+
+
             
-            <charts:ChartView HeightRequest="150" x:Name="chart1"></charts:ChartView>
+            <!--<charts:ChartView HeightRequest="150" x:Name="chart1"></charts:ChartView>-->
 
 
         </StackLayout>
 
     </ContentPage>
-    <ContentPage Title="Gustos" />
-  <ContentPage Title="Productos" />
-  <ContentPage Title="Compriso" />
+    <!--<ContentPage Title="Gustos"/>
+  <ContentPage Title="Productos" />-->
+    <ContentPage Title="Compromisos">
+        <ScrollView>
+            <ListView x:Name="ListLocation" ItemsSource="{Binding Datos.compromisos}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout 
+                                        Orientation="Horizontal">
+                                <controls:CheckBox  Checked="{Binding isSolucion}"></controls:CheckBox>
+                                <StackLayout  WidthRequest="200"
+                                        Orientation="Vertical">
+                                    <Label Text="{Binding Descripcion}" Style="{StaticResource TitleStyle}"
+                                         TextColor="Black" />
+                                    <Label Text="{Binding Solucion}" FontSize="Small"
+                                         TextColor="Black" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </ContentPage>
 
 </TabbedPage>

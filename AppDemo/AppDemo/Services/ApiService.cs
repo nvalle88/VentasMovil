@@ -218,7 +218,13 @@ namespace AppDemo.Services
 
             try
             {
-                var request = JsonConvert.SerializeObject(position);
+                var ncr = new NearClientRequest
+                {
+                    Position = position,
+                    myId = Settings.userId,
+                };
+
+                var request = JsonConvert.SerializeObject(ncr);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(Constants.Constants.VentasWS);
@@ -232,7 +238,6 @@ namespace AppDemo.Services
                 var clientes = JsonConvert.DeserializeObject<List<Cliente>>(result);
                 return clientes;
                 //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
-
             }
             catch (Exception ex)
             {
@@ -440,7 +445,6 @@ namespace AppDemo.Services
                 };
             }
         }
-
         public async Task<Response> SetFileAsync(string Id, int Tipo, Stream stream)
         {
             try
@@ -485,7 +489,6 @@ namespace AppDemo.Services
                 };
             }
         }
-
         public async Task<Response> SubirInforme(Informe informe)
         {
             try
@@ -521,8 +524,38 @@ namespace AppDemo.Services
                 };
             }
         }
-
-
+        public async Task<Response> ClienteData(ClienteRequest cliente)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(cliente);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Clientes/DatosCliente";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+                    }; ;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var clientedata = JsonConvert.DeserializeObject<Response>(result);
+                return clientedata;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "",
+                };
+            }
+        }
 
     }
 }

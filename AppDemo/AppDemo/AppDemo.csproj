@@ -50,10 +50,12 @@
     <Compile Include="Classes\CheckinRequest.cs" />
     <Compile Include="Classes\clienteCarousel.cs" />
     <Compile Include="Classes\ClienteRequest.cs" />
+    <Compile Include="Classes\DatosClienteRequest.cs" />
     <Compile Include="Classes\FirmaRequest.cs" />
     <Compile Include="Classes\ListRequest.cs" />
     <Compile Include="Classes\LivePositionRequest.cs" />
     <Compile Include="Classes\LoginRequest.cs" />
+    <Compile Include="Classes\NearClientRequest.cs" />
     <Compile Include="Classes\PhotoRequest.cs" />
     <Compile Include="Classes\PinRequest.cs" />
     <Compile Include="Classes\PlacaRequest.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Services\NetworkService.cs" />
     <Compile Include="Services\SignalRService.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\VendedorViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\InformeViewModel.cs" />

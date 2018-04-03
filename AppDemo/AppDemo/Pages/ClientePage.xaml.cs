@@ -1,4 +1,6 @@
-﻿using SkiaSharp;
+﻿using AppDemo.Classes;
+using AppDemo.ViewModels;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,27 +15,33 @@ namespace AppDemo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ClientePage : TabbedPage
     {
-        List<Microcharts.Entry> entries = new List<Microcharts.Entry>
-        {
-            new Microcharts.Entry(200)
-            {
-                Color=SKColor.Parse("#FF1493"),
-                Label="Vistas",
-                ValueLabel="200",
+        ClienteViewModel viewmodel;
 
-            },
-             new Microcharts.Entry(100)
-            {
-                Color=SKColor.Parse("#00BFFF"),
-                Label="Compras",
-                ValueLabel="100",
+        //List<Microcharts.Entry> entries = new List<Microcharts.Entry>
+        //{
+        //    new Microcharts.Entry(200)
+        //    {
+        //        Color=SKColor.Parse("#FF1493"),
+        //        Label="Vistas",
+        //        ValueLabel="200",
 
-            }
-        };
-        public ClientePage()
+        //    },
+        //     new Microcharts.Entry(100)
+        //    {
+        //        Color=SKColor.Parse("#00BFFF"),
+        //        Label="Compras",
+        //        ValueLabel="100",
+
+        //    }
+        //};
+        public ClientePage(ListRequest cliente)
         {
+
             InitializeComponent();
-            chart1.Chart = new Microcharts.PointChart { Entries=entries};
+            viewmodel = new ClienteViewModel( cliente);
+            BindingContext = viewmodel;
+
+           // chart1.Chart = new Microcharts.PointChart { Entries=entries};
            
 
         }

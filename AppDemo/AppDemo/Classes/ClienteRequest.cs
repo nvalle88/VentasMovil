@@ -46,6 +46,8 @@ namespace AppDemo.Classes
 
         public string Direccion { get; set; }
 
+        public int Estado { get; set; }
+
 
     }
 }
