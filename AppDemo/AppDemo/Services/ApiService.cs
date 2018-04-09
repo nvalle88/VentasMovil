@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -170,7 +171,9 @@ namespace AppDemo.Services
         {
             try
             {
-                var me = App.VendedorActual;
+                var me = new ClienteRequest {
+                IdVendedor=Settings.userId,
+                IdEmpresa=Settings.companyId};
 
                 var request = JsonConvert.SerializeObject(me);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
@@ -186,7 +189,7 @@ namespace AppDemo.Services
                 var clientes = JsonConvert.DeserializeObject<List<ClienteRequest>>(result);
                 return clientes;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
@@ -556,6 +559,225 @@ namespace AppDemo.Services
                 };
             }
         }
+        public async Task<EstadisticosClienteRequest> DatosEstadisticos(ClienteRequest cliente)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(cliente);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Clientes/VerEstadisticosCliente";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null ;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var statiticsdata = JsonConvert.DeserializeObject<EstadisticosClienteRequest>(result);
+                return statiticsdata;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        public async Task<Response>ActualizarCompromiso(Compromiso compromiso)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(compromiso);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Compromiso/ActualizarCompromiso";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Actualizado",
+
+                };
+               
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<List<EventoRequest>> AgendaPorVendedor()
+        {
+            try
+            {
+                var vendedor = new VendedorRequest
+                {
+                    IdVendedor = Settings.userId,
+                };
+                
+                var request = JsonConvert.SerializeObject(vendedor);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Agendas/ListarEventosPorVendedor";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var AgendaData = JsonConvert.DeserializeObject<List<EventoRequest>>(result);
+                return AgendaData;
+
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        public async Task<Response> AgregarAgenda(Agenda agenda)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(agenda);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Agendas/Agregar";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+                    }; ;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var agendadata = JsonConvert.DeserializeObject<Response>(result);
+
+
+                return agendadata;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "",
+                };
+            }
+        }
+
+        public async Task LogRuta(LogRutaVendedor Ruta)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(Ruta);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/LogRutaVendedors";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("Error");
+                }
+             
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+
+            }
+        }
+
+        public async Task<Response> VerificarCodigo(RecuperarContrasenaRequest Codigo)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(Codigo);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Usuarios/VerificarCodigo";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+                    }; ;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var codedata = JsonConvert.DeserializeObject<Response>(result);
+
+
+                return codedata;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "",
+                };
+            }
+
+        }
+
+        public async Task<Response> PasswordChange(RecuperarContrasenaRequest data)
+        {
+            try
+            {
+
+                var request = JsonConvert.SerializeObject(data);
+                var body = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWEB);
+                var url = "/api/webapi/CambiarContraseña";
+                var response = await client.PostAsync(url, body);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var PasswordData = JsonConvert.DeserializeObject<Response>(result);
+                return PasswordData;
+
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+
+
+        }
+
+
 
     }
 }

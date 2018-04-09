@@ -7,6 +7,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             xmlns:FAB="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -47,11 +48,24 @@
                              Margin="0,7,58,0"></Entry>
         </StackLayout>
 
-        <Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
+        <!--<Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding OpenInMap} "></TapGestureRecognizer>
             </Image.GestureRecognizers>
-        </Image>
+        </Image>-->
+
+        <FAB:FloatingActionButton x:Name="FAB" 
+                                      HorizontalOptions="End" 
+                                      WidthRequest="62" 
+                                      HeightRequest="62"  
+                                      VerticalOptions="End"
+                                      IsVisible="{Binding HayRuta}"
+                                      Image="ic_route.png" 
+                                      Command="{Binding OpenInMap}"
+                                      ButtonColor="{StaticResource AccentColor2}"
+                                      TranslationX="-5"
+                                      TranslationY="-150"
+                                  />
 
 
         <StackLayout  x:Name="QuickMenuPullLayout"
@@ -102,7 +116,7 @@
                                 HeightRequest="80" 
                         WidthRequest="80">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddCheckinCommand} "></TapGestureRecognizer>
+                                <TapGestureRecognizer Command="{Binding CalendarCommand} "></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
 

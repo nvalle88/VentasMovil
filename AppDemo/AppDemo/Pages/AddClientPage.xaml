@@ -6,7 +6,6 @@
              BackgroundColor="White"
              x:Class="AppDemo.Pages.AddClientPage">
     <ContentPage.Content>
-        <ScrollView>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
             <Label Text="Agregar Nuevo Cliente"
                 VerticalOptions="CenterAndExpand" 
@@ -17,10 +16,12 @@
                    FontSize="Medium"
                    BackgroundColor="{StaticResource AccentColor2}" />
 
-            <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="CenterAndExpand" 
+                <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="FillAndExpand" 
                    HorizontalOptions="FillAndExpand"  >
-
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="FillAndExpand" 
+                   HorizontalOptions="FillAndExpand"  >
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Image Source="tipo.png" WidthRequest="30" HeightRequest="30"></Image>
                         <controls:BindablePicker  Title="Tipo de cliente" ItemsSource="{Binding TipoClientes}" DisplayMemberPath="Tipo" SelectedItem="{Binding TipoSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
                 </StackLayout>
@@ -58,8 +59,10 @@
                     <Image Source="pcontact.png" WidthRequest="30" HeightRequest="30"></Image>
                     <Entry FontSize="Small" Placeholder="Apellido" Text="{Binding cliente.Apellido ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
                 </StackLayout>
+                    </StackLayout>
+                </ScrollView>
 
-                <firma:SignaturePadView x:Name="PadView"                              
+            <firma:SignaturePadView x:Name="PadView"                              
                                 BackgroundColor="White"
                                  HeightRequest="150" WidthRequest="300"
                                 CaptionText="Firmar aquí" CaptionTextColor="Black"
@@ -72,11 +75,10 @@
 
                 <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="FillAndExpand">
-                    <Button Text="Agregar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}" HorizontalOptions="CenterAndExpand"></Button>
-                    <Button Text="Cerrar" BackgroundColor="{StaticResource AccentColor1}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" HorizontalOptions="CenterAndExpand"></Button>
+                    <Button Text="Agregar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Cerrar" BackgroundColor="{StaticResource AccentColor1}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" HorizontalOptions="FillAndExpand"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -124,6 +124,7 @@ namespace AppDemo.ViewModels
             cliente.IdVendedor = Settings.userId;
             cliente.IdEmpresa = Settings.companyId;
             cliente.IdTipoCliente = tipoSelect.idTipoCliente;
+            cliente.Estado = 1;
 
 
 
@@ -133,9 +134,12 @@ namespace AppDemo.ViewModels
             {
                 var cliente = (Cliente)response.Result;
                 await dialogService.ShowMessage("Ok", "Cliente registrado correctamente");
-                //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Locations"));
                 cliente = new Cliente();
-                await PopupNavigation.PopAllAsync();
+
+                navigationService.NavigateBack();
+                //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Locations"));
+                //cliente = new Cliente();
+                //await PopupNavigation.PopAllAsync();
                 return;
             }
 
@@ -148,7 +152,7 @@ namespace AppDemo.ViewModels
         public async void Close()
         {
             //    PopupPage page = new CheckinPage();
-            await navigationService.Navigate("");
+            navigationService.NavigateBack();
         }
 
 

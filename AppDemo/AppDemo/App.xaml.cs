@@ -32,7 +32,7 @@ namespace AppDemo
                     var main = MainViewModel.GetInstance();
                     
                     main.LoadMenu(vendedorView.Nombres,vendedorView.Foto);
-                    main.AddnewClient.tiposdecliente();
+                  //  main.Agenda.init();
                     NavigationService navigationService = new NavigationService();
                    
                     navigationService.SetMainPage(vendedorView);

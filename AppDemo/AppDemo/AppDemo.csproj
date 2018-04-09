@@ -43,6 +43,7 @@
     <Compile Include="Behaviors\Class1.cs" />
     <Compile Include="Behaviors\PlacaValidationBehavior.cs" />
     <Compile Include="Behaviors\StarBehavior.cs" />
+    <Compile Include="Classes\AgendaList.cs" />
     <Compile Include="Classes\AgenteRequest.cs" />
     <Compile Include="Classes\ArchivoRequest.cs" />
     <Compile Include="Classes\BindableLocation47.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Classes\clienteCarousel.cs" />
     <Compile Include="Classes\ClienteRequest.cs" />
     <Compile Include="Classes\DatosClienteRequest.cs" />
+    <Compile Include="Classes\EstadisticosClienteRequest.cs" />
+    <Compile Include="Classes\EventoRequest.cs" />
     <Compile Include="Classes\FirmaRequest.cs" />
     <Compile Include="Classes\ListRequest.cs" />
     <Compile Include="Classes\LivePositionRequest.cs" />
@@ -59,7 +62,10 @@
     <Compile Include="Classes\PhotoRequest.cs" />
     <Compile Include="Classes\PinRequest.cs" />
     <Compile Include="Classes\PlacaRequest.cs" />
+    <Compile Include="Classes\PrioridadRequest.cs" />
+    <Compile Include="Classes\RecuperarContrasenaRequest.cs" />
     <Compile Include="Classes\Response.cs" />
+    <Compile Include="Classes\TipoCompromisoRequest.cs" />
     <Compile Include="Classes\UsuarioPasswordRequest.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controls\BindablePicker.cs" />
@@ -72,12 +78,14 @@
     <Compile Include="ImageResourceExtension.cs" />
     <Compile Include="Infrastructure\InstanceLocator.cs" />
     <Compile Include="Interfaces\INetworkConnection.cs" />
+    <Compile Include="Models\Agenda.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compromiso.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Informe.cs" />
     <Compile Include="Models\LogPosition.cs" />
+    <Compile Include="Models\LogRutaVendedor.cs" />
     <Compile Include="Models\PuntoSector.cs" />
     <Compile Include="Models\Sector.cs" />
     <Compile Include="Models\TipoCliente.cs" />
@@ -89,6 +97,9 @@
     <Compile Include="Models\Visita.cs" />
     <Compile Include="Pages\AddClientPage.xaml.cs">
       <DependentUpon>AddClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddDatePage.xaml.cs">
+      <DependentUpon>AddDatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
@@ -105,7 +116,9 @@
     <Compile Include="Pages\ClientePage.xaml.cs">
       <DependentUpon>ClientePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ClientProfilePage.cs" />
+    <Compile Include="Pages\CodePage.xaml.cs">
+      <DependentUpon>CodePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\FormPage.xaml.cs">
       <DependentUpon>FormPage.xaml</DependentUpon>
     </Compile>
@@ -127,14 +140,24 @@
     <Compile Include="Pages\NotInternetPage.xaml.cs">
       <DependentUpon>NotInternetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PasswordPage.xaml.cs">
+      <DependentUpon>PasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SolucionesPage.xaml.cs">
+      <DependentUpon>SolucionesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NetworkService.cs" />
     <Compile Include="Services\SignalRService.cs" />
+    <Compile Include="ViewModels\AddDateViewModel.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
+    <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
+    <Compile Include="ViewModels\CompromisoViewModel.cs" />
+    <Compile Include="ViewModels\PasswordViewModel.cs" />
     <Compile Include="ViewModels\VendedorViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\InformeViewModel.cs" />
@@ -371,6 +394,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\CheckinClientPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SolucionesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AddDatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\PasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -10,14 +10,7 @@
 
     <StackLayout>
         <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource MenuBackgroundColor1}">
-            <!--<Image
-               Source="ds.png"
-                WidthRequest="80"
-                HeightRequest="80"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="Center" >
-            </Image>-->
-        
+                 
 
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" BindingContext="{Binding EncabezadoMenu}" Margin="0,10,0,0">
                 <imagen:CircleImage 
@@ -67,15 +60,14 @@
                                     <Label 
                                       FontAttributes="Bold"
                                       VerticalOptions="Center"
-                                      TextColor="{StaticResource MenuFontColor}"
-                                      Text="{Binding Title}"
-                                     />
+                                      TextColor="Black"
+                                      Text="{Binding Title}"/>
                                 </StackLayout>
                                 <Label 
                                    FontAttributes="Italic"
-                                   Font="10"
+                                   Font="11"
                                    VerticalOptions="Center"
-                                   TextColor="{StaticResource AccentColor1}"
+                                   TextColor="Black"
                                    Text="{Binding SubTitle}"
                                 />
                             </StackLayout>
@@ -85,6 +77,14 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackLayout BindingContext="{Binding EncabezadoMenu}">
+            
+            <Image
+               Source="ds.png"
+                WidthRequest="80"
+                HeightRequest="80"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="Center" >
+            </Image>
 
             <Label HorizontalOptions="Center" TextColor="#212121" FontSize="15" Text="Cambiar Contraseña">
                 <Label.GestureRecognizers>

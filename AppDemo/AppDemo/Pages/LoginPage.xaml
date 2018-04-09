@@ -6,7 +6,7 @@
              Title="Login"
              BackgroundColor="{StaticResource MainColor}">
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding NewLogin}" Padding="5" Spacing="5">
+        <StackLayout BindingContext="{Binding NewLogin}" Padding="5" Spacing="5" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Image
                 Source="LogoSO1.png"
@@ -39,6 +39,16 @@
             <ActivityIndicator  HorizontalOptions="Center"  Color="{StaticResource AccentColor2}" 
                     IsRunning="{Binding IsRunning}" >
             </ActivityIndicator>
+
+            <Button 
+                Command="{Binding RegisterCommand}"
+                Text="Registro por código"
+                BackgroundColor="{StaticResource AccentColor1}"
+                TextColor="{StaticResource MainColor}">
+            </Button>
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -22,14 +22,14 @@ namespace AppDemo.Services
             await SignalRClient.Start().ContinueWith(task =>
                  {
                      if (task.IsFaulted)
-                         dialogService.ShowMessage("Error", "An error occurred when trying to connect to SignalR: " + task.Exception.InnerExceptions[0].Message);
+                         dialogService.ShowMessage("Error", "Error al enviar datos de posición en tiempo real: " + task.Exception.InnerExceptions[0].Message);
                  }
                    );
             LivePositionRequest lpr = new LivePositionRequest
             {
                 EmpresaId = Settings.companyId,
-                AgenteId = App.VendedorActual.IdVendedor,
-                Nombre = App.VendedorActual.Nombres,
+                AgenteId = Settings.userId,
+                Nombre = Settings.UserName,
                 fecha = DateTime.Now,
                 Lat = lat,
                 Lon = lon

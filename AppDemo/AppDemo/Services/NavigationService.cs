@@ -34,13 +34,13 @@ namespace AppDemo.Services
                 //    await App.Navigator.PushAsync(new MetodoPago());
                 //    break;
 
-                //case "TarjetasPage":
-                //    await App.Navigator.PushAsync(new TarjetasCreditosPage());
-                //    break;
+                case "PasswordPage":
+                    await App.Navigator.PushAsync(new PasswordPage());
+                    break;
 
-                //case "PrepagoPage":
-                //    await App.Navigator.PushAsync(new MetodoPago());
-                //    break;
+                case "CodePage":
+                   await App.Navigator.PushAsync(new CodePage());
+                    break;
 
                 case "CheckinClientePage":
                     await App.Navigator.PushAsync(new CheckinClientPage());

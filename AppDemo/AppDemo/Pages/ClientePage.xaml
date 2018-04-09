@@ -8,7 +8,6 @@
     <ContentPage Title="Perfil" >
 
         <StackLayout>
-            <Image Source="icon" WidthRequest="100" HeightRequest="100"></Image>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Nombre"></Label>
                 <Label Text="{Binding Datos.cliente.Nombre}"/>
@@ -27,8 +26,8 @@
             </StackLayout>
 
 
-            
-            <!--<charts:ChartView HeightRequest="150" x:Name="chart1"></charts:ChartView>-->
+
+            <charts:ChartView Chart="{Binding Chart}" HeightRequest="150"/>
 
 
         </StackLayout>
@@ -44,14 +43,18 @@
                         <ViewCell>
                             <StackLayout 
                                         Orientation="Horizontal">
-                                <controls:CheckBox  Checked="{Binding isSolucion}"></controls:CheckBox>
+                                <controls:CheckBox  Checked="{Binding isSolucion}" 
+                                                    IsEnabled="{Binding isEnable}" 
+                                                    ClassId="{Binding IdCompromiso}"
+                                                    CheckedChanged="CheckBox_CheckedChanged"  >
+                                    
+                                </controls:CheckBox>
                                 <StackLayout  WidthRequest="200"
                                         Orientation="Vertical">
                                     <Label Text="{Binding Descripcion}" Style="{StaticResource TitleStyle}"
                                          TextColor="Black" />
                                     <Label Text="{Binding Solucion}" FontSize="Small"
                                          TextColor="Black" />
-
                                 </StackLayout>
 
                             </StackLayout>

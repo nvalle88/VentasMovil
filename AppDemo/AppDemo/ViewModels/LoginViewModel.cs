@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using AppDemo.Helpers;
 using AppDemo.Classes;
+using Xamarin.Forms;
 /// <summary>
 /// View Model para para la vista de login 
 /// Guarda los datos del usuario en las variables almacenadas en el local del telefono 
@@ -80,6 +81,12 @@ namespace AppDemo.ViewModels
             // App.Current.MainPage = new RegisterPage();
             //await navigationService.Navigate("RegisterPage");
         }
+        public ICommand RegisterCommand { get { return new RelayCommand(Register); } }
+
+        private async void Register()
+        {
+            App.Current.MainPage = new NavigationPage(new CodePage());
+        }
 
         public ICommand LoginCommand { get { return new RelayCommand(Login); } }
         private async void Login()
@@ -125,7 +132,7 @@ namespace AppDemo.ViewModels
                 var main = MainViewModel.GetInstance();
                 main.LoadMenu(vendedorView.Nombres, vendedor.Foto);
                 main.LoadClientes();
-                main.AddnewClient.tiposdecliente();
+             //   main.Agenda.init();
 
 
 

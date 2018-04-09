@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Nuevo Cliente"
+             x:Class="AppDemo.Pages.SolucionesPage">
+
+
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <Label Text="Agregar Solución"
+                VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+               HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}"
+                   />
+
+        <StackLayout BackgroundColor="White" Padding="5"  >
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Entry FontSize="Small" Placeholder="Detalle de la solución" Text="{Binding Solucion}"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Agregar" TextColor="White" BackgroundColor="{StaticResource AccentColor2}" Command="{Binding UpdateCommand}"></Button>
+                <Button Text="Cerrar" TextColor="WhiteSmoke"  BackgroundColor="{StaticResource AccentColor1}" ></Button>
+            </StackLayout>
+        </StackLayout>
+
+
+    </StackLayout>
+</pages:PopupPage>

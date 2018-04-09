@@ -1,29 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             xmlns:controls="clr-namespace:XamForms.Controls;assembly=XamForms.Controls.Calendar"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              xmlns:FAB="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              Title="Agenda"
              x:Class="AppDemo.Pages.AgendaPage">
     <ContentPage.Content>
-        <StackLayout>
-            <controls:Calendar  
-      HorizontalOptions="FillAndExpand" VerticalOptions="Start"  x:Name="calendar"  />
-            <StackLayout BackgroundColor="WhiteSmoke">
-                <Label x:Name="Titulo" FontAttributes="Bold" ></Label>
-                <Label x:Name="Descripcion" FontAttributes="Italic"></Label>
 
-            </StackLayout>
+
+
+        <StackLayout BindingContext="{Binding Agenda}" >
+            <controls:Calendar  
+                
+                TitleLabelText="Agenda"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="Start"  
+                StartDay="Monday"
+                TitleRightArrowBackgroundColor="#FF5722"
+                TitleLeftArrowBackgroundColor="#FF5722"
+                SelectedBorderColor="#FF5722"
+            SelectedBorderWidth="4" 
+            ShowNumberOfWeek="false"
+            x:Name="calendar" 
+	        SelectedDate="{Binding Date}"
+            SpecialDates="{Binding Fechas}"    
+            DateCommand="{Binding DateChosen}"
+                />
+            <ScrollView>
+                <ListView x:Name="listView" ItemsSource="{Binding ListaAgenda}"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout 
+                                Orientation="Horizontal">
+                                    <BoxView
+                                        BackgroundColor="{Binding Color}" WidthRequest="15" VerticalOptions="FillAndExpand"></BoxView>
+                                    <StackLayout 
+                                Orientation="Vertical">
+                                    <Label Text="{Binding Titulo}" FontSize="Small"
+                                TextColor="Black" />
+                                    <Label Text="{Binding Subtitulo}" FontSize="Micro"
+                                TextColor="Black" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </ScrollView>
             <FAB:FloatingActionButton x:Name="FAB" 
                                       HorizontalOptions="EndAndExpand" 
-                                      WidthRequest="50" 
-                                      HeightRequest="50"  
+                                      WidthRequest="62" 
+                                      HeightRequest="62" 
                                       VerticalOptions="EndAndExpand"
                                       Image="ic_add_white.png" 
+                                      Command="{Binding AddCommand}"
                                       ButtonColor="{StaticResource AccentColor2}"
                                       Margin="5,5,5,5"
                                       />
         </StackLayout>
-     
+      
     </ContentPage.Content>
 </ContentPage>

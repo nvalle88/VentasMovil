@@ -10,6 +10,7 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -73,8 +74,8 @@ namespace AppDemo.ViewModels
 
         public Compromiso compromiso { get; set; }
 
-        public List<Compromiso> listaCompromisos;
-        public List<Compromiso> ListaCompromiso
+        public ObservableCollection<Compromiso> listaCompromisos;
+        public ObservableCollection<Compromiso> ListaCompromiso
         {
             set
             {
@@ -117,7 +118,7 @@ namespace AppDemo.ViewModels
             position.latitude = location.Latitude;
             position.longitude = location.Longitude;
             Cliente = await apiService.GetNearClients(position);
-            ListaCompromiso = new List<Compromiso>();
+            ListaCompromiso = new ObservableCollection<Compromiso>();
             TipoCompromiso = await apiService.GetTipoCompromiso();            
         }
 
@@ -159,6 +160,7 @@ namespace AppDemo.ViewModels
             {
                  ListaCompromiso.Add(compromiso);
             }
+            compromiso = new Compromiso();
         }
 
 
@@ -186,7 +188,9 @@ namespace AppDemo.ViewModels
                 if (response.IsSuccess)
                 {
                     await dialogService.ShowMessage("Ok", "Visita registrada correctamente");
+                    navigationService.NavigateBack();
                     return;
+
                 }
                 await dialogService.ShowMessage("Error", "Cliente no registrado");
             }

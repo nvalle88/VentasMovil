@@ -71,8 +71,8 @@ namespace AppDemo.ViewModels
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public MenuItemViewModel EncabezadoMenu { get; set; }
         public LoginViewModel NewLogin { get; set; }
-        public AddViewModel AddnewClient { get; set; }
-        public CheckinViewModel CheckinClient { get; set; }
+        public AgendaViewModel Agenda { get; set; }
+        public PasswordViewModel PasswordVM { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
@@ -168,8 +168,9 @@ namespace AppDemo.ViewModels
            
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
-            AddnewClient = new AddViewModel();
-            CheckinClient = new CheckinViewModel();
+            Agenda = new AgendaViewModel();
+            PasswordVM = new PasswordViewModel();
+            //    CheckinClient = new CheckinViewModel();
             signalRService = new SignalRService();
             MyPin = new TKCustomMapPin();
 
@@ -178,6 +179,7 @@ namespace AppDemo.ViewModels
             LoadClientes();
             if (Settings.IsLoggedIn)
             {
+               // Agenda.init();
                 Locator();
             }
         }
@@ -271,8 +273,8 @@ namespace AppDemo.ViewModels
                 // e.Position.Longitude;
             });
 
-         //  await apiService.PostLogPosition(new LogPosition { idAgente = App.VendedorActual.IdUsuario, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
-        //   await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
+           await apiService.LogRuta(new LogRutaVendedor { IdVendedor = Settings.userId, Latitud = e.Position.Latitude, Longitud = e.Position.Longitude, Fecha=DateTime.Now });
+           await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
 
         }
 
@@ -344,6 +346,15 @@ namespace AppDemo.ViewModels
             await navigationService.Navigate("AddClientePage");
         }
 
+        public ICommand CalendarCommand { get { return new RelayCommand(Calendar); } }
+        public async void Calendar()
+        {
+            //    PopupPage page = new AddPage();
+            //    await PopupNavigation.PushAsync(page);
+
+            await navigationService.Navigate("AgendaPage");
+        }
+
         public ICommand AddCheckinCommand { get { return new RelayCommand(AddCheckin); } }
         public async void AddCheckin()
         {
@@ -360,32 +371,7 @@ namespace AppDemo.ViewModels
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Carga los vehiculos multados por el agente actual en la fecha actual para cuando sea necesario buscarlos
-        /// </summary>
-        //public async void LoadVehiculosMultados()
-        //{
-        //    IsRunning = true;
-        //    var vehiculos = await apiService.loadVehiculosMultados(navigationService.GetAgenteActual().Id.ToString());
-        //    VehiculosMultados.Clear();
-        //    foreach (var vehiculo in vehiculos)
-        //    {
-        //        VehiculosMultados.Add(new VehiculosMultadosViewModels
-        //        {
-        //            Valor = vehiculo.AgenteId,
-        //            Agente = vehiculo.Agente,
-        //            AgenteId = vehiculo.AgenteId,
-        //            latitud = vehiculo.latitud,
-        //            Longitud = vehiculo.Longitud,
-        //            Placa = vehiculo.Placa,
-        //            Fecha = vehiculo.Fecha,
-        //            Foto = vehiculo.Foto,
-        //            MultaId = vehiculo.MultaId,
-        //        }
-        //        );
-        //    }
-        //    IsRunning = false;
-        //}
+     
         /// <summary>
         /// Se arma el menu y en el encabezado del menú se muestra el nombre del agente logeado en la aplicación
         /// </summary>
@@ -397,7 +383,7 @@ namespace AppDemo.ViewModels
             {
 
                 PageName = "ClientePage",
-                Icon = "addc.png",
+                Icon = "pcontact.png",
                 Title = "Clientes",
                 SubTitle = "",
 
@@ -405,9 +391,9 @@ namespace AppDemo.ViewModels
 
             Menu.Add(new MenuItemViewModel
             {
-
-                PageName = "ConsultarMultas",
-                Icon = "checkin.png",
+                
+                PageName = "CheckinClientePage",
+                Icon = "dir.png",
                 Title = "Checkin",
                 SubTitle = "",
             });
@@ -416,22 +402,22 @@ namespace AppDemo.ViewModels
             {
 
                 PageName = "AgendaPage",
-                Icon = "checkin.png",
+                Icon = "tipo.png",
                 Title = "Agenda",
                 SubTitle = "",
             });
 
-            Menu.Add(new MenuItemViewModel
-            {
+            //Menu.Add(new MenuItemViewModel
+            //{
 
-                PageName = "ConsultarMultas",
-                Icon = "checkin.png",
-                Title = "Noticias",
-                SubTitle = "",
-            });
+            //    PageName = "ConsultarMultas",
+            //    Icon = "checkin.png",
+            //    Title = "Noticias",
+            //    SubTitle = "",
+            //});
 
             EncabezadoMenu.Agente = Agente;
-            EncabezadoMenu.AgenteFoto = AgenteFoto;
+            EncabezadoMenu.AgenteFoto = AgenteFoto.Replace("~", Constants.Constants.VentasWS);
         }
         #endregion
 

@@ -25,7 +25,7 @@
                     
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
-                        <controls:BindablePicker  Title="Elija el cliente" ItemsSource="{Binding Cliente}"   DisplayMemberPath="Nombre" SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
+                        <controls:BindablePicker  Title="Elija el cliente" ItemsSource="{Binding Cliente}"   DisplayMemberPath="RazonSocial" SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
                     </StackLayout>
                     <StackLayout>
                     <!--En este stacklayout tenemos los datos para el compromiso-->
@@ -151,11 +151,10 @@
                                 VerticalOptions="CenterAndExpand"                                
                                         />
                     </StackLayout>
-
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Button Text="Guardar" TextColor="White"  BackgroundColor="{StaticResource AccentColor1}" Clicked="SaveButton_Clicked" ></Button>
-                        <Button Text="Cancelar" BackgroundColor="{StaticResource AccentColor2}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" ></Button>
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Button Text="Guardar" TextColor="White"  BackgroundColor="{StaticResource AccentColor1}" Clicked="SaveButton_Clicked" HorizontalOptions="FillAndExpand" ></Button>
+                        <Button Text="Cancelar" BackgroundColor="{StaticResource AccentColor2}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" HorizontalOptions="FillAndExpand"></Button>
                     </StackLayout>
                 </StackLayout>
 

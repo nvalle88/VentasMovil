@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:AppDemo.Controls"
+             x:Class="AppDemo.Pages.AddDatePage">
+
+
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" >
+        <Label Text="Agregar a la Agenda"
+                VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+               HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}"
+                   />
+
+        <StackLayout BackgroundColor="White" Padding="5"  >
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                
+                <DatePicker x:Name="datePick"  Date="{Binding Fecha}"></DatePicker>
+                <controls:BindablePicker  
+                    Title="Elija el cliente" 
+                    ItemsSource="{Binding Cliente}"   
+                    DisplayMemberPath="Nombre" 
+                    SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" 
+                    HorizontalOptions="FillAndExpand">
+                </controls:BindablePicker>
+
+                <controls:BindablePicker  
+                    Title="Prioridad" 
+                    ItemsSource="{Binding Prioridad}"   
+                    DisplayMemberPath="Prioridad" 
+                    SelectedItem="{Binding prioridadSelectItem, Mode=TwoWay}" 
+                    HorizontalOptions="FillAndExpand">
+                </controls:BindablePicker>
+
+                <Label FontSize="Small" Text="Descripción" HorizontalOptions="FillAndExpand"></Label>
+                <Editor FontSize="Small" HeightRequest="100" Text="{Binding Nota}" HorizontalOptions="FillAndExpand"></Editor>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button Text="Agregar" TextColor="White"  BackgroundColor="{StaticResource AccentColor2}" Command="{Binding AgregarAgendaCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cerrar" BackgroundColor="{StaticResource AccentColor1}" Command="{Binding CloseCommand}" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            
+        </StackLayout>
+        
+
+
+    </StackLayout>
+</pages:PopupPage>
