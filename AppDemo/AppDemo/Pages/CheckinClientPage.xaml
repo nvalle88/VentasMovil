@@ -9,7 +9,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
-
                 <Label Text="Visita"
                    VerticalOptions="Start" 
                    HorizontalOptions="FillAndExpand" 
@@ -19,16 +18,13 @@
                    FontSize="Medium"
                    BackgroundColor="{StaticResource AccentColor2}"
                    />
-
                 <StackLayout BackgroundColor="White" VerticalOptions="CenterAndExpand">
-
-                    
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
                         <controls:BindablePicker  Title="Elija el cliente" ItemsSource="{Binding Cliente}"   DisplayMemberPath="RazonSocial" SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
                     </StackLayout>
                     <StackLayout>
-                    <!--En este stacklayout tenemos los datos para el compromiso-->
+                        <!--En este stacklayout tenemos los datos para el compromiso-->
                         <Label Text="Compromiso"
                         VerticalOptions="Start" 
                         HorizontalOptions="FillAndExpand" 
@@ -57,8 +53,7 @@
                                 HorizontalTextAlignment="Center"
                                 FontAttributes="Bold"
                                 FontSize="Medium"
-                                BackgroundColor="{StaticResource AccentColor1}"
-                        />
+                                BackgroundColor="{StaticResource AccentColor1}"/>
                         <ScrollView>
                             <ListView x:Name="listView" ItemsSource="{Binding ListaCompromiso}" HeightRequest="100">
                                 <ListView.ItemTemplate>
@@ -72,11 +67,9 @@
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-
                             </ListView>
                         </ScrollView>
                     </StackLayout>
-
                     <StackLayout Orientation="Horizontal"
                        HeightRequest="60">
                         <Grid>
@@ -108,7 +101,6 @@
                             </Grid.Behaviors>
                             <Image x:Name="starBlankThree"
                                 Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
-
                             <Image x:Name="starSelectedThree"
                                 Source="{local:ImageResource AppDemo.Images.star_selected.png}"
                                 IsVisible="{Binding Source={x:Reference starThree},
@@ -120,7 +112,6 @@
                             </Grid.Behaviors>
                             <Image x:Name="starBlankFour"
                                 Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
-
                             <Image x:Name="starSelectedFour"
                                 Source="{local:ImageResource AppDemo.Images.star_selected.png}"
                                 IsVisible="{Binding Source={x:Reference starFour},
@@ -132,7 +123,6 @@
                             </Grid.Behaviors>
                             <Image x:Name="starBlankFive"
                                 Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
-
                             <Image x:Name="starSelectedFive"
                                 Source="{local:ImageResource AppDemo.Images.star_selected.png}"
                                 IsVisible="{Binding Source={x:Reference starFive},
@@ -148,17 +138,13 @@
                                 StrokeColor="Black"
                                 StrokeWidth="2" 
                                 HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="CenterAndExpand"                                
-                                        />
+                                VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
-                    
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Button Text="Guardar" TextColor="White"  BackgroundColor="{StaticResource AccentColor1}" Clicked="SaveButton_Clicked" HorizontalOptions="FillAndExpand" ></Button>
                         <Button Text="Cancelar" BackgroundColor="{StaticResource AccentColor2}" TextColor="WhiteSmoke"  Command="{Binding CloseCommand}" HorizontalOptions="FillAndExpand"></Button>
                     </StackLayout>
                 </StackLayout>
-
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

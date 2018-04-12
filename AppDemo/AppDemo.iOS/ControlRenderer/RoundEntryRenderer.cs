@@ -1,6 +1,10 @@
-﻿using System;
+﻿using AppDemo.Controls;
+using AppDemo.iOS.ControlRenderer;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(RoundEntry), typeof(RoundEntryRenderer))]
 namespace AppDemo.iOS.ControlRenderer
