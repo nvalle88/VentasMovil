@@ -21,10 +21,12 @@ namespace AppDemo.Constants
                 Color = Color.Cyan,
                 StrokeColor = Color.DarkBlue,
             };
+
+        public const string ApiKey = "AIzaSyBALNXlIkge_yNuoW5Y6wsSj7z73xAEaRg";
             public static string WebServiceURL = "http://developmentds.eastus.cloudapp.azure.com:51/simed";        
-            public static string VentasWS = "http://developmentds.eastus.cloudapp.azure.com:51/";
-            public static string VentasWEB = "http://developmentds.eastus.cloudapp.azure.com:50/";
-            public static string SignalRWeb = "http://developmentds.eastus.cloudapp.azure.com:50/";
+            public static string VentasWS = "http://52.224.8.198:51";
+            public static string VentasWEB = "http://52.224.8.198:50/";
+            public static string SignalRWeb = "http://52.224.8.198:50/";
             public static int TimeForSignalR = 30;
             public static double Distance = 30;
         }    

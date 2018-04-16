@@ -35,7 +35,6 @@ namespace AppDemo.ViewModels
     {
 
         public bool isRunning;
-
         public bool IsRunning
         {
             set
@@ -48,9 +47,7 @@ namespace AppDemo.ViewModels
                 }
             }
             get { return isRunning; }
-        }
-
-       
+        }       
         #region Singleton
 
         static MainViewModel instance;
@@ -65,8 +62,7 @@ namespace AppDemo.ViewModels
             return instance;
         }
 
-        #endregion
-
+        #endregion   
         #region Propeties
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public MenuItemViewModel EncabezadoMenu { get; set; }
@@ -376,6 +372,7 @@ namespace AppDemo.ViewModels
         /// Se arma el menu y en el encabezado del menú se muestra el nombre del agente logeado en la aplicación
         /// </summary>
         /// <param name="Agente"></param>
+
         public void LoadMenu(string Agente, string AgenteFoto)
         {
             Menu.Clear();
@@ -409,18 +406,14 @@ namespace AppDemo.ViewModels
 
             //Menu.Add(new MenuItemViewModel
             //{
-
             //    PageName = "ConsultarMultas",
             //    Icon = "checkin.png",
             //    Title = "Noticias",
             //    SubTitle = "",
             //});
-
             EncabezadoMenu.Agente = Agente;
             EncabezadoMenu.AgenteFoto = AgenteFoto.Replace("~", Constants.Constants.VentasWS);
         }
         #endregion
-
-
     }
 }

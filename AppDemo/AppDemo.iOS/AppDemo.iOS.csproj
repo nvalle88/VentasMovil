@@ -104,6 +104,7 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\CenturyGothic.ttf" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-60%403x.png" />
@@ -404,9 +405,9 @@
   <ItemGroup>
     <Content Include="PushNotificationApplicationDelegate.txt" />
     <BundleResource Include="Resources\ecu911.png" />
-    <BundleResource Include="Resources\ic_Add.png" />
+    <AndroidResource Include="Resources\ic_Add.png" />
     <BundleResource Include="Resources\ic_Carro.png" />
-    <BundleResource Include="Resources\ic_City_Park.png" />
+    <AndroidResource Include="Resources\ic_City_Park.png" />
     <BundleResource Include="Resources\ic_Comprar.png" />
     <BundleResource Include="Resources\ic_CP.png" />
     <BundleResource Include="Resources\ic_Historial_Compras.png" />
@@ -416,6 +417,74 @@
     <BundleResource Include="Resources\ic_Recarga_Prepago.png" />
     <BundleResource Include="Resources\ic_Tarjeta_Credito.png" />
     <BundleResource Include="Resources\ic_timer.png" />
+    <AndroidResource Include="Resources\addc.png" />
+    <AndroidResource Include="Resources\addclient.png" />
+    <AndroidResource Include="Resources\auto.png" />
+    <AndroidResource Include="Resources\autorojo.png" />
+    <AndroidResource Include="Resources\checkin.png" />
+    <AndroidResource Include="Resources\client.png" />
+    <AndroidResource Include="Resources\consulta.png" />
+    <AndroidResource Include="Resources\dir.png" />
+    <AndroidResource Include="Resources\ds.png" />
+    <AndroidResource Include="Resources\ic_add_white.png" />
+    <AndroidResource Include="Resources\ic_calendar.png" />
+    <AndroidResource Include="Resources\ic_description.png" />
+    <AndroidResource Include="Resources\ic_gmap.png" />
+    <AndroidResource Include="Resources\ic_route.png" />
+    <AndroidResource Include="Resources\ic_search.png" />
+    <AndroidResource Include="Resources\ic_VerificarAuto.png" />
+    <AndroidResource Include="Resources\icon.png" />
+    <AndroidResource Include="Resources\list.png" />
+    <AndroidResource Include="Resources\logoSaleOut.png" />
+    <AndroidResource Include="Resources\LogoSO1.png" />
+    <AndroidResource Include="Resources\LogoTab.png" />
+    <AndroidResource Include="Resources\obser.png" />
+    <AndroidResource Include="Resources\pantalla_Inicio.png" />
+    <AndroidResource Include="Resources\pantalla_Inicio_ds.png" />
+    <AndroidResource Include="Resources\pantalla_Inicio1.png" />
+    <AndroidResource Include="Resources\pcontact.png" />
+    <AndroidResource Include="Resources\pin.png" />
+    <AndroidResource Include="Resources\pin5.png" />
+    <AndroidResource Include="Resources\pincar5.png" />
+    <AndroidResource Include="Resources\Propuesta1.png" />
+    <AndroidResource Include="Resources\Propuesta12.png" />
+    <AndroidResource Include="Resources\PropuestaIcon1.png" />
+    <AndroidResource Include="Resources\PropuestaIcon12.png" />
+    <AndroidResource Include="Resources\RoundedEntry.xml" />
+    <AndroidResource Include="Resources\ruc.png" />
+    <AndroidResource Include="Resources\SaleOutSS.png" />
+    <AndroidResource Include="Resources\telefono.png" />
+    <AndroidResource Include="Resources\tipo.png" />
+    <AndroidResource Include="Resources\valor.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-20x20%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-20x20%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-20x20%403x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-57x57%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-57x57%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-60x60%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-72x72%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-72x72%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-76x76%403x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-Small-50x50%401x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\Icon-Small-50x50%402x.png" />
+    <BundleResource Include="Resources\AppIcon.appiconset\ItunesArtwork%402x.png" />
+    <BundleResource Include="Resources\iTunesArtwork%401x.png" />
+    <BundleResource Include="Resources\iTunesArtwork%403x.png" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x.png" />
+    <EmbeddedResource Include="Resources\pincar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\rojo.png" />
@@ -434,7 +503,9 @@
     <Error Condition="!Exists('..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Import Project="..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

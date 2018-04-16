@@ -176,21 +176,24 @@ namespace AppDemo.ViewModels
                 visita.idCliente = clienteSelectItem.idCliente;
                 visita.IdVendedor = App.VendedorActual.IdVendedor;
                 visita.Fecha = DateTime.Now;
-                visita.idTipoVisita = 2;
+
+                //Se debe modificar el id tipo visita para cuando se tenga mas de un tipo de visita
+                visita.idTipoVisita = 0;
                 visita.Calificacion = calificacion;
                 visita.Firma = responseImagen.Resultado.ToString();
+
                 CheckinRequest checkData = new CheckinRequest
                 {
                     visita = visita,
                     compromisos = ListaCompromiso
                 };
+
                 var response = await apiService.Checkin(checkData);
                 if (response.IsSuccess)
                 {
                     await dialogService.ShowMessage("Ok", "Visita registrada correctamente");
                     navigationService.NavigateBack();
                     return;
-
                 }
                 await dialogService.ShowMessage("Error", "Cliente no registrado");
             }

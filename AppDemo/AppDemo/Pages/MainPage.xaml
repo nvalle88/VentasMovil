@@ -8,6 +8,7 @@
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              xmlns:FAB="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:custombar="clr-namespace:DurianCode.PlacesSearchBar;assembly=DurianCode.PlacesSearchBar"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -46,6 +47,23 @@
                              x:Name="FinDirections"     
                              BackgroundColor="White"
                              Margin="0,7,58,0"></Entry>
+
+            <custombar:PlacesBar x:Name="search_bar"/>
+
+            <AbsoluteLayout>
+                <ActivityIndicator x:Name="spinner" IsRunning="false"
+				AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                <ListView x:Name="results_list" IsVisible="false"
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Description}" Detail="{Binding Place_ID}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </AbsoluteLayout>
+
+
         </StackLayout>
 
         <!--<Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
