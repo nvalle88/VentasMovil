@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              xmlns:FAB="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-             xmlns:custombar="clr-namespace:DurianCode.PlacesSearchBar;assembly=DurianCode.PlacesSearchBar"
+             xmlns:bar="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -23,12 +23,13 @@
                 IsShowingUser="True">
             
         </tkmap:TKCustomMap>
-        <StackLayout
+        <StackLayout>
+            <StackLayout
             Orientation="Horizontal"
             VerticalOptions="Start"    
             HorizontalOptions="Fill"
             >
-            <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
+                <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
                     BackgroundColor="#ffffff" 
                     HeightRequest="50" 
                     WidthRequest="50" 
@@ -39,32 +40,50 @@
                     ImageWidthRequest="50" 
                     Command="{Binding RefreshDataCommand}"
                    />
+                <bar:PlacesBar x:Name="search_bar" 
+                             VerticalOptions="Start" 
+                             Placeholder="Ingrese su Dirección" 
+                             TextColor="{StaticResource AccentColor2}"
+                             HorizontalOptions="FillAndExpand"
+                             BackgroundColor="White"
+                             Margin="0,7,58,0"/>
 
-        <Entry VerticalOptions="Start" 
+
+
+                <Entry VerticalOptions="Start" 
                              Placeholder="Ingrese su Dirección" 
                              TextColor="{StaticResource AccentColor2}"
                              HorizontalOptions="FillAndExpand"
                              x:Name="FinDirections"     
                              BackgroundColor="White"
-                             Margin="0,7,58,0"></Entry>
+                             Margin="0,7,58,0" IsVisible="False" ></Entry>
 
-            <custombar:PlacesBar x:Name="search_bar"/>
 
-            <AbsoluteLayout>
-                <ActivityIndicator x:Name="spinner" IsRunning="false"
-				AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" />
-                <ListView x:Name="results_list" IsVisible="false"
-				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional" >
+
+
+
+
+            </StackLayout>
+
+                <ActivityIndicator x:Name="spinner" 
+                                   IsRunning="false"
+				                   AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" 
+                                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <StackLayout HeightRequest="300" x:Name="ListContainer" IsVisible="False">
+                <ListView x:Name="results_list" 
+                          IsVisible="false"				         
+                           BackgroundColor="White"                         
+                          >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Description}" Detail="{Binding Place_ID}" />
+                            <TextCell Text="{Binding Description}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </AbsoluteLayout>
-
-
+            </StackLayout>
         </StackLayout>
+
+
 
         <!--<Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
             <Image.GestureRecognizers>

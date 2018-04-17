@@ -44,21 +44,23 @@ namespace AppDemo.Pages
         public MainPage()
         {
             InitializeComponent();
-       //     NavigationPage.SetTitleIcon(this, "icon.png");
+
+            
+
+
+            //     NavigationPage.SetTitleIcon(this, "icon.png");
             // Locations = new ObservableCollection<TKCustomMapPin>();
             //  LocationsRequest = new ObservableCollection<PinRequest>();
             try
             {
                 Locator();
-
                 search_bar.ApiKey = GooglePlacesApiKey;
-                search_bar.Type = PlaceType.Address;
-              //  search_bar.Components = new Components("country:au|country:nz"); // Restrict results to Australia and New Zealand
+                search_bar.Type = PlaceType.All;
+                search_bar.Components = new Components("country:ec"); // Restrict results to Australia and New Zealand
                 search_bar.PlacesRetrieved += Search_Bar_PlacesRetrieved;
                 search_bar.TextChanged += Search_Bar_TextChanged;
                 search_bar.MinimumSearchText = 2;
                 results_list.ItemSelected += Results_List_ItemSelected;
-
                 // CargarLugares();
             }
             catch
@@ -68,14 +70,24 @@ namespace AppDemo.Pages
 
         }
 
+        #region searchPlace
         void Search_Bar_PlacesRetrieved(object sender, AutoCompleteResult result)
         {
             results_list.ItemsSource = result.AutoCompletePlaces;
             spinner.IsRunning = false;
             spinner.IsVisible = false;
 
+
             if (result.AutoCompletePlaces != null && result.AutoCompletePlaces.Count > 0)
+            {
+                ListContainer.IsVisible = true;
                 results_list.IsVisible = true;
+            }
+            else
+            {
+                ListContainer.IsVisible = false;
+                results_list.IsVisible = false;
+            }
         }
 
         void Search_Bar_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,14 +95,21 @@ namespace AppDemo.Pages
             if (!string.IsNullOrEmpty(e.NewTextValue))
             {
                 results_list.IsVisible = false;
+                ListContainer.IsVisible = false;
                 spinner.IsVisible = true;
                 spinner.IsRunning = true;
             }
             else
             {
+                ListContainer.IsVisible = true;
                 results_list.IsVisible = true;
                 spinner.IsRunning = false;
                 spinner.IsVisible = false;
+                if (e.NewTextValue == "")
+                {
+                    ListContainer.IsVisible = false;
+                    results_list.IsVisible = false;
+                }
             }
         }
 
@@ -105,10 +124,17 @@ namespace AppDemo.Pages
             var place = await Places.GetPlace(prediction.Place_ID, GooglePlacesApiKey);
 
             if (place != null)
-                await DisplayAlert(
-                    place.Name, string.Format("Lat: {0}\nLon: {1}", place.Latitude, place.Longitude), "OK");
-        }
+            {
+                search_bar.Text = null;
+                // await DisplayAlert( place.Name, string.Format("Lat: {0}\nLon: {1}", place.Latitude, place.Longitude), "OK");
+                search_bar.Placeholder = place.Name;
 
+                ListContainer.IsVisible = false;
+                var posicion = new Position(latitude:place.Latitude,longitude:place.Longitude) ;
+               await MoveTo(posicion);
+            }
+        }
+        #endregion
         private async void FinDirections_Completed(object sender, EventArgs e)
         {
             var text = ((Entry)sender).Text; //cast sender to access the properties of the Entry
@@ -119,6 +145,13 @@ namespace AppDemo.Pages
             await Task.Delay(3000);
             Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
 
+        }
+        private async Task MoveTo(Position posicion)
+        {
+            //await Task.Delay(3000);
+            Mapa.MoveToRegion(MapSpan.FromCenterAndRadius((posicion), Distance.FromMiles(.3)));
+           // await Task.Delay(3000);
+            Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(posicion, Distance.FromMiles(.3))), true);
         }
 
         async void Locator()

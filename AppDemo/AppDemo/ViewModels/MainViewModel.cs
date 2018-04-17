@@ -199,7 +199,7 @@ namespace AppDemo.ViewModels
                             Image = "pin.png",
                             Position = new Xamarin.Forms.Maps.Position(cliente.Latitud, cliente.Longitud),
                             Anchor = p,
-                                Title = cliente.Nombre,
+                                Title = "Razón Social: "+cliente.RazonSocial,
                                 Subtitle = "Dirección: "+cliente.Direccion,
                                 
                                 ShowCallout = true,
@@ -286,10 +286,7 @@ namespace AppDemo.ViewModels
         {
             await navigationService.Navigate("VerificarAutoPage");
             IsRefreshing = false;
-        }
-
-       
-
+        }      
         private async void ProfileClient(object obj)
         {
             ListRequest cliente = (ListRequest)obj;
