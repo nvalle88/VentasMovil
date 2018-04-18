@@ -11,6 +11,7 @@ using AppDemo.Classes;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms;
 
 namespace AppDemo.ViewModels
 {
@@ -178,6 +179,7 @@ namespace AppDemo.ViewModels
             var a = await  apiService.AgregarAgenda(Agenda);
             if (a.IsSuccess)
             {
+                MessagingCenter.Send<App>((App)Application.Current, "OnDateCreated");
                 await dialogService.ShowMessage("Agenda", "Se agendo correctamente");
                 await PopupNavigation.PopAllAsync();
 

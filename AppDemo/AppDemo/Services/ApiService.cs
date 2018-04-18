@@ -216,17 +216,22 @@ namespace AppDemo.Services
             }
 
         }
-        public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
+        /// <summary>
+        /// Obtiene los clientes cercanos
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="Radio"></param>
+        /// <returns></returns>
+        public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position, double Radio)
         {
-
             try
             {
                 var ncr = new NearClientRequest
                 {
                     Position = position,
-                    myId = Settings.userId,
+                    myId = Settings.userId,     
+                    radio= Radio,                    
                 };
-
                 var request = JsonConvert.SerializeObject(ncr);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();

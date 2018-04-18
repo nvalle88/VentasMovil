@@ -47,8 +47,6 @@ namespace AppDemo.ViewModels
             }
 
         }
-
-
         public ObservableCollection<SpecialDate> fechas;
         public ObservableCollection<SpecialDate> Fechas
         {
@@ -65,8 +63,7 @@ namespace AppDemo.ViewModels
                 return fechas;
             }
 
-        }
-       
+        }      
         private DateTime? _date;
         public DateTime? Date
         {
@@ -128,8 +125,6 @@ namespace AppDemo.ViewModels
             }
         }
 
-
-
         public  AgendaViewModel()
         {           
             navigationService = new NavigationService();
@@ -138,13 +133,20 @@ namespace AppDemo.ViewModels
             fechas = new ObservableCollection<SpecialDate>();
             agendaData = new List<EventoRequest>();
             listaAgenda = new ObservableCollection<AgendaList>();
+            MessagingCenter.Subscribe<App>((App)Application.Current, "OnDateCreated", async (sender) => {
+                await init();
+            });
             init();
+
+           
         }
 
         public async Task init()
         {
             try
             {
+               
+
                 agendaData = await apiService.AgendaPorVendedor();
             Fechas.Clear();
             foreach (var item in agendaData)
@@ -183,8 +185,14 @@ namespace AppDemo.ViewModels
             Debug.WriteLine(Date);
             PopupPage page = new AddDatePage(Date);
             await PopupNavigation.PushAsync(page);
+          
+
         }
-
-
+        /// <summary>
+        /// Cuando el popUp pierda el foco la idea es que se actualice el calendario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+     
     }
 }

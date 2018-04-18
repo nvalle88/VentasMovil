@@ -7,7 +7,7 @@
              x:Class="AppDemo.Pages.SolucionesPage">
 
 
-
+    <ScrollView>
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
         <Label Text="Agregar Solución"
                 VerticalOptions="CenterAndExpand" 
@@ -32,4 +32,5 @@
 
 
     </StackLayout>
+    </ScrollView>
 </pages:PopupPage>

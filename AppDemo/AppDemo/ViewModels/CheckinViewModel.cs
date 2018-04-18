@@ -72,7 +72,23 @@ namespace AppDemo.ViewModels
 
         }
 
-        public Compromiso compromiso { get; set; }
+        private Compromiso compromiso = new Compromiso();
+        public Compromiso Compromiso
+        {
+            set
+            {
+                if (compromiso != value)
+                {
+                    compromiso = value;
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Compromiso"));
+                }
+            }
+            get
+            {
+                return compromiso;
+            }
+        }
+
 
         public ObservableCollection<Compromiso> listaCompromisos;
         public ObservableCollection<Compromiso> ListaCompromiso
@@ -89,7 +105,6 @@ namespace AppDemo.ViewModels
             {
                 return listaCompromisos;
             }
-
         }
 
         #endregion
@@ -103,11 +118,12 @@ namespace AppDemo.ViewModels
             navigationService = new NavigationService();
             dialogService = new DialogService();
             apiService = new ApiService();
+
             if (Settings.IsLoggedIn)
             {
                 init();
             }
-            compromiso = new Compromiso();
+            
         }
         #endregion
         private async Task init()
@@ -117,7 +133,7 @@ namespace AppDemo.ViewModels
             var location = await locator.GetPositionAsync();
             position.latitude = location.Latitude;
             position.longitude = location.Longitude;
-            Cliente = await apiService.GetNearClients(position);
+            Cliente = await apiService.GetNearClients(position,0.3);
             ListaCompromiso = new ObservableCollection<Compromiso>();
             TipoCompromiso = await apiService.GetTipoCompromiso();            
         }
@@ -132,7 +148,6 @@ namespace AppDemo.ViewModels
             set
             {
                 // marcaseleccionada = ;
-
                 clienteSelect = value;
             }
         }
@@ -151,22 +166,19 @@ namespace AppDemo.ViewModels
                 tipoSelect = value;
             }
         }
-
         public ICommand AddCompromisoCommand { get { return new RelayCommand(addCompromiso); } }
         private async void addCompromiso()
         {
             compromiso.IdTipoCompromiso = tipoSelect.IdTipoCompromiso;
-            if (compromiso != null)
+            if (Compromiso != null)
             {
-                 ListaCompromiso.Add(compromiso);
+                 ListaCompromiso.Add(Compromiso);
             }
-            compromiso = new Compromiso();
+            Compromiso = new Compromiso();
+
         }
 
-
-
       //  public ICommand CheckCommand { get { return new RelayCommand(Checkin); } }
-
         public async void submit(Stream image, int calificacion)
         {
            string  idfoto = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace("/", "").Replace(":", "");
@@ -195,27 +207,8 @@ namespace AppDemo.ViewModels
                     navigationService.NavigateBack();
                     return;
                 }
-                await dialogService.ShowMessage("Error", "Cliente no registrado");
+                await dialogService.ShowMessage("Error", "Visita no registrada");
             }
-
-           
-
-            //if(visita!=null)
-            //{
-            //   var result= await apiService.Checkin(visita);
-            //    if (result.IsSuccess)
-            //    {
-            //        await dialogService.ShowMessage("Checkin", "Se agrego su visita correctamente");
-            //        var resultado = result.Result.ToString();
-            //        var visitadata = JsonConvert.DeserializeObject<Visita>(resultado);
-
-            //        await App.Navigator.PushAsync(new FormPage(visitadata));
-
-            //        await PopupNavigation.PopAllAsync();
-
-            //    }
-            //}
-            
         }
 
 

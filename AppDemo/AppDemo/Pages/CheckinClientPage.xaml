@@ -42,7 +42,7 @@
                             <Image Source="obser.png" WidthRequest="30" HeightRequest="30"></Image>
                             <Label FontSize="Small"  Text="Descripción"></Label>
                         </StackLayout>
-                        <Editor FontSize="Small" HeightRequest="80" Text="{Binding compromiso.Descripcion}" HorizontalOptions="FillAndExpand"></Editor>
+                        <Editor FontSize="Small" HeightRequest="80" Text="{Binding Compromiso.Descripcion}" HorizontalOptions="FillAndExpand"></Editor>
                         <Button HorizontalOptions="End" VerticalOptions="End" Text="Agregar" Command="{Binding AddCompromisoCommand}" TextColor="White" BackgroundColor="{StaticResource AccentColor1}"></Button>
                     </StackLayout>
                     <StackLayout>
