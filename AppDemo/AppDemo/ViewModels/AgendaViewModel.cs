@@ -136,18 +136,14 @@ namespace AppDemo.ViewModels
             MessagingCenter.Subscribe<App>((App)Application.Current, "OnDateCreated", async (sender) => {
                 await init();
             });
-            init();
-
-           
+            init();           
         }
 
         public async Task init()
         {
             try
-            {
-               
-
-                agendaData = await apiService.AgendaPorVendedor();
+            {               
+            agendaData = await apiService.AgendaPorVendedor();
             Fechas.Clear();
             foreach (var item in agendaData)
             {               
@@ -159,14 +155,11 @@ namespace AppDemo.ViewModels
                     };
                     Fechas.Add(fec);
             }
-
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-
         }
 
         public ICommand DateChosen
@@ -178,15 +171,12 @@ namespace AppDemo.ViewModels
                 });
             }
         }
-
         public ICommand AddCommand { get { return new RelayCommand(Add); } }
         public async void Add()
         {
             Debug.WriteLine(Date);
             PopupPage page = new AddDatePage(Date);
             await PopupNavigation.PushAsync(page);
-          
-
         }
         /// <summary>
         /// Cuando el popUp pierda el foco la idea es que se actualice el calendario

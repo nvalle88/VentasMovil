@@ -161,6 +161,7 @@
     <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\CompromisoViewModel.cs" />
     <Compile Include="ViewModels\PasswordViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\VendedorViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\InformeViewModel.cs" />

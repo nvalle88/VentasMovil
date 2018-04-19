@@ -133,7 +133,7 @@ namespace AppDemo.ViewModels
             var location = await locator.GetPositionAsync();
             position.latitude = location.Latitude;
             position.longitude = location.Longitude;
-            Cliente = await apiService.GetNearClients(position,0.3);
+            Cliente = await apiService.GetNearClients(position, Double.Parse(Settings.RadioValue));
             ListaCompromiso = new ObservableCollection<Compromiso>();
             TipoCompromiso = await apiService.GetTipoCompromiso();            
         }

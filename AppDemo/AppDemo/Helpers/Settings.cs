@@ -29,21 +29,15 @@ namespace AppDemo.Helpers
 
         const string NAME_KEY = "name_key";
         static readonly string nameDefault = string.Empty;
-
         const string LAST_NAME_KEY = "lastname_key";
         static readonly string lastnameDefault = string.Empty;
-
         const string PHOTO_PROFILE_KEY = "photoprofile_key";
         static readonly string photoprofileDefault = string.Empty;
-
-        // private const string PasswordKey = "password_key";
-        // private static readonly string PasswordDefault = string.Empty;
-
+        const string  RADIO_KEY= "radio_key";
+        private static readonly string radioDefault = "0.3";
         const string DEVICE_KEY = "device_key";
         static readonly int DeviceDefault = 0;
-
         #endregion
-
         public static string GeneralSettings
         {
             get
@@ -108,7 +102,6 @@ namespace AppDemo.Helpers
         //        AppSettings.AddOrUpdateValue(PasswordKey, value);
         //    }
         // }
-
         public static string UserPhoto
         {
             get
@@ -120,7 +113,6 @@ namespace AppDemo.Helpers
                 AppSettings.AddOrUpdateValue(PHOTO_PROFILE_KEY, value);
             }
         }
-
         public static string UserName
         {
             get
@@ -141,6 +133,17 @@ namespace AppDemo.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(LAST_NAME_KEY, value);
+            }
+        }
+        public static string RadioValue
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(RADIO_KEY, radioDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(RADIO_KEY, value);
             }
         }
     }

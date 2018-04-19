@@ -30,9 +30,9 @@ namespace AppDemo.Services
                 //    await App.Navigator.PushAsync(new PasswordPage());
                 //    break;
 
-                //case "MetodoPago":
-                //    await App.Navigator.PushAsync(new MetodoPago());
-                //    break;
+                case "SettingPage":
+                    await App.Navigator.PushAsync(new SettingPage());
+                    break;
 
                 case "PasswordPage":
                     await App.Navigator.PushAsync(new PasswordPage());

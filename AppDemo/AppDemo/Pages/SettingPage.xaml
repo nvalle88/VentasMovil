@@ -1,12 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             
              x:Class="AppDemo.Pages.SettingPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Radio de busqueda"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="FillAndExpand" 
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   BackgroundColor="{StaticResource AccentColor2}"
+                   />
+            <Label HorizontalOptions="CenterAndExpand" Text="{Binding SliderValue}"></Label>
+            <xlabs:ExtendedSlider  Value="{Binding Valor}" StepValue="0.1" Minimum="0.3" Maximum="5" HorizontalOptions="FillAndExpand" ></xlabs:ExtendedSlider>
+           
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand">
+                <Button Text="Guardar" TextColor="White"   BackgroundColor="{StaticResource AccentColor2}" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancelar" BackgroundColor="{StaticResource AccentColor1}" TextColor="WhiteSmoke" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -65,6 +65,13 @@ namespace AppDemo.ViewModels
             await navigationService.Navigate("PasswordPage");
         }
 
+
+        public ICommand SettingCommand { get { return new RelayCommand(Setting); } }
+        private async void Setting()
+        {
+            await navigationService.Navigate("SettingPage");
+        }
+
         #endregion
 
 

@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace AppDemo.ViewModels
 {
-    public class PasswordViewModel
+    public class PasswordViewModel: INotifyPropertyChanged
     {
         #region Services
         private NavigationService navigationService;

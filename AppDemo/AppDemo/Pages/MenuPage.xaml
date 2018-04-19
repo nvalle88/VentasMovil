@@ -86,11 +86,19 @@
                 VerticalOptions="Center" >
             </Image>
 
+            <Label HorizontalOptions="Center" TextColor="#212121" FontSize="15" Text="Configuración">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SettingCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
             <Label HorizontalOptions="Center" TextColor="#212121" FontSize="15" Text="Cambiar Contraseña">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PasswordCommand}" />
                 </Label.GestureRecognizers>
             </Label>
+            
+            
 
 
             <Label HorizontalOptions="Center" TextColor="#212121" FontSize="15" Text="Cerrar Sesión" Margin="0,10">

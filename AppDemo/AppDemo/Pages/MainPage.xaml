@@ -40,13 +40,17 @@
                     ImageWidthRequest="50" 
                     Command="{Binding RefreshDataCommand}"
                    />
+                <StackLayout Margin="0,7,58,0"                             
+                             HorizontalOptions="FillAndExpand"
+                             >
                 <bar:PlacesBar x:Name="search_bar" 
+                               WidthRequest="200"
                              VerticalOptions="Start" 
                              Placeholder="Ingrese su Dirección" 
                              TextColor="{StaticResource AccentColor2}"
-                             HorizontalOptions="FillAndExpand"
                              BackgroundColor="White"
-                             Margin="0,7,58,0"/>
+                             />
+                </StackLayout>
 
 
 
