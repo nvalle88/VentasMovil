@@ -60,14 +60,10 @@
                              HorizontalOptions="FillAndExpand"
                              x:Name="FinDirections"     
                              BackgroundColor="White"
-                             Margin="0,7,58,0" IsVisible="False" ></Entry>
-
-
-
-
-
-
+                             Margin="0,7,58,0" IsVisible="False" >
+                </Entry>
             </StackLayout>
+            
 
                 <ActivityIndicator x:Name="spinner" 
                                    IsRunning="false"

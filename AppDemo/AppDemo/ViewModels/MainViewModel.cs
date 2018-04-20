@@ -206,7 +206,7 @@ namespace AppDemo.ViewModels
                             };
                             var itemcliente = new ListRequest
                             {
-                                Titulo=cliente.Nombre,
+                                Titulo=cliente.RazonSocial,
                                 Subtitulo= cliente.Direccion+" "+ cliente.Telefono,           
                                 idCliente=cliente.IdCliente,
                             };
@@ -376,7 +376,7 @@ namespace AppDemo.ViewModels
             Menu.Add(new MenuItemViewModel
             {
 
-                PageName = "ClientePage",
+                PageName = "ListClientPage",
                 Icon = "pcontact.png",
                 Title = "Clientes",
                 SubTitle = "",

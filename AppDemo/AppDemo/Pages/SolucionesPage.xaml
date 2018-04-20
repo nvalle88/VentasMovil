@@ -26,7 +26,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Agregar" TextColor="White" BackgroundColor="{StaticResource AccentColor2}" Command="{Binding UpdateCommand}"></Button>
-                <Button Text="Cerrar" TextColor="WhiteSmoke"  BackgroundColor="{StaticResource AccentColor1}" ></Button>
+                    <Button Text="Cerrar" TextColor="WhiteSmoke"  BackgroundColor="{StaticResource AccentColor1}" Command="{Binding CloseCommand}" ></Button>
             </StackLayout>
         </StackLayout>
 
