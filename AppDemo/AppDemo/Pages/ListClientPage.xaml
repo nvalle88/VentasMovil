@@ -20,12 +20,9 @@
                                          TextColor="Black" />
                                         <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
-
                                     </StackLayout>
                                     <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand} " CommandParameter="{Binding}"/>
-
                                 </StackLayout>
-
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
