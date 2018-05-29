@@ -178,7 +178,6 @@ namespace AppDemo.ViewModels
 
         }
 
-      //  public ICommand CheckCommand { get { return new RelayCommand(Checkin); } }
         public async void submit(Stream image, int calificacion)
         {
            string  idfoto = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace("/", "").Replace(":", "");
@@ -215,11 +214,7 @@ namespace AppDemo.ViewModels
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
         public async void Close()
         {
-            //    PopupPage page = new CheckinPage();
-
-            navigationService.NavigateBack();
-            
-           // await PopupNavigation.PopAllAsync();
+          navigationService.NavigateBack();
         }
 
 

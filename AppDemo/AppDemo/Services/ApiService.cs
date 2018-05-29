@@ -29,7 +29,6 @@ namespace AppDemo.Services
             dialogService = new DialogService();
             navigationService = new NavigationService();
         }
-
         public async Task<Response> Login(LoginRequest data)
         {
             try
@@ -683,7 +682,6 @@ namespace AppDemo.Services
                 };
             }
         }
-
         public async Task LogRuta(LogRutaVendedor Ruta)
         {
             try
@@ -707,7 +705,6 @@ namespace AppDemo.Services
 
             }
         }
-
         public async Task<Response> VerificarCodigo(RecuperarContrasenaRequest Codigo)
         {
             try
@@ -744,7 +741,6 @@ namespace AppDemo.Services
             }
 
         }
-
         public async Task<Response> PasswordChange(RecuperarContrasenaRequest data)
         {
             try
@@ -779,6 +775,40 @@ namespace AppDemo.Services
                 };
             }
 
+
+        }
+
+        public async Task<DistanciaRequest> GetDistancia(DistanciaRequest distanciaRequest)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(distanciaRequest);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(Constants.Constants.VentasWS);
+                var url = "api/Vendedores/DistanciaVendedor";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new DistanciaRequest
+                    {
+                        isSet=false,
+                        DistanciaSeguimiento=0.1                       
+                    }; ;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var distancia = JsonConvert.DeserializeObject<Response>(result);
+                return (DistanciaRequest) distancia.Resultado;
+
+            }
+            catch (Exception ex)
+            {
+                return new DistanciaRequest
+                {
+                    isSet = false,
+                    DistanciaSeguimiento = 0.1,
+                };
+            }
 
         }
 

@@ -23,7 +23,6 @@ namespace AppDemo.ViewModels
         #region Attributes
         public bool isRunning;
         #endregion
-
         #region Properties
 
 
@@ -49,7 +48,6 @@ namespace AppDemo.ViewModels
 
         public bool Recuerdame { get; set; }
         #endregion
-
         #region Services
         private NavigationService navigationService;
         private DialogService dialogService;
@@ -59,7 +57,6 @@ namespace AppDemo.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-
         #region Constructors
         public LoginViewModel()
         {
@@ -71,15 +68,13 @@ namespace AppDemo.ViewModels
         }
 
         #endregion
-
         #region Commands
 
         public ICommand NavigateRegisterCommand { get { return new RelayCommand(Navigate); } }
 
         private void Navigate()
         {
-            // App.Current.MainPage = new RegisterPage();
-            //await navigationService.Navigate("RegisterPage");
+           
         }
         public ICommand RegisterCommand { get { return new RelayCommand(Register); } }
 
@@ -148,6 +143,5 @@ namespace AppDemo.ViewModels
         }
 
         #endregion
-
     }
 }

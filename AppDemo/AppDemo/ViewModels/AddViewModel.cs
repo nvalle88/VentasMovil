@@ -97,10 +97,6 @@ namespace AppDemo.ViewModels
             {
                 cliente.Firma = responseImagen.Resultado.ToString();
                 Add();
-
-
-                //await dialogService.ShowMessage("Informe", "Se guardo correctamente");
-                //await navigationService.Navigate("MainPage");
             }
         }
 
@@ -136,10 +132,7 @@ namespace AppDemo.ViewModels
                 await dialogService.ShowMessage("Ok", "Cliente registrado correctamente");
                 cliente = new Cliente();
 
-                navigationService.NavigateBack();
-                //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Locations"));
-                //cliente = new Cliente();
-                //await PopupNavigation.PopAllAsync();
+                navigationService.NavigateBack();               
                 return;
             }
 
@@ -151,7 +144,6 @@ namespace AppDemo.ViewModels
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
         public async void Close()
         {
-            //    PopupPage page = new CheckinPage();
             navigationService.NavigateBack();
         }
 

@@ -72,7 +72,6 @@ namespace AppDemo.ViewModels
             dialogService = new DialogService();
             apiService = new ApiService();
             SliderValue = string.Empty;
-           // valor = Double.Parse("1.3");// Double.Parse(Settings.RadioValue);
         }
 
 

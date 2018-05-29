@@ -82,6 +82,7 @@
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compromiso.cs" />
+    <Compile Include="Models\DistanciaRequest.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Informe.cs" />
     <Compile Include="Models\LogPosition.cs" />

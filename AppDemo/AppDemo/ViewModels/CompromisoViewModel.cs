@@ -53,7 +53,6 @@ namespace AppDemo.ViewModels
         public ICommand UpdateCommand { get { return new RelayCommand(Update); } }
         public async void Update()
         {
-            //    PopupPage page = new CheckinPage();
             var compromiso = new Compromiso
             {
                 IdCompromiso = id,
@@ -71,9 +70,7 @@ namespace AppDemo.ViewModels
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
         public async void Close()
         {
-            await PopupNavigation.PopAllAsync();
-            //    PopupPage page = new CheckinPage();
-            //navigationService.NavigateBack();
+            await PopupNavigation.PopAllAsync();           
         }
     }
 }

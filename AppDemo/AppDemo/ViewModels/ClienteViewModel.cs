@@ -51,7 +51,6 @@ namespace AppDemo.ViewModels
             this.idCliente = cliente.idCliente;
             apiService = new ApiService();
             datos = new DatosClienteRequest();
-          //  Datos = new DatosClienteRequest();
             Init();
         }
         public async void Init()

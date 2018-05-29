@@ -35,6 +35,10 @@ namespace AppDemo.ViewModels
     {
 
         public bool isRunning;
+        public Helpers.GeoUtils.Position positionAux = new Helpers.GeoUtils.Position();
+
+        public double distancia=0.02;
+
         public bool IsRunning
         {
             set
@@ -48,6 +52,7 @@ namespace AppDemo.ViewModels
             }
             get { return isRunning; }
         }       
+    
         #region Singleton
 
         static MainViewModel instance;
@@ -126,25 +131,21 @@ namespace AppDemo.ViewModels
 
 
         #endregion
-
         #region Attributes
         private bool isRefreshing = false;
         private NavigationService navigationService;
         #endregion
-
         #region Events
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-
         #region Services
 
         private ApiService apiService;
         private SignalRService signalRService;
 
         #endregion
-
         #region Constructors
         public MainViewModel()
         {
@@ -246,9 +247,9 @@ namespace AppDemo.ViewModels
         /// </summary>
         /// <returns></returns>
         private async Task Locator()
-        {
+        {                              
             await CrossGeolocator.Current.StartListeningAsync(3, 10, true);
-            CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;        
+            CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;
         }
        
         private async Task findPlace()
@@ -263,20 +264,42 @@ namespace AppDemo.ViewModels
             {
                 var position = e.Position;
                 myPosition.Position = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude);
-
-                //e.Position.Latitude,0);
-                
-                // e.Position.Longitude;
             });
 
-           await apiService.LogRuta(new LogRutaVendedor { IdVendedor = Settings.userId, Latitud = e.Position.Latitude, Longitud = e.Position.Longitude, Fecha=DateTime.Now });
-           await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
 
+            var miposicion = new Helpers.GeoUtils.Position
+            {
+                latitude = e.Position.Latitude,
+                longitude = e.Position.Longitude,
+            };
+
+
+            if (positionAux == null)
+            {
+                positionAux = miposicion;
+                await apiService.LogRuta(new LogRutaVendedor
+                {
+                    IdVendedor = Settings.userId,
+                    Latitud = e.Position.Latitude,
+                    Longitud = e.Position.Longitude,
+                    Fecha = DateTime.Now
+                });
+            }
+            if (!(Helpers.GeoUtils.GeoUtils.EstaCercaDeMi(positionAux, miposicion, distancia)))
+            {
+                await apiService.LogRuta(new LogRutaVendedor
+                {
+                    IdVendedor = Settings.userId,
+                    Latitud = miposicion.latitude,
+                    Longitud = miposicion.longitude,
+                    Fecha = DateTime.Now
+                });
+                positionAux = miposicion;
+            }
         }
 
 
         #endregion
-
         #region Commands
         /// <summary>
         /// En esta Región se encuantran los commands que estan realcionados con los botones de las vistas
@@ -362,7 +385,6 @@ namespace AppDemo.ViewModels
 
 
         #endregion
-
         #region Methods
      
         /// <summary>
@@ -400,14 +422,6 @@ namespace AppDemo.ViewModels
                 Title = "Agenda",
                 SubTitle = "",
             });
-
-            //Menu.Add(new MenuItemViewModel
-            //{
-            //    PageName = "ConsultarMultas",
-            //    Icon = "checkin.png",
-            //    Title = "Noticias",
-            //    SubTitle = "",
-            //});
             EncabezadoMenu.Agente = Agente;
             EncabezadoMenu.AgenteFoto = AgenteFoto.Replace("~", Constants.Constants.VentasWS);
         }

@@ -16,6 +16,9 @@ namespace AppDemo.Models
 
         public int? IdSupervisor { get; set; }
 
+        public double? DistanciaSeguimiento { get; set; }
+
+
 
 
 
