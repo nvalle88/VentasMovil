@@ -35,117 +35,99 @@ namespace AppDemo.Pages
         private readonly PanGestureRecognizer _panGesture = new PanGestureRecognizer();
         private double _transY;
 
-        // Para bindear los pins
-        //   public ObservableCollection<TKCustomMapPin> Locations { get; set; }
-        //   public ObservableCollection<PinRequest> LocationsRequest { get; set; }
-
         public ICommand PinCommand;
 
         public MainPage()
         {
             InitializeComponent();
 
-            
-
-
-            //     NavigationPage.SetTitleIcon(this, "icon.png");
-            // Locations = new ObservableCollection<TKCustomMapPin>();
-            //  LocationsRequest = new ObservableCollection<PinRequest>();
             try
             {
                 Locator();
-                search_bar.ApiKey = GooglePlacesApiKey;
-                search_bar.Type = PlaceType.All;
-                search_bar.Components = new Components("country:ec"); // Restrict results to Australia and New Zealand
-                search_bar.PlacesRetrieved += Search_Bar_PlacesRetrieved;
-                search_bar.TextChanged += Search_Bar_TextChanged;
-                search_bar.MinimumSearchText = 2;
-                results_list.ItemSelected += Results_List_ItemSelected;
-                // CargarLugares();
+     
             }
             catch
             {
             }
-            FinDirections.Completed += FinDirections_Completed; ;
 
         }
 
         #region searchPlace
-        void Search_Bar_PlacesRetrieved(object sender, AutoCompleteResult result)
-        {
-            results_list.ItemsSource = result.AutoCompletePlaces;
-            spinner.IsRunning = false;
-            spinner.IsVisible = false;
+        //void Search_Bar_PlacesRetrieved(object sender, AutoCompleteResult result)
+        //{
+        //    results_list.ItemsSource = result.AutoCompletePlaces;
+        //    spinner.IsRunning = false;
+        //    spinner.IsVisible = false;
 
 
-            if (result.AutoCompletePlaces != null && result.AutoCompletePlaces.Count > 0)
-            {
-                ListContainer.IsVisible = true;
-                results_list.IsVisible = true;
-            }
-            else
-            {
-                ListContainer.IsVisible = false;
-                results_list.IsVisible = false;
-            }
-        }
+        //    if (result.AutoCompletePlaces != null && result.AutoCompletePlaces.Count > 0)
+        //    {
+        //        ListContainer.IsVisible = true;
+        //        results_list.IsVisible = true;
+        //    }
+        //    else
+        //    {
+        //        ListContainer.IsVisible = false;
+        //        results_list.IsVisible = false;
+        //    }
+        //}
 
-        void Search_Bar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(e.NewTextValue))
-            {
-                results_list.IsVisible = false;
-                ListContainer.IsVisible = false;
-                spinner.IsVisible = true;
-                spinner.IsRunning = true;
-            }
-            else
-            {
-                ListContainer.IsVisible = true;
-                results_list.IsVisible = true;
-                spinner.IsRunning = false;
-                spinner.IsVisible = false;
-                if (e.NewTextValue == "")
-                {
-                    ListContainer.IsVisible = false;
-                    results_list.IsVisible = false;
-                }
-            }
-        }
+        //void Search_Bar_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(e.NewTextValue))
+        //    {
+        //        results_list.IsVisible = false;
+        //        ListContainer.IsVisible = false;
+        //        spinner.IsVisible = true;
+        //        spinner.IsRunning = true;
+        //    }
+        //    else
+        //    {
+        //        ListContainer.IsVisible = true;
+        //        results_list.IsVisible = true;
+        //        spinner.IsRunning = false;
+        //        spinner.IsVisible = false;
+        //        if (e.NewTextValue == "")
+        //        {
+        //            ListContainer.IsVisible = false;
+        //            results_list.IsVisible = false;
+        //        }
+        //    }
+        //}
 
-        async void Results_List_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (e.SelectedItem == null)
-                return;
+        //async void Results_List_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    if (e.SelectedItem == null)
+        //        return;
 
-            var prediction = (AutoCompletePrediction)e.SelectedItem;
-            results_list.SelectedItem = null;
+        //    var prediction = (AutoCompletePrediction)e.SelectedItem;
+        //    results_list.SelectedItem = null;
 
-            var place = await Places.GetPlace(prediction.Place_ID, GooglePlacesApiKey);
+        //    var place = await Places.GetPlace(prediction.Place_ID, GooglePlacesApiKey);
 
-            if (place != null)
-            {
-                search_bar.Text = null;
-                // await DisplayAlert( place.Name, string.Format("Lat: {0}\nLon: {1}", place.Latitude, place.Longitude), "OK");
-                search_bar.Placeholder = place.Name;
+        //    if (place != null)
+        //    {
+        //        //search_bar.Text = null;
+        //        //// await DisplayAlert( place.Name, string.Format("Lat: {0}\nLon: {1}", place.Latitude, place.Longitude), "OK");
+        //        //search_bar.Placeholder = place.Name;
 
-                ListContainer.IsVisible = false;
-                var posicion = new Position(latitude:place.Latitude,longitude:place.Longitude) ;
-               await MoveTo(posicion);
-            }
-        }
+        //        ListContainer.IsVisible = false;
+        //        var posicion = new Position(latitude:place.Latitude,longitude:place.Longitude) ;
+        //       await MoveTo(posicion);
+        //    }
+        //}
         #endregion
-        private async void FinDirections_Completed(object sender, EventArgs e)
-        {
-            var text = ((Entry)sender).Text; //cast sender to access the properties of the Entry
-            var position = (await(new Geocoder()).GetPositionsForAddressAsync(text)).FirstOrDefault();
+        //private async void FinDirections_Completed(object sender, EventArgs e)
+        //{
+        //    var text = ((Entry)sender).Text; //cast sender to access the properties of the Entry
+        //    var position = (await(new Geocoder()).GetPositionsForAddressAsync(text)).FirstOrDefault();
 
-            await Task.Delay(3000);
-            Mapa.MoveToRegion(MapSpan.FromCenterAndRadius((position), Distance.FromMiles(.3)));
-            await Task.Delay(3000);
-            Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
+        //    await Task.Delay(3000);
+        //    Mapa.MoveToRegion(MapSpan.FromCenterAndRadius((position), Distance.FromMiles(.3)));
+        //    await Task.Delay(3000);
+        //    Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
 
-        }
+        //}
         private async Task MoveTo(Position posicion)
         {
             //await Task.Delay(3000);

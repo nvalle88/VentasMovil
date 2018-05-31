@@ -11,8 +11,7 @@
 
 
         <StackLayout BindingContext="{Binding Agenda}" >
-            <controls:Calendar  
-                
+            <controls:Calendar                  
                 TitleLabelText="Agenda"
                 HorizontalOptions="FillAndExpand" 
                 VerticalOptions="Start"  
@@ -20,12 +19,12 @@
                 TitleRightArrowBackgroundColor="#FF5722"
                 TitleLeftArrowBackgroundColor="#FF5722"
                 SelectedBorderColor="#FF5722"
-            SelectedBorderWidth="4" 
-            ShowNumberOfWeek="false"
-            x:Name="calendar" 
-	        SelectedDate="{Binding Date}"
-            SpecialDates="{Binding Fechas}"    
-            DateCommand="{Binding DateChosen}"
+                SelectedBorderWidth="4" 
+                ShowNumberOfWeek="false"
+                x:Name="calendar" 
+	            SelectedDate="{Binding Date}"
+                SpecialDates="{Binding Fechas}"    
+                DateCommand="{Binding DateChosen}"
                 />
             <ScrollView>
                 <ListView x:Name="listView" ItemsSource="{Binding ListaAgenda}"  >
@@ -50,7 +49,8 @@
 
                 </ListView>
             </ScrollView>
-            <FAB:FloatingActionButton x:Name="FAB" 
+            <FAB:FloatingActionButton 
+                x:Name="FAB" 
                                       HorizontalOptions="EndAndExpand" 
                                       WidthRequest="62" 
                                       HeightRequest="62" 

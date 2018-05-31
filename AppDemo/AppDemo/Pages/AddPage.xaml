@@ -9,26 +9,28 @@
 
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BindingContext="{Binding AddnewClient}">
-        <Label Text="Agregar Nuevo Cliente"
-                VerticalOptions="CenterAndExpand" 
+        <Label 
+                   Text="Agregar Nuevo Cliente"
+                   VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="FillAndExpand" 
                    TextColor="White"
-               HorizontalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
                    FontAttributes="Bold"
                    FontSize="Medium"
                    BackgroundColor="{StaticResource AccentColor2}"
-                   />
+        />
         
         <StackLayout BackgroundColor="White" Padding="5"  >
-
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Image Source="addclient.png" WidthRequest="30" HeightRequest="30"></Image>
                 <Entry FontSize="Small" Placeholder="Nombre" Text="{Binding cliente.Nombre ,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
             </StackLayout>
+          
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Image Source="ruc.png" WidthRequest="30" HeightRequest="30"></Image>
                 <Entry FontSize="Small" Placeholder="Ruc" Text="{Binding cliente.Ruc ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>
             </StackLayout>
+          
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Image Source="telefono.png" WidthRequest="30" HeightRequest="30"></Image>
                 <Entry FontSize="Small" Placeholder="Telefono" Text="{Binding cliente.Telefono ,Mode=TwoWay}"  HorizontalOptions="FillAndExpand"></Entry>

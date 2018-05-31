@@ -34,11 +34,11 @@ namespace AppDemo.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
 
-        public bool isRunning;
         public Helpers.GeoUtils.Position positionAux = new Helpers.GeoUtils.Position();
 
         public double distancia=0.02;
 
+        public bool isRunning;
         public bool IsRunning
         {
             set
@@ -51,8 +51,7 @@ namespace AppDemo.ViewModels
                 }
             }
             get { return isRunning; }
-        }       
-    
+        }           
         #region Singleton
 
         static MainViewModel instance;
@@ -77,12 +76,31 @@ namespace AppDemo.ViewModels
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
-        public TKCustomMapPin MyPin { get; set; }
+        public ObservableCollection<TKCustomMapPin> locationsSearch;
+
+        public TKCustomMapPin myPin = new TKCustomMapPin();
+        public TKCustomMapPin MyPin
+        {
+            get { return myPin; }
+            set
+            {
+                if (this.myPin != value)
+                {
+
+                    this.myPin = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MyPin"));
+                }
+            }
+        }
+
         public TKRoute MyRoute { get; set; }
         public ObservableCollection<ListRequest> listlocation;
         public TKCustomMapPin myPosition;
 
         public ICommand PinCommand;
+
+        public ICommand SearchCommand { get; private set; }
+
 
         private Command<object> tapCommand;
 
@@ -93,6 +111,15 @@ namespace AppDemo.ViewModels
             set { tapCommand = value; }
         }
 
+        private Command<object> tapCommand2;
+
+
+        public Command<object> TapCommand2
+        {
+            get { return tapCommand2; }
+            set { tapCommand2 = value;}
+
+        }
 
         public bool IsRefreshing
         {
@@ -129,6 +156,67 @@ namespace AppDemo.ViewModels
             }
         }
 
+        public string mySearch="";
+        public string MySearch
+        {
+            get { return mySearch; }
+            set
+            {
+                if (this.mySearch != value)
+                {
+
+                    this.mySearch = value;
+                    SearchClient(value);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MySearch"));
+                }
+            }
+        }
+
+        public MapSpan centerSearch = null;
+        public MapSpan CenterSearch
+        {
+            get { return centerSearch; }
+            set
+            {
+                if (this.centerSearch != value)
+                {
+
+                    this.centerSearch = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CenterSearch"));
+                }
+            }
+        }
+
+        public bool isSearch = false;
+        public bool IsSearch
+        {
+            set
+            {
+                if (isSearch != value)
+                {
+                    isSearch = value;
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSearch"));
+                }
+            }
+            get { return isSearch; }
+        }
+
+        public bool isList = false;
+        public bool IsList
+        {
+            set
+            {
+                if (isList != value)
+                {
+                    isList = value;
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsList"));
+                }
+            }
+            get { return isList; }
+        }
+
 
         #endregion
         #region Attributes
@@ -153,6 +241,10 @@ namespace AppDemo.ViewModels
             Pins = new ObservableCollection<Pin>();
             Locations = new ObservableCollection<TKCustomMapPin>();
             locations = new ObservableCollection<TKCustomMapPin>();
+
+            LocationsSearch = new ObservableCollection<TKCustomMapPin>();
+            locationsSearch = new ObservableCollection<TKCustomMapPin>();
+
             listlocation = new ObservableCollection<ListRequest>();
 
             myPosition = new TKCustomMapPin();
@@ -172,6 +264,10 @@ namespace AppDemo.ViewModels
             MyPin = new TKCustomMapPin();
 
             tapCommand = new Command<object>(ProfileClient);
+            tapCommand2 = new Command<object>(PinClient);
+
+            SearchCommand = new Command<string>(async (text) => SearchClient(text));
+
 
             LoadClientes();
             if (Settings.IsLoggedIn)
@@ -188,6 +284,7 @@ namespace AppDemo.ViewModels
                 {
                 var clientes = await apiService.GetMyClient();
                 Locations.Clear();
+                LocationsSearch.Clear();
                 ListLocation.Clear();
                 clientes.Count();
                     if (clientes!=null && clientes.Count>0)
@@ -204,14 +301,14 @@ namespace AppDemo.ViewModels
                                 Subtitle = "Dirección: "+cliente.Direccion,
                                 
                                 ShowCallout = true,
-                            };
+                        };
                             var itemcliente = new ListRequest
                             {
                                 Titulo=cliente.RazonSocial,
                                 Subtitulo= cliente.Direccion+" "+ cliente.Telefono,           
                                 idCliente=cliente.IdCliente,
                             };
-                            Locations.Add(Pincliente);
+                        Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
                         }
                      }
@@ -231,6 +328,17 @@ namespace AppDemo.ViewModels
                 
             }
             get { return locations; }
+        }
+
+        public ObservableCollection<TKCustomMapPin> LocationsSearch
+        {
+            protected set
+            {
+                locationsSearch= LocationsSearch;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LocationsSearch"));
+
+            }
+            get { return locationsSearch; }
         }
         public ObservableCollection<ListRequest> ListLocation
         {
@@ -317,6 +425,21 @@ namespace AppDemo.ViewModels
           //  Debug.WriteLine(cliente.idCliente);
         }
 
+        private async void PinClient(object obj)
+        {
+            TKCustomMapPin cliente = (TKCustomMapPin)obj;
+            IsSearch = false;
+            
+            MoveTo(cliente.Position);
+
+            MyPin=locations.Where(x => x.Title == cliente.Title).FirstOrDefault();
+           
+            //MyPin, location 
+
+            // await App.Navigator.PushAsync(new ClientePage(cliente));
+            //  Debug.WriteLine(cliente.idCliente);
+        }
+
 
         public ICommand PinSelected { get { return new RelayCommand(pinselected); } }
 
@@ -347,7 +470,13 @@ namespace AppDemo.ViewModels
         //   public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshData); } }
 
 
-       
+        private async Task MoveTo(Xamarin.Forms.Maps.Position posicion)
+        {
+            //await Task.Delay(3000);
+            CenterSearch = (MapSpan.FromCenterAndRadius((posicion), Distance.FromMiles(.3)));
+            // await Task.Delay(3000);
+        }
+
 
 
 
@@ -384,9 +513,40 @@ namespace AppDemo.ViewModels
 
 
 
+
+
+
+        public async void SearchClient(string text)
+        {
+            IsSearch = false;
+
+            LocationsSearch.Clear();
+            locationsSearch.Clear();
+            if(text==""|| text==null)
+            {
+                IsSearch = false;
+            }
+            else
+            {
+                var a = Locations.Where(p => p.Title.ToLower().Contains(text.ToLower()));
+                if (a != null)
+                {
+
+
+                    foreach (var item in a)
+                    {
+                        LocationsSearch.Add(item);
+                        //  await MoveTo(item.Position);
+                    }
+                    IsSearch = true;
+                }
+            }
+            
+        }
+
         #endregion
         #region Methods
-     
+
         /// <summary>
         /// Se arma el menu y en el encabezado del menú se muestra el nombre del agente logeado en la aplicación
         /// </summary>

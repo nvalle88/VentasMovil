@@ -19,7 +19,8 @@
                 CustomPins="{Binding Locations}"    
                 PinSelectedCommand="{Binding PinSelected}"
                 MapClickedCommand="{Binding PinUnselected}"
-                SelectedPin="{Binding MyPin}"            
+                SelectedPin="{Binding MyPin}"                
+                MapRegion="{Binding CenterSearch}"                                   
                 IsShowingUser="True">
             
         </tkmap:TKCustomMap>
@@ -43,40 +44,33 @@
                 <StackLayout Margin="0,7,58,0"                             
                              HorizontalOptions="FillAndExpand"
                              >
-                <bar:PlacesBar x:Name="search_bar" 
-                               WidthRequest="200"
+                    <SearchBar WidthRequest="200"
                              VerticalOptions="Start" 
-                             Placeholder="Ingrese su Dirección" 
+                             Placeholder="Cliente" 
                              TextColor="{StaticResource AccentColor2}"
-                             BackgroundColor="White"
-                             />
+                             BackgroundColor="White"                               
+                            Text="{Binding MySearch}"
+                            />
                 </StackLayout>
-
-
-
-                <Entry VerticalOptions="Start" 
-                             Placeholder="Ingrese su Dirección" 
-                             TextColor="{StaticResource AccentColor2}"
-                             HorizontalOptions="FillAndExpand"
-                             x:Name="FinDirections"     
-                             BackgroundColor="White"
-                             Margin="0,7,58,0" IsVisible="False" >
-                </Entry>
             </StackLayout>
-            
 
-                <ActivityIndicator x:Name="spinner" 
-                                   IsRunning="false"
-				                   AbsoluteLayout.LayoutBounds="0.5, 0.1, 50, 50" 
-                                   AbsoluteLayout.LayoutFlags="PositionProportional" />
-            <StackLayout HeightRequest="300" x:Name="ListContainer" IsVisible="False">
-                <ListView x:Name="results_list" 
-                          IsVisible="false"				         
-                           BackgroundColor="White"                         
-                          >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Text="{Binding Description}"/>
+
+
+
+            <StackLayout BackgroundColor="White" IsVisible="{Binding IsSearch}">
+            <ListView      x:Name="LocationsSearch" 
+                          IsVisible="{Binding IsSearch}"
+                           ItemsSource="{Binding LocationsSearch}"
+                          VerticalOptions="Center"
+                          HeightRequest="250"                          
+                          BackgroundColor="Transparent"
+                          HorizontalOptions="Center">
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <TextCell Text="{Binding Title}" 
+                                  Command="{Binding Source={x:Reference LocationsSearch}, Path=BindingContext.TapCommand2}" 
+                                  CommandParameter="{Binding}"                                  
+                                  />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -84,27 +78,18 @@
         </StackLayout>
 
 
-
-        <!--<Image Source="ic_gmap" HeightRequest="50" WidthRequest="50" VerticalOptions="End" TranslationY="-150" TranslationX="-5" HorizontalOptions="End" IsVisible="{Binding HayRuta}">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding OpenInMap} "></TapGestureRecognizer>
-            </Image.GestureRecognizers>
-        </Image>-->
-
         <FAB:FloatingActionButton x:Name="FAB" 
                                       HorizontalOptions="End" 
                                       WidthRequest="62" 
                                       HeightRequest="62"  
                                       VerticalOptions="End"
                                       IsVisible="{Binding HayRuta}"
-                                      Image="ic_route.png" 
+                                      Image="ic_Add" 
                                       Command="{Binding OpenInMap}"
                                       ButtonColor="{StaticResource AccentColor2}"
                                       TranslationX="-5"
                                       TranslationY="-150"
                                   />
-
-
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"
@@ -125,14 +110,12 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    
+
                     <StackLayout  x:Name="Add" 
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="0" 
                                       Grid.Row="0">
-                   
-
                         <Image Source="ic_Add"  
                         HeightRequest="80" 
                         WidthRequest="80" >
