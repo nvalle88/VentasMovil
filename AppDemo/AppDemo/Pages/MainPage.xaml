@@ -88,14 +88,13 @@
                                       Command="{Binding OpenInMap}"
                                       ButtonColor="{StaticResource AccentColor2}"
                                       TranslationX="-5"
-                                      TranslationY="-150"
-                                  />
+                                      TranslationY="-150"/>
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"
                           Spacing="0">
 
-            <Grid x:Name="QuickMenuLayout" >
+            <Grid x:Name="QuickMenuLayout" IsVisible="False" >
                 <StackLayout BackgroundColor="White" Opacity="0.8" ></StackLayout>
 
                 <Grid   x:Name="QuickMenuInnerLayout"
@@ -121,17 +120,14 @@
                         WidthRequest="80" >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddNewClientCommand} "></TapGestureRecognizer>
-                            </Image.GestureRecognizers>                            
+                            </Image.GestureRecognizers>
                         </Image>
-
                     </StackLayout>
-
                     <StackLayout  x:Name="Calendar" 
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="1" 
                                       Grid.Row="0">
-                       
                         <Image Source="ic_date"
                                 HeightRequest="80" 
                         WidthRequest="80">
@@ -139,16 +135,12 @@
                                 <TapGestureRecognizer Command="{Binding CalendarCommand} "></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-
-
                     </StackLayout>
-
                     <StackLayout  x:Name="Checkin"
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="CenterAndExpand"
                                       Grid.Column="2" 
                                       Grid.Row="0">
-                      
                         <Image Source="ic_check"  
                                HeightRequest="80" 
                         WidthRequest="80">
@@ -156,7 +148,6 @@
                                 <TapGestureRecognizer Command="{Binding AddCheckinCommand} "></TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
-
                     </StackLayout>
                 </Grid>
             </Grid>
@@ -177,12 +168,9 @@
                                          TextColor="Black" />
                                             <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
-                                       
                                         </StackLayout>
                                         <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand} " CommandParameter="{Binding}"/>
-
                                     </StackLayout>
-
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
