@@ -19,7 +19,7 @@ namespace AppDemo.Pages
         public CheckinPage ()
 		{
 			InitializeComponent ();
-            viewmodel = new CheckinViewModel();
+            viewmodel = new CheckinViewModel(null);
             BindingContext = viewmodel;
         }
     }

@@ -18,7 +18,7 @@
               VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 CustomPins="{Binding Locations}"    
-                PinSelectedCommand="{Binding PinSelected}"
+                PinSelectedCommand="{Binding PinSelected}"           
                 MapClickedCommand="{Binding PinUnselected}"
                 SelectedPin="{Binding MyPin}"                
                 MapRegion="{Binding CenterSearch}"                                   
@@ -83,8 +83,8 @@
                                       WidthRequest="62" 
                                       HeightRequest="62"  
                                       VerticalOptions="End"
-                                      IsVisible="{Binding HayRuta}"
-                                      Image="ic_Add" 
+                                      IsVisible="True"
+                                      Image="ic_add_white" 
                                       Command="{Binding OpenInMap}"
                                       ButtonColor="{StaticResource AccentColor2}"
                                       TranslationX="-5"
@@ -98,11 +98,9 @@
                                   HorizontalOptions="Center" 
                                   VerticalOptions="End" 
                                   TranslationY="48" 
-                                  IsVisible="True" 
+                                  IsVisible="{Binding HayRuta}"
                                   Command="{Binding ItemSelected}"
                                   Text="{Binding Path=BindingContext.TapItem, Mode=TwoWay}">
-                
-                
             </dsControl:FilterMenu>
 
 

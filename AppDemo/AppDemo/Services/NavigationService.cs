@@ -43,7 +43,7 @@ namespace AppDemo.Services
                     break;
 
                 case "CheckinClientePage":
-                    await App.Navigator.PushAsync(new CheckinClientPage());
+                  //  await App.Navigator.PushAsync(new CheckinClientPage());
                     break;
 
                 case "AddClientePage":

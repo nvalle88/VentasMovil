@@ -12,11 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AppDemo.ViewModels
 {
@@ -107,18 +109,20 @@ namespace AppDemo.ViewModels
             }
         }
 
+        private ListRequest clienteseleccionado = new ListRequest();
         #endregion
 
         #region constructor
-        public CheckinViewModel()
+        public CheckinViewModel(ListRequest clienteseleccionado)
         {
+            this.clienteseleccionado = clienteseleccionado;
             valor ="";
             position = new Helpers.GeoUtils.Position();
             visita = new Visita();
             navigationService = new NavigationService();
             dialogService = new DialogService();
             apiService = new ApiService();
-
+      
             if (Settings.IsLoggedIn)
             {
                 init();
@@ -134,6 +138,22 @@ namespace AppDemo.ViewModels
             position.latitude = location.Latitude;
             position.longitude = location.Longitude;
             Cliente = await apiService.GetNearClients(position, Double.Parse(Settings.RadioValue));
+            try
+            {
+                var selectclient = Cliente.Where(x => x.idCliente == clienteseleccionado.idCliente).FirstOrDefault();
+                if (selectclient != null)
+                {
+                    clienteSelectItem = selectclient;
+                }
+                else
+                {
+                    await dialogService.ShowMessage("Error", "Se encuentra fuera del rango para realizar la visita");
+                }
+            }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage("Error", "Se encuentra fuera del rango para realizar la visita");
+            }           
             ListaCompromiso = new ObservableCollection<Compromiso>();
             TipoCompromiso = await apiService.GetTipoCompromiso();            
         }
@@ -149,6 +169,8 @@ namespace AppDemo.ViewModels
             {
                 // marcaseleccionada = ;
                 clienteSelect = value;
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("clienteSelectItem"));
+
             }
         }
 

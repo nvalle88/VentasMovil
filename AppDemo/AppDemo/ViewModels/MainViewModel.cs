@@ -144,11 +144,10 @@ namespace AppDemo.ViewModels
         {
             set
             {
-                if (hayRuta != value)
-                {
+              
                     hayRuta = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HayRuta"));
-                }
+                
             }
             get
             {
@@ -195,7 +194,6 @@ namespace AppDemo.ViewModels
                 if (isSearch != value)
                 {
                     isSearch = value;
-
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSearch"));
                 }
             }
@@ -210,13 +208,11 @@ namespace AppDemo.ViewModels
                 if (isList != value)
                 {
                     isList = value;
-
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsList"));
                 }
             }
             get { return isList; }
         }
-
 
         #endregion
         #region Attributes
@@ -241,20 +237,14 @@ namespace AppDemo.ViewModels
             Pins = new ObservableCollection<Pin>();
             Locations = new ObservableCollection<TKCustomMapPin>();
             locations = new ObservableCollection<TKCustomMapPin>();
-
             LocationsSearch = new ObservableCollection<TKCustomMapPin>();
             locationsSearch = new ObservableCollection<TKCustomMapPin>();
-
             listlocation = new ObservableCollection<ListRequest>();
-
             myPosition = new TKCustomMapPin();
-
             LocationsRequest = new ObservableCollection<PinRequest>();
             apiService = new ApiService();
             Menu = new ObservableCollection<MenuItemViewModel>();
-            EncabezadoMenu = new MenuItemViewModel();
-            
-           
+            EncabezadoMenu = new MenuItemViewModel();                      
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
             Agenda = new AgendaViewModel();
@@ -298,13 +288,12 @@ namespace AppDemo.ViewModels
                             Position = new Xamarin.Forms.Maps.Position(cliente.Latitud, cliente.Longitud),
                             Anchor = p,
                                 Title = "Razón Social: "+cliente.RazonSocial,
-                                Subtitle = "Dirección: "+cliente.Direccion,
-                                
+                                Subtitle = "Dirección: "+cliente.Direccion,                                
                                 ShowCallout = true,
                         };
-                            var itemcliente = new ListRequest
+                        var itemcliente = new ListRequest
                             {
-                                Titulo=cliente.RazonSocial,
+                                Titulo= "Razón Social: " + cliente.RazonSocial,
                                 Subtitulo= cliente.Direccion+" "+ cliente.Telefono,           
                                 idCliente=cliente.IdCliente,
                             };
@@ -318,7 +307,8 @@ namespace AppDemo.ViewModels
 
                 }
             }
-    
+
+
         public ObservableCollection<TKCustomMapPin> Locations
     {
             protected set
@@ -426,20 +416,26 @@ namespace AppDemo.ViewModels
         }
 
 
+        private ListRequest clienteseleccionado = new ListRequest();
 
         private async void PinClient(object obj)
         {
             TKCustomMapPin cliente = (TKCustomMapPin)obj;
-            IsSearch = false;
-            
+            IsSearch = false;            
             MoveTo(cliente.Position);
+            MyPin = locations.Where(x => x.Title == cliente.Title).FirstOrDefault();
+        }
 
-            MyPin=locations.Where(x => x.Title == cliente.Title).FirstOrDefault();
-           
-            //MyPin, location 
+        private async void HacerCheck()
+        {
+            if(clienteseleccionado!= null)
+            {
+                // await navigationService.Navigate("CheckinClientePage");
+                clienteseleccionado = ListLocation.Where(x => x.Titulo == MyPin.Title).FirstOrDefault();
 
-            // await App.Navigator.PushAsync(new ClientePage(cliente));
-            //  Debug.WriteLine(cliente.idCliente);
+                await App.Navigator.PushAsync(new CheckinClientPage(clienteseleccionado));
+
+            }
         }
 
         private string tapItem = "";
@@ -467,13 +463,25 @@ namespace AppDemo.ViewModels
 
         public async void itemselected()
         {
-            Debug.WriteLine("hizo click " + tapItem);
+
+            switch (TapItem)
+            {
+                case "Date":
+                    await navigationService.Navigate("AgendaPage");
+                    break;
+
+                case "Check":
+
+                    HacerCheck();
+                    break;
+
+                case "Direction":
+                     openinMap();
+                    break;
+            }
+
+
         }
-
-
-        
-
-    
 
 
         public ICommand PinUnselected { get { return new RelayCommand(pinunselected); } }
@@ -481,9 +489,10 @@ namespace AppDemo.ViewModels
         public async void pinunselected()
         {
             HayRuta = false;
+            MyPin = null;
         }
 
-        public ICommand RefreshDataCommand { get { return new RelayCommand(RefreshData); } }
+    public ICommand RefreshDataCommand { get { return new RelayCommand(RefreshData); } }
         public void RefreshData()
         {
             LoadClientes();
@@ -515,7 +524,6 @@ namespace AppDemo.ViewModels
         {
             //    PopupPage page = new AddPage();
             //    await PopupNavigation.PushAsync(page);
-
             await navigationService.Navigate("AddClientePage");
         }
 
@@ -524,7 +532,6 @@ namespace AppDemo.ViewModels
         {
             //    PopupPage page = new AddPage();
             //    await PopupNavigation.PushAsync(page);
-
             await navigationService.Navigate("AgendaPage");
         }
 
@@ -533,10 +540,7 @@ namespace AppDemo.ViewModels
         {
             //PopupPage page = new CheckinPage();          
             //await PopupNavigation.PushAsync(page);
-
             await navigationService.Navigate("CheckinClientePage");
-
-
         }
 
 
@@ -547,7 +551,6 @@ namespace AppDemo.ViewModels
         public async void SearchClient(string text)
         {
             IsSearch = false;
-
             LocationsSearch.Clear();
             locationsSearch.Clear();
             if(text==""|| text==null)
@@ -559,8 +562,6 @@ namespace AppDemo.ViewModels
                 var a = Locations.Where(p => p.Title.ToLower().Contains(text.ToLower()));
                 if (a != null)
                 {
-
-
                     foreach (var item in a)
                     {
                         LocationsSearch.Add(item);
@@ -568,8 +569,7 @@ namespace AppDemo.ViewModels
                     }
                     IsSearch = true;
                 }
-            }
-            
+            }            
         }
 
         #endregion

@@ -1,8 +1,10 @@
-﻿using AppDemo.Models;
+﻿using AppDemo.Classes;
+using AppDemo.Models;
 using AppDemo.ViewModels;
 using SignaturePad.Forms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,10 +19,13 @@ namespace AppDemo.Pages
 	{
 	
         CheckinViewModel viewmodel;
-        public CheckinClientPage()
+        public CheckinClientPage(ListRequest clienteseleccionado)
         {
+           // Debug.WriteLine(clienteseleccionado.Titulo);
+
+
             InitializeComponent();
-            viewmodel = new CheckinViewModel();
+            viewmodel = new CheckinViewModel(clienteseleccionado);
             BindingContext = viewmodel;
         }
         private async void SaveButton_Clicked(object sender, EventArgs e)
