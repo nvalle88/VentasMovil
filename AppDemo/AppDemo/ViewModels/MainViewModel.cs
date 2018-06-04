@@ -460,7 +460,9 @@ namespace AppDemo.ViewModels
         {
             HayRuta = true;                     
         }
-
+        /// <summary>
+        /// e
+        /// </summary>
         public ICommand ItemSelected { get { return new RelayCommand(itemselected); } }
 
         public async void itemselected()
