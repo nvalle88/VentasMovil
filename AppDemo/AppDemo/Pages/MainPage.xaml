@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppDemo.Pages.MainPage" 
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:dsControl="clr-namespace:AppDemo.Controls"
              xmlns:custom="clr-namespace:AppDemo.Controls;assembly=AppDemo"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
@@ -42,8 +43,7 @@
                     Command="{Binding RefreshDataCommand}"
                    />
                 <StackLayout Margin="0,7,58,0"                             
-                             HorizontalOptions="FillAndExpand"
-                             >
+                             HorizontalOptions="FillAndExpand">
                     <SearchBar WidthRequest="200"
                              VerticalOptions="Start" 
                              Placeholder="Cliente" 
@@ -94,7 +94,19 @@
                           VerticalOptions="End"
                           Spacing="0">
 
-            <Grid x:Name="QuickMenuLayout" IsVisible="False" >
+            <dsControl:FilterMenu x:Name="Menu" 
+                                  HorizontalOptions="Center" 
+                                  VerticalOptions="End" 
+                                  TranslationY="48" 
+                                  IsVisible="True" 
+                                  Command="{Binding ItemSelected}"
+                                  Text="{Binding Path=BindingContext.TapItem, Mode=TwoWay}">
+                
+                
+            </dsControl:FilterMenu>
+
+
+            <!--<Grid x:Name="QuickMenuLayout" IsVisible="False" >
                 <StackLayout BackgroundColor="White" Opacity="0.8" ></StackLayout>
 
                 <Grid   x:Name="QuickMenuInnerLayout"
@@ -150,33 +162,8 @@
                         </Image>
                     </StackLayout>
                 </Grid>
-            </Grid>
+            </Grid>-->
 
-            <Grid x:Name="Notification"  HeightRequest="200">
-                <StackLayout BackgroundColor="White" Opacity="0.5"></StackLayout>
-                <ScrollView>
-                    <ListView x:Name="ListLocation" ItemsSource="{Binding ListLocation}" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout 
-                                        Orientation="Horizontal">
-                                        <Image Source="client"></Image>
-                                        <StackLayout  WidthRequest="200"
-                                        Orientation="Vertical">
-                                            <Label Text="{Binding Titulo}" Style="{StaticResource TitleStyle}"
-                                         TextColor="Black" />
-                                            <Label Text="{Binding Subtitulo}" FontSize="Small"
-                                         TextColor="Black" />
-                                        </StackLayout>
-                                        <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand} " CommandParameter="{Binding}"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollView>
-            </Grid>
         </StackLayout>
 
     </Grid>

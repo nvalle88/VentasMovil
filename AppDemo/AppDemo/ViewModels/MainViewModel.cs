@@ -425,6 +425,8 @@ namespace AppDemo.ViewModels
           //  Debug.WriteLine(cliente.idCliente);
         }
 
+
+
         private async void PinClient(object obj)
         {
             TKCustomMapPin cliente = (TKCustomMapPin)obj;
@@ -440,6 +442,17 @@ namespace AppDemo.ViewModels
             //  Debug.WriteLine(cliente.idCliente);
         }
 
+        private string tapItem = "";
+
+
+        public string TapItem
+        {
+            get { return tapItem; }
+            set { tapItem = value; }
+
+        }
+
+    
 
         public ICommand PinSelected { get { return new RelayCommand(pinselected); } }
 
@@ -447,6 +460,19 @@ namespace AppDemo.ViewModels
         {
             HayRuta = true;                     
         }
+
+        public ICommand ItemSelected { get { return new RelayCommand(itemselected); } }
+
+        public async void itemselected()
+        {
+            Debug.WriteLine("hizo click " + tapItem);
+        }
+
+
+        
+
+    
+
 
         public ICommand PinUnselected { get { return new RelayCommand(pinunselected); } }
 
