@@ -46,7 +46,7 @@
                                 <controls:CheckBox  Checked="{Binding isSolucion}" 
                                                     IsEnabled="{Binding isEnable}" 
                                                     ClassId="{Binding IdCompromiso}"
-                                                    CheckedChanged="CheckBox_CheckedChanged"  >
+                                                    CheckedChanged="CheckBox_CheckedChanged">
                                     
                                 </controls:CheckBox>
                                 <StackLayout  WidthRequest="200"

@@ -1,6 +1,8 @@
 ﻿using AppDemo.Classes;
 using AppDemo.Models;
 using AppDemo.ViewModels;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using SignaturePad.Forms;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XLabs.Forms.Controls;
 
 namespace AppDemo.Pages
 {
@@ -35,6 +38,17 @@ namespace AppDemo.Pages
             Stream image = await PadView.GetImageStreamAsync(SignatureImageFormat.Png);
             viewmodel.submit(image, a);
             // .
+        }
+
+        private async void CheckBox_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
+        {
+            CheckBox item = sender as CheckBox;
+            if (e.Value)
+            {
+                int idCompromiso = int.Parse(item.ClassId);
+                PopupPage page = new SolucionesPage(idCompromiso);
+                await PopupNavigation.PushAsync(page);
+            }
         }
 
     }

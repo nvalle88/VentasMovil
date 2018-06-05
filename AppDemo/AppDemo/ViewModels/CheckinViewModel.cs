@@ -74,6 +74,24 @@ namespace AppDemo.ViewModels
 
         }
 
+        public DatosClienteRequest datos;
+        public DatosClienteRequest Datos
+        {
+            set
+            {
+                if (datos != value)
+                {
+                    datos = value;
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Datos"));
+                }
+            }
+            get
+            {
+                return datos;
+            }
+
+        }
+
         private Compromiso compromiso = new Compromiso();
         public Compromiso Compromiso
         {
@@ -158,6 +176,23 @@ namespace AppDemo.ViewModels
             TipoCompromiso = await apiService.GetTipoCompromiso();            
         }
 
+        public async void InitCompromisos(Cliente clienteSelect)
+        {
+            Datos = new DatosClienteRequest();
+
+            ClienteRequest cr = new ClienteRequest
+            {
+                IdCliente = clienteSelect.idCliente
+            };
+            var Response = await apiService.ClienteData(cr);
+            var estadistico = await apiService.DatosEstadisticos(cr);
+            if (Response.IsSuccess)
+            {
+                var result = Response.Resultado.ToString();
+                Datos = JsonConvert.DeserializeObject<DatosClienteRequest>(result);
+            }
+        }
+
         Cliente clienteSelect;
         public Cliente clienteSelectItem
         {
@@ -169,6 +204,7 @@ namespace AppDemo.ViewModels
             {
                 // marcaseleccionada = ;
                 clienteSelect = value;
+                InitCompromisos(clienteSelect);
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs("clienteSelectItem"));
 
             }

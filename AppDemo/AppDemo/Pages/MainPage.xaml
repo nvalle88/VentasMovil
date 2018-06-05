@@ -40,8 +40,8 @@
                     Orientation="ImageToRight"  
                     ImageHeightRequest="50" 
                     ImageWidthRequest="50" 
-                    Command="{Binding RefreshDataCommand}"
-                   />
+                    Command="{Binding RefreshDataCommand}"/>
+                
                 <StackLayout Margin="0,7,58,0"                             
                              HorizontalOptions="FillAndExpand">
                     <SearchBar WidthRequest="200"
@@ -84,8 +84,8 @@
                                       HeightRequest="62"  
                                       VerticalOptions="End"
                                       IsVisible="True"
-                                      Image="ic_add_white" 
-                                      Command="{Binding OpenInMap}"
+                                      Image="ic_Add" 
+                                      Command="{Binding AddNewClientCommand}"
                                       ButtonColor="{StaticResource AccentColor2}"
                                       TranslationX="-5"
                                       TranslationY="-150"/>

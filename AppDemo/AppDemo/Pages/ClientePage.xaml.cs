@@ -54,14 +54,12 @@ namespace AppDemo.Pages
         private async void CheckBox_CheckedChanged(object sender, XLabs.EventArgs<bool> e)
         {
             CheckBox item = sender as CheckBox;
-
             if (e.Value)
             {
                 int idCompromiso=int.Parse(item.ClassId);
                 PopupPage page = new SolucionesPage(idCompromiso);
                 await PopupNavigation.PushAsync(page);
             }
-
         }
 
       

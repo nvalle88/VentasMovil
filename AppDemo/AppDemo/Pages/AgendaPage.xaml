@@ -15,16 +15,19 @@
                 TitleLabelText="Agenda"
                 HorizontalOptions="FillAndExpand" 
                 VerticalOptions="Start"  
-                StartDay="Monday"
+                StartDay="Monday"                
                 TitleRightArrowBackgroundColor="#FF5722"
                 TitleLeftArrowBackgroundColor="#FF5722"
                 SelectedBorderColor="#FF5722"
                 SelectedBorderWidth="4" 
                 ShowNumberOfWeek="false"
                 x:Name="calendar" 
+                
 	            SelectedDate="{Binding Date}"
                 SpecialDates="{Binding Fechas}"    
                 DateCommand="{Binding DateChosen}"
+                
+                
                 />
             <ScrollView>
                 <ListView x:Name="listView" ItemsSource="{Binding ListaAgenda}"  >

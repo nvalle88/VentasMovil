@@ -176,6 +176,8 @@ namespace AppDemo.Pages
             //  Mapa = new TKCustomMap(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(2)));
         }
 
+     
+
         //protected override void OnAppearing()
         //{
         //    base.OnAppearing();
@@ -216,7 +218,7 @@ namespace AppDemo.Pages
 
         //    EventSubscriptions.Add(panGestureObservable);
         //    QuickMenuInnerLayout.GestureRecognizers.Add(_panGesture);
-            
+
         //}
 
         //private void CheckQuickMenuPullOutGesture(EventPattern<PanUpdatedEventArgs> x)
