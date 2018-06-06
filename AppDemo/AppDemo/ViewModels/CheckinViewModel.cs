@@ -158,6 +158,9 @@ namespace AppDemo.ViewModels
             Cliente = await apiService.GetNearClients(position, Double.Parse(Settings.RadioValue));
             try
             {
+            
+                if(clienteseleccionado!= null)
+                {
                 var selectclient = Cliente.Where(x => x.idCliente == clienteseleccionado.idCliente).FirstOrDefault();
                 if (selectclient != null)
                 {
@@ -167,10 +170,14 @@ namespace AppDemo.ViewModels
                 {
                     await dialogService.ShowMessage("Error", "Se encuentra fuera del rango para realizar la visita");
                 }
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await dialogService.ShowMessage("Error", "Se encuentra fuera del rango para realizar la visita");
+                await dialogService.ShowMessage("Error", "La acción no pudo ser ejecutada correctamente");
+
+                Debug.WriteLine(ex.Message);
+               
             }           
             ListaCompromiso = new ObservableCollection<Compromiso>();
             TipoCompromiso = await apiService.GetTipoCompromiso();            

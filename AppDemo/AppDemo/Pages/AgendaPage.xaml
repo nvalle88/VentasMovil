@@ -10,25 +10,18 @@
 
 
 
-        <StackLayout BindingContext="{Binding Agenda}" >
+        <StackLayout BindingContext="{Binding Agenda}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <controls:Calendar                  
                 TitleLabelText="Agenda"
                 HorizontalOptions="FillAndExpand" 
-                VerticalOptions="Start"  
-                StartDay="Monday"                
-                TitleRightArrowBackgroundColor="#FF5722"
-                TitleLeftArrowBackgroundColor="#FF5722"
-                SelectedBorderColor="#FF5722"
+                StartDay="Monday"                                
                 SelectedBorderWidth="4" 
                 ShowNumberOfWeek="false"
                 x:Name="calendar" 
-                
+                VerticalOptions="StartAndExpand"                
 	            SelectedDate="{Binding Date}"
                 SpecialDates="{Binding Fechas}"    
-                DateCommand="{Binding DateChosen}"
-                
-                
-                />
+                MinimumHeightRequest="300"/>
             <ScrollView>
                 <ListView x:Name="listView" ItemsSource="{Binding ListaAgenda}"  >
                     <ListView.ItemTemplate>
@@ -40,16 +33,15 @@
                                         BackgroundColor="{Binding Color}" WidthRequest="15" VerticalOptions="FillAndExpand"></BoxView>
                                     <StackLayout 
                                 Orientation="Vertical">
-                                    <Label Text="{Binding Titulo}" FontSize="Small"
+                                        <Label Text="{Binding Titulo}" FontSize="Small"
                                 TextColor="Black" />
-                                    <Label Text="{Binding Subtitulo}" FontSize="Micro"
+                                        <Label Text="{Binding Subtitulo}" FontSize="Micro"
                                 TextColor="Black" />
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
                 </ListView>
             </ScrollView>
             <FAB:FloatingActionButton 

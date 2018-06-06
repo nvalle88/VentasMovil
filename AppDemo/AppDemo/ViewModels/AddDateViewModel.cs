@@ -12,6 +12,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace AppDemo.ViewModels
 {
@@ -110,6 +111,8 @@ namespace AppDemo.ViewModels
                 // marcaseleccionada = ;
 
                 clienteSelect = value;
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("clienteSelectItem"));
+
             }
         }
 
@@ -153,8 +156,21 @@ namespace AppDemo.ViewModels
         #endregion
                 private async void Init()
                 {
-
+                  try
+                {
                     Cliente = await apiService.GetMyClient();
+                    if (App.clienteseleccionado != null)
+                    {
+                        Debug.WriteLine(App.clienteseleccionado.idCliente);
+                        clienteSelectItem = Cliente.Where(x => x.IdCliente == App.clienteseleccionado.idCliente).FirstOrDefault();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    await dialogService.ShowMessage("Error", "La acción no pudo ser ejecutada correctamente");
+                    Debug.WriteLine(ex.Message);
+                }
+                                
                 }
         /// <summary>
         /// 0 Bajo
@@ -173,8 +189,7 @@ namespace AppDemo.ViewModels
                 idCliente=clienteSelectItem.IdCliente,
                 IdVendedor=Settings.userId,
                 Notas=Nota,
-                Prioridad= prioridadSelectItem.id,
-                
+                Prioridad= prioridadSelectItem.id,                
             };
             var a = await  apiService.AgregarAgenda(Agenda);
             if (a.IsSuccess)
@@ -182,7 +197,6 @@ namespace AppDemo.ViewModels
                 MessagingCenter.Send<App>((App)Application.Current, "OnDateCreated");
                 await dialogService.ShowMessage("Agenda", "Se agendo correctamente");
                 await PopupNavigation.PopAllAsync();
-
             }
         }
 

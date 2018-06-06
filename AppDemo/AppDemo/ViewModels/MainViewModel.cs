@@ -428,12 +428,22 @@ namespace AppDemo.ViewModels
 
         private async void HacerCheck()
         {
-            if(clienteseleccionado!= null)
+            if(MyPin != null)
             {
                 // await navigationService.Navigate("CheckinClientePage");
                 clienteseleccionado = ListLocation.Where(x => x.Titulo == MyPin.Title).FirstOrDefault();
 
                 await App.Navigator.PushAsync(new CheckinClientPage(clienteseleccionado));
+
+            }
+        }
+
+        private async void GuardarCliente()
+        {
+            if (MyPin != null)
+            {
+                // await navigationService.Navigate("CheckinClientePage");
+                 App.clienteseleccionado = ListLocation.Where(x => x.Titulo == MyPin.Title).FirstOrDefault();
 
             }
         }
@@ -467,14 +477,12 @@ namespace AppDemo.ViewModels
             switch (TapItem)
             {
                 case "Date":
-                    await navigationService.Navigate("AgendaPage");
+                    GuardarCliente();
+                     await navigationService.Navigate("AgendaPage");
                     break;
-
                 case "Check":
-
                     HacerCheck();
                     break;
-
                 case "Direction":
                      openinMap();
                     break;
@@ -488,8 +496,16 @@ namespace AppDemo.ViewModels
 
         public async void pinunselected()
         {
-            HayRuta = false;
-            MyPin = null;
+            try
+            {
+                HayRuta = false;
+                MyPin = null;
+                App.clienteseleccionado = null;
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);    
+            }
         }
 
     public ICommand RefreshDataCommand { get { return new RelayCommand(RefreshData); } }

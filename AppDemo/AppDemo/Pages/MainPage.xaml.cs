@@ -1,6 +1,5 @@
 ﻿using AppDemo.Classes;
 using AppDemo.Services;
-using DurianCode.PlacesSearchBar;
 using Plugin.Geolocator;
 using System;
 using System.Collections.ObjectModel;

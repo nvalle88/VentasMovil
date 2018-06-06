@@ -6,13 +6,13 @@
              x:Class="AppDemo.Pages.ListClientPage">
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView>
+            <ScrollView  Margin="20,10,20,10">
                 <ListView x:Name="ListLocation" ItemsSource="{Binding ListLocation}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout 
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"  >
                                     <Image Source="client"></Image>
                                     <StackLayout  WidthRequest="200"
                                         Orientation="Vertical">
@@ -21,7 +21,11 @@
                                         <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
                                     </StackLayout>
-                                    <Button Text="Ver" Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand} " CommandParameter="{Binding}"/>
+                                    <Button Text="Ver" 
+                                            Command="{Binding Source={x:Reference ListLocation}, Path=BindingContext.TapCommand}" 
+                                            CommandParameter="{Binding}" 
+                                            BackgroundColor="{StaticResource AccentColor1}"  
+                                            TextColor="White"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

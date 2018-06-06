@@ -35,11 +35,20 @@ namespace AppDemo.ViewModels
         {
             set
             {
-                if (listaAgenda != value)
+                try
                 {
-                    listaAgenda = value;
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ListaAgenda"));
+                    if (listaAgenda != value)
+                    {
+                        listaAgenda = value;
+                        PropertyChanged.Invoke(this, new PropertyChangedEventArgs("ListaAgenda"));
+                    }
                 }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+               
             }
             get
             {
@@ -73,9 +82,12 @@ namespace AppDemo.ViewModels
             }
             set
             {
+                try
+                {
+
+               
                 _date = value;
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Date"));
-                //
                 ListaAgenda.Clear();
                 var a = (_date as DateTime?);
                 var d = agendaData.Where(x => x.FechaVista.Value.Date == a.Value.Date).ToList();
@@ -122,6 +134,11 @@ namespace AppDemo.ViewModels
 
                 }
 
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
 
@@ -158,19 +175,20 @@ namespace AppDemo.ViewModels
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 throw;
             }
         }
 
-        public ICommand DateChosen
-        {
-            get
-            {
-                return new Command((obj) => {
+        //public ICommand DateChosen
+        //{
+        //    get
+        //    {
+        //        return new Command((obj) => {
                  
-                });
-            }
-        }
+        //        });
+        //    }
+        //}
         public ICommand AddCommand { get { return new RelayCommand(Add); } }
         public async void Add()
         {

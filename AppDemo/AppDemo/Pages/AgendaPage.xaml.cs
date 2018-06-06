@@ -45,17 +45,6 @@ namespace AppDemo.Pages
 
         }
 
-        private void Calendar_DateClicked(object sender, DateTimeEventArgs e)
-        {
-            //Titulo.Text = "";
-            //Descripcion.Text = "";
-            //var dateSelect = calendar.SelectedDate;
-            //    if (DateTime.Now.AddDays(3).Date== dateSelect.Value.Date)
-            //    {
-            //    Titulo.Text = "Reunión";
-            //    Descripcion.Text = "All my text goes here etc\r\nawljfal alwef law fawlef lwemfalwfem";
-            //    }
-
-        }
+     
     }
 }

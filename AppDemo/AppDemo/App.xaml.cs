@@ -1,4 +1,5 @@
-﻿using AppDemo.Helpers;
+﻿using AppDemo.Classes;
+using AppDemo.Helpers;
 using AppDemo.Pages;
 using AppDemo.Services;
 using AppDemo.ViewModels;
@@ -12,6 +13,7 @@ namespace AppDemo
         public static NavigationPage Navigator { get; internal set; }
         public static MasterPage Master { get; internal set; }
         public static VendedorViewModel VendedorActual { get; internal set; }
+        public static ListRequest clienteseleccionado { get; internal set; }
         public App()
         {
             InitializeComponent();
