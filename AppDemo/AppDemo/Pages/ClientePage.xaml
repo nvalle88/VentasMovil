@@ -7,22 +7,27 @@
   <!--Pages can be added as references or inline-->
     <ContentPage Title="Perfil" >
 
-        <StackLayout>
+        <StackLayout  Margin="20,10,20,10">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Nombre"></Label>
+                <Label Text="Nombre 
+                       "></Label>
                 <Label Text="{Binding Datos.cliente.Nombre}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="CI"></Label>
+                <Label Text="CI "></Label>
                 <Label Text="{Binding Datos.cliente.Identificacion}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Tel"></Label>
+                <Label Text="Tel "></Label>
                 <Label Text="{Binding Datos.cliente.Telefono}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="e-mail"></Label>
+                <Label Text="e-mail "></Label>
                 <Label Text="{Binding Datos.cliente.Email}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Dirección "></Label>
+                <Label Text="{Binding Datos.cliente.Direccion}"/>
             </StackLayout>
 
 
@@ -36,7 +41,7 @@
     <!--<ContentPage Title="Gustos"/>
   <ContentPage Title="Productos" />-->
     <ContentPage Title="Compromisos">
-        <ScrollView>
+        <ScrollView  Margin="20,10,20,10">
             <ListView x:Name="ListLocation" ItemsSource="{Binding Datos.compromisos}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

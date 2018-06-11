@@ -6,6 +6,17 @@
              x:Class="AppDemo.Pages.ListClientPage">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout Margin="0,7,58,0"                             
+                             HorizontalOptions="FillAndExpand">
+                <SearchBar WidthRequest="200"
+                             VerticalOptions="Start" 
+                             Placeholder="Cliente" 
+                             TextColor="{StaticResource AccentColor2}"
+                             BackgroundColor="White"                               
+                            Text="{Binding MySearch2}"
+                            />
+            </StackLayout>
+            
             <ScrollView  Margin="20,10,20,10">
                 <ListView x:Name="ListLocation" ItemsSource="{Binding ListLocation}" >
                     <ListView.ItemTemplate>

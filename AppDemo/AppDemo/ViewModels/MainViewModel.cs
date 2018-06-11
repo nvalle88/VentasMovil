@@ -95,6 +95,8 @@ namespace AppDemo.ViewModels
 
         public TKRoute MyRoute { get; set; }
         public ObservableCollection<ListRequest> listlocation;
+        public ObservableCollection<ListRequest> listlocationAux;
+
         public TKCustomMapPin myPosition;
 
         public ICommand PinCommand;
@@ -171,6 +173,24 @@ namespace AppDemo.ViewModels
             }
         }
 
+        public string mySearch2 = "";
+        public string MySearch2
+        {
+            get { return mySearch2; }
+            set
+            {
+                if (this.mySearch2 != value)
+                {
+
+                    this.mySearch2 = value;
+                   SearchClient2(value);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MySearch2"));
+                }
+            }
+        }
+
+
+
         public MapSpan centerSearch = null;
         public MapSpan CenterSearch
         {
@@ -227,7 +247,6 @@ namespace AppDemo.ViewModels
         #region Services
 
         private ApiService apiService;
-        private SignalRService signalRService;
 
         #endregion
         #region Constructors
@@ -250,7 +269,6 @@ namespace AppDemo.ViewModels
             Agenda = new AgendaViewModel();
             PasswordVM = new PasswordViewModel();
             //    CheckinClient = new CheckinViewModel();
-            signalRService = new SignalRService();
             MyPin = new TKCustomMapPin();
 
             tapCommand = new Command<object>(ProfileClient);
@@ -300,6 +318,7 @@ namespace AppDemo.ViewModels
                         Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
                         }
+                        listlocationAux = listlocation;
                      }
                 }
                 catch
@@ -586,6 +605,29 @@ namespace AppDemo.ViewModels
                     IsSearch = true;
                 }
             }            
+        }
+
+
+        public async void SearchClient2(string text)
+        {
+          
+            if (text != "" && text != null)
+            {
+           
+               
+               var a = listlocationAux.Where(p => p.Titulo.ToLower().Contains(text.ToLower())).ToList();
+               Debug.WriteLine( a.Count());
+               
+                if (a != null)
+                {
+                    ListLocation.Clear();
+                    Debug.WriteLine(a.Count());
+                    foreach (var item in a)
+                    {
+                        ListLocation.Add(item);
+                    }
+                }
+            }
         }
 
         #endregion

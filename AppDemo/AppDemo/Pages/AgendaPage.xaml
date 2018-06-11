@@ -22,6 +22,7 @@
 	            SelectedDate="{Binding Date}"
                 SpecialDates="{Binding Fechas}"    
                 MinimumHeightRequest="300"/>
+            
             <ScrollView>
                 <ListView x:Name="listView" ItemsSource="{Binding ListaAgenda}"  >
                     <ListView.ItemTemplate>

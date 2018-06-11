@@ -145,9 +145,9 @@ namespace AppDemo.Pages
             // comentado la posicion real para hacer pruebas en Cuenca
             var position = new Position(location.Latitude, location.Longitude);
             // var position = new Position(-2.908721,-79.038660);
-            await Task.Delay(3000);
+           // await Task.Delay(3000);
             Mapa.MoveToRegion(MapSpan.FromCenterAndRadius((position), Distance.FromMiles(.3)));
-            await Task.Delay(3000);
+           // await Task.Delay(3000);
             Mapa.MoveToMapRegion((MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.3))), true);
             // Mapa.Polygons;
 

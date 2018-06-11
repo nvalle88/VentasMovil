@@ -8,7 +8,7 @@ namespace AppDemo.Services
 {
     public class NavigationService
     {
-        public void NavigateBack() => App.Navigator.PopAsync();
+        public void NavigateBack() => App.Navigator.PopToRootAsync();
 
         public async Task Navigate(string pageName)
         {
@@ -31,10 +31,12 @@ namespace AppDemo.Services
                 //    break;
 
                 case "SettingPage":
+                    
                     await App.Navigator.PushAsync(new SettingPage());
                     break;
 
                 case "PasswordPage":
+                    
                     await App.Navigator.PushAsync(new PasswordPage());
                     break;
 
