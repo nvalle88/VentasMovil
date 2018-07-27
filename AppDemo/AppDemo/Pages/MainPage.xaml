@@ -22,8 +22,8 @@
                 SelectedPin="{Binding MyPin}"                
                 MapRegion="{Binding CenterSearch}"                                   
                 IsShowingUser="True">
-            
         </tkmap:TKCustomMap>
+        
         <StackLayout>
             <StackLayout
             Orientation="Horizontal"
@@ -45,7 +45,8 @@
                              HorizontalOptions="FillAndExpand">
                     <SearchBar WidthRequest="200"
                              VerticalOptions="Start" 
-                             Placeholder="Cliente" 
+                             Placeholder="Cliente"
+                               IsVisible="True"
                              TextColor="{StaticResource AccentColor2}"
                              BackgroundColor="White"                               
                             Text="{Binding MySearch}"

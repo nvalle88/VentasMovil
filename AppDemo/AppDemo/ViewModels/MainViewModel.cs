@@ -95,7 +95,7 @@ namespace AppDemo.ViewModels
 
         public TKRoute MyRoute { get; set; }
         public ObservableCollection<ListRequest> listlocation;
-        public ObservableCollection<ListRequest> listlocationAux;
+        public ObservableCollection<ListRequest> listlocationAux= new ObservableCollection<ListRequest>();
 
         public TKCustomMapPin myPosition;
 
@@ -291,7 +291,7 @@ namespace AppDemo.ViewModels
                 try
                 {
                 var clientes = await apiService.GetMyClient();
-                Locations.Clear();
+                Locations= new ObservableCollection<TKCustomMapPin>();
                 LocationsSearch.Clear();
                 ListLocation.Clear();
                 clientes.Count();
@@ -315,15 +315,17 @@ namespace AppDemo.ViewModels
                                 Subtitulo= cliente.Direccion+" "+ cliente.Telefono,           
                                 idCliente=cliente.IdCliente,
                             };
+                       
                         Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
-                        }
-                        listlocationAux = listlocation;
-                     }
-                }
-                catch
-                {
+                        listlocationAux.Add(itemcliente);
 
+                    }
+                }
+                }
+                catch(Exception ex)
+                {
+                Debug.WriteLine(ex.Message);
                 }
             }
 
@@ -332,7 +334,7 @@ namespace AppDemo.ViewModels
     {
             protected set
             {
-                locations = Locations;
+                locations = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Locations"));
                 
             }
@@ -343,7 +345,7 @@ namespace AppDemo.ViewModels
         {
             protected set
             {
-                locationsSearch= LocationsSearch;
+                locationsSearch= value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LocationsSearch"));
 
             }
@@ -353,7 +355,7 @@ namespace AppDemo.ViewModels
         {
             protected set
             {
-                listlocation = ListLocation;
+                listlocation = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ListLocation"));
 
             }
@@ -612,9 +614,7 @@ namespace AppDemo.ViewModels
         {
           
             if (text != "" && text != null)
-            {
-           
-               
+            {                         
                var a = listlocationAux.Where(p => p.Titulo.ToLower().Contains(text.ToLower())).ToList();
                Debug.WriteLine( a.Count());
                
@@ -627,7 +627,16 @@ namespace AppDemo.ViewModels
                         ListLocation.Add(item);
                     }
                 }
+                
             }
+            else
+            {
+                foreach (var item in listlocationAux)
+                {
+                    ListLocation.Add(item);
+                }
+            }
+            
         }
 
         #endregion

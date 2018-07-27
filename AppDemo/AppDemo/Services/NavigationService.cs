@@ -73,7 +73,7 @@ namespace AppDemo.Services
 
             var main = MainViewModel.GetInstance();
             App.VendedorActual = vendedorActual;
-            main.LoadClientes();
+         //   main.LoadClientes();
             
             App.Current.MainPage = new MasterPage();
 

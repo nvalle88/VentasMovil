@@ -126,7 +126,7 @@ namespace AppDemo.ViewModels
 
                 var main = MainViewModel.GetInstance();
                 main.LoadMenu(vendedorView.Nombres, vendedor.Foto);
-                main.LoadClientes();
+              //  main.LoadClientes();
               //  main.Agenda = new AgendaViewModel();
              //   main.Agenda.init();
 
