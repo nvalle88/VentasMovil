@@ -59,6 +59,7 @@
     <Compile Include="Classes\LivePositionRequest.cs" />
     <Compile Include="Classes\LoginRequest.cs" />
     <Compile Include="Classes\NearClientRequest.cs" />
+    <Compile Include="Classes\Pago.cs" />
     <Compile Include="Classes\PhotoRequest.cs" />
     <Compile Include="Classes\PinRequest.cs" />
     <Compile Include="Classes\PlacaRequest.cs" />
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="Pages\AddDatePage.xaml.cs">
       <DependentUpon>AddDatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagoPage.xaml.cs">
+      <DependentUpon>PagoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddPage.xaml.cs">
       <DependentUpon>AddPage.xaml</DependentUpon>
@@ -167,6 +171,7 @@
     <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\CompromisoViewModel.cs" />
+    <Compile Include="ViewModels\PagoViewModel.cs" />
     <Compile Include="ViewModels\PasswordViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\VendedorViewModel.cs" />
@@ -447,6 +452,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\FilterMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\PagoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

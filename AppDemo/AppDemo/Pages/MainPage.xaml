@@ -89,6 +89,19 @@
                                       ButtonColor="{StaticResource AccentColor2}"
                                       TranslationX="-5"
                                       TranslationY="-150"/>
+
+        <FAB:FloatingActionButton x:Name="PAGO" 
+                                      HorizontalOptions="End" 
+                                      WidthRequest="62" 
+                                      HeightRequest="62"  
+                                      VerticalOptions="End"
+                                      IsVisible="{Binding HayRuta}"
+                                      Command="{Binding NewPagoCommand}"
+                                      Image="ic_money" 
+                                      ButtonColor="Red"
+                                      TranslationX="-5"
+                                      TranslationY="-230"/>
+        
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"

@@ -420,6 +420,16 @@ namespace AppDemo.ViewModels
 
         #endregion
         #region Commands
+
+
+        public ICommand NewPagoCommand { get { return new RelayCommand(NewPago); } }
+        public async void NewPago()
+        {
+            await App.Navigator.PushAsync(new PagoPage());
+            IsRefreshing = false;
+        }
+        
+
         /// <summary>
         /// En esta Región se encuantran los commands que estan realcionados con los botones de las vistas
         /// </summary>
@@ -558,6 +568,14 @@ namespace AppDemo.ViewModels
 
         public ICommand AddNewClientCommand { get { return new RelayCommand(AddNewClient); } }
         public async void AddNewClient()
+        {
+            //    PopupPage page = new AddPage();
+            //    await PopupNavigation.PushAsync(page);
+            await navigationService.Navigate("AddClientePage");
+        }
+
+        public ICommand AddNewPagoComman { get { return new RelayCommand(AddNewPago); } }
+        public async void AddNewPago()
         {
             //    PopupPage page = new AddPage();
             //    await PopupNavigation.PushAsync(page);

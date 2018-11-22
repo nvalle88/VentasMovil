@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:AppDemo.Controls"
+             BackgroundColor="White"
+             x:Class="AppDemo.Pages.PagoPage">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+      <Label Text="Nuevo Pago"
+          VerticalOptions="Start"
+             HorizontalOptions="FillAndExpand"
+             TextColor="White"
+             HorizontalTextAlignment="Center"
+             FontAttributes="Bold"
+             FontSize="Medium"
+             BackgroundColor="{StaticResource AccentColor2}" />
+      
+      <Label Text="Saldo Actual" HorizontalOptions="Center" VerticalOptions="Start"></Label>
+      <Label x:Name="MyLabel" FontFamily="Bold" FontSize="24" HorizontalOptions="Center" Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />
+      <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="FillAndExpand"
+         HorizontalOptions="FillAndExpand"  >
+        <ScrollView VerticalOptions="FillAndExpand">
+          <StackLayout BackgroundColor="White" Padding="5" VerticalOptions="FillAndExpand"
+         HorizontalOptions="FillAndExpand"  >
+            <Label Text="Tipo de Pago" HorizontalOptions="FillAndExpand"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+              <Picker x:Name="picker" HorizontalOptions="FillAndExpand" Title="Seleccione el tipo de pago">
+                <Picker.ItemsSource>
+                  <x:Array Type="{x:Type x:String}">
+                    <x:String>Cheque</x:String>
+                    <x:String>Efectivo</x:String>
+                    <x:String>Transferencia</x:String>
+                  </x:Array>
+                </Picker.ItemsSource>
+              </Picker>
+            </StackLayout>
+            <Label Text="Facturas" HorizontalOptions="FillAndExpand"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+              <Picker x:Name="pickerFactura" HorizontalOptions="FillAndExpand" Title="Seleccione la Factura">
+                <Picker.ItemsSource>
+                  <x:Array Type="{x:Type x:String}">
+                    <x:String>001-001-0000238</x:String>
+                    <x:String>001-001-0000239</x:String>
+                    <x:String>001-001-0000240</x:String>
+                    <x:String>001-001-0000241</x:String>
+                  </x:Array>
+                </Picker.ItemsSource>
+              </Picker>
+            </StackLayout>
+            <Label Text="Valor Adeudado" HorizontalOptions="FillAndExpand"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+              <Entry x:Name="Deuda" FontSize="Small" Placeholder="Deuda" IsEnabled="false"  HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+            
+             <Label Text="Valor a Cobrar" HorizontalOptions="FillAndExpand"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+              <Entry x:Name="Valor" Keyboard="Numeric" FontSize="Small" Placeholder="Valor a cobrar"   HorizontalOptions="FillAndExpand"></Entry>
+            </StackLayout>
+          </StackLayout>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"
+           HorizontalOptions="FillAndExpand">
+          <Button Text="Aceptar" TextColor="White"  Clicked="SaveButton_Clicked" BackgroundColor="{StaticResource AccentColor2}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
